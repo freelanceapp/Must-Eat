@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
 import infobite.must.eat.utils.ConnectionDetector;
+import infobite.must.eat.utils.CustomFont;
 import infobite.must.eat.utils.EmailChecker;
 
 /**
@@ -37,7 +39,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_login, container, false);
         mContext = getActivity();
-        cd = new ConnectionDetector(getActivity());
+        cd = new ConnectionDetector(mContext);
         init();
         return rootView;
     }
@@ -67,21 +69,19 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         tvSignUp.setOnClickListener(this);
         tvForgotPass.setOnClickListener(this);
 
-        Typeface titleFont = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-SemiBold.ttf");
-        Typeface fontB = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-Medium.ttf");
-        tvTitle.setTypeface(titleFont);
-        tvLoginLbl.setTypeface(titleFont);
+        tvTitle.setTypeface(CustomFont.semiBold(mContext));
+        tvLoginLbl.setTypeface(CustomFont.semiBold(mContext));
 
-        tvEmail.setTypeface(fontB);
-        tvPassword.setTypeface(fontB);
-        tvForgotPass.setTypeface(fontB);
-        tvOr.setTypeface(fontB);
-        tvSignUp.setTypeface(fontB);
-        etEmail.setTypeface(fontB);
-        etPassword.setTypeface(fontB);
-        btnLogin.setTypeface(fontB);
-        btnFb.setTypeface(fontB);
-        btnGmail.setTypeface(fontB);
+        tvEmail.setTypeface(CustomFont.medium(mContext));
+        tvPassword.setTypeface(CustomFont.medium(mContext));
+        tvForgotPass.setTypeface(CustomFont.medium(mContext));
+        tvOr.setTypeface(CustomFont.medium(mContext));
+        tvSignUp.setTypeface(CustomFont.medium(mContext));
+        etEmail.setTypeface(CustomFont.medium(mContext));
+        etPassword.setTypeface(CustomFont.medium(mContext));
+        btnLogin.setTypeface(CustomFont.medium(mContext));
+        btnFb.setTypeface(CustomFont.medium(mContext));
+        btnGmail.setTypeface(CustomFont.medium(mContext));
     }
 
     @Override
@@ -91,19 +91,10 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 loginApi();
                 break;
             case R.id.tv_signup:
-                fragmentManager
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-                        .replace(R.id.fram_container, new SignupFragment(),
-                                Constant.SignUp_Fragment).commit();
+                startFragment(Constant.SignUp_Fragment, new SignupFragment());
                 break;
             case R.id.tv_forgot_pass:
-                fragmentManager
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-                        .replace(R.id.fram_container,
-                                new ForgotPassFragment(),
-                                Constant.ForgotPassword_Fragment).commit();
+                startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment());
                 break;
         }
     }
@@ -120,16 +111,20 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             Alerts.show(mContext, "Password length must be more than 5");
         } else {
             if (cd.isNetworkAvailable()) {
-                //startNewActivity(VerificationActivity.class);
+                startFragment(Constant.Verification_Fragment, new VerificationFragment());
             } else {
                 cd.show(mContext);
             }
         }
     }
 
-    private void startNewActivity(Class<?> aClass) {
-        Intent intent = new Intent(mContext, aClass);
-        startActivity(intent);
+    private void startFragment(String tag, Fragment fragment) {
+        fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
+                .replace(R.id.fram_container,
+                        fragment,
+                        tag).commit();
     }
 
     @Override

@@ -9,7 +9,12 @@ import android.graphics.Typeface;
 
 public class CustomFont {
 
-    public Typeface semiBold(Context mContext) {
+    public static Typeface semiBold(Context mContext) {
+        Typeface titleFont = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-SemiBold.ttf");
+        return titleFont;
+    }
+
+    public static Typeface medium(Context mContext) {
         Typeface titleFont = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-SemiBold.ttf");
         return titleFont;
     }

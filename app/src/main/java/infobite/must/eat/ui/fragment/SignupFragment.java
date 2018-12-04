@@ -16,6 +16,7 @@ import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
+import infobite.must.eat.utils.CustomFont;
 import infobite.must.eat.utils.EmailChecker;
 
 /**
@@ -68,24 +69,22 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
         btnFb.setOnClickListener(this);
         btnGmail.setOnClickListener(this);
 
-        Typeface titleFont = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-SemiBold.ttf");
-        Typeface fontB = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-Medium.ttf");
-        tvTitle.setTypeface(titleFont);
-        tvSignupLbl.setTypeface(titleFont);
+        tvTitle.setTypeface(CustomFont.semiBold(mContext));
+        tvSignupLbl.setTypeface(CustomFont.semiBold(mContext));
 
-        tvEmail.setTypeface(fontB);
-        tvPassword.setTypeface(fontB);
-        tvName.setTypeface(fontB);
-        tvContact.setTypeface(fontB);
-        tvCountryCode.setTypeface(fontB);
-        etEmail.setTypeface(fontB);
-        etPassword.setTypeface(fontB);
-        etName.setTypeface(fontB);
-        etContact.setTypeface(fontB);
-        etCountryCode.setTypeface(fontB);
-        btRegister.setTypeface(fontB);
-        btnFb.setTypeface(fontB);
-        btnGmail.setTypeface(fontB);
+        tvEmail.setTypeface(CustomFont.medium(mContext));
+        tvPassword.setTypeface(CustomFont.medium(mContext));
+        tvName.setTypeface(CustomFont.medium(mContext));
+        tvContact.setTypeface(CustomFont.medium(mContext));
+        tvCountryCode.setTypeface(CustomFont.medium(mContext));
+        etEmail.setTypeface(CustomFont.medium(mContext));
+        etPassword.setTypeface(CustomFont.medium(mContext));
+        etName.setTypeface(CustomFont.medium(mContext));
+        etContact.setTypeface(CustomFont.medium(mContext));
+        etCountryCode.setTypeface(CustomFont.medium(mContext));
+        btRegister.setTypeface(CustomFont.medium(mContext));
+        btnFb.setTypeface(CustomFont.medium(mContext));
+        btnGmail.setTypeface(CustomFont.medium(mContext));
     }
 
     @Override
