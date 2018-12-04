@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Disputes"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:textSize="30dp" />
 
     </LinearLayout>
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Are you in problem ?"
-            android:textColor="@color/red"
+            android:textColor="@color/colorRed"
             android:textSize="16dp" />
 
         <TextView
@@ -96,7 +96,7 @@
 
         android:layout_margin="10dp"
         app:cardCornerRadius="5dp"
-        app:cardBackgroundColor="@color/spinnerbackground"
+        app:cardBackgroundColor="@color/colorGray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <LinearLayout
@@ -118,7 +118,7 @@
         />
     <ImageView
         android:src="@drawable/selectquery"
-        android:background="@color/spinnerbackground"
+        android:background="@color/colorGray"
         android:layout_width="50dp"
         android:layout_height="50dp" />
 

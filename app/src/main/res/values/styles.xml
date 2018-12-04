@@ -8,10 +8,52 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="myratingbar" parent="@android:style/Widget.RatingBar">
-        <item name="android:progressDrawable">@drawable/my_ratings</item>
-        <item name="android:minHeight">25dip</item>
-        <item name="android:maxHeight">25dip</item>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
+    <!-- colorPrimary is used, for instance, for the default ActionBar
+         (but not Toolbar) background.
+        We specify the same color for the toolbar background in
+        toolbar.xml.. -->
+        <item name="colorPrimary">@color/colorPurpal</item>
+
+            <!-- colorPrimaryDark is used for the status bar (with the
+            battery, clock, etc). -->
+        <item name="colorPrimaryDark">@color/colorPurpal</item>
+
+        <!-- colorAccent is used as the default value for
+            colorControlActivated which is used to tint widgets. -->
+        <item name="colorAccent">@color/colorPurpal</item>
     </style>
+    <style name="WindowTitleBackground">
+        <item name="android:background">@color/colorPurpal</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget"/>
+
+    <!--<style name="Widget.TextInputLayout">
+        <item name="android:layout_height">@dimen/wrap_content</item>
+        <item name="android:layout_width">@dimen/input_width</item>
+        <item name="android:textColorHint">@color/color_input_hint</item>
+    </style>
+
+    <style name="Widget.TextEdit">
+        <item name="android:layout_height">@dimen/match_parent</item>
+        <item name="android:layout_width">@dimen/match_parent</item>
+        <item name="android:textColorHighlight">@color/color_text_highlight</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColorHint">@color/color_input_hint</item>
+        <item name="android:background">@drawable/input_state</item>
+        <item name="android:textColor">@color/color_text</item>
+        <item name="android:padding">@dimen/text_padding</item>
+    </style>
+
+    <style name="Widget.Hint">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/color_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>-->
 
 </resources>

@@ -111,7 +111,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             Alerts.show(mContext, "Password length must be more than 5");
         } else {
             if (cd.isNetworkAvailable()) {
+
                 startFragment(Constant.Verification_Fragment, new VerificationFragment());
+
             } else {
                 cd.show(mContext);
             }
