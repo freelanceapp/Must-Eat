@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FFE90D35</color>
+    <color name="googlered">#db3236</color>
+    <color name="sendbutton">#FFD412B7</color>
+    <color name="fbbackground">#3F51B5</color>
+    <color name="spinnerbackground">#4b9e999d</color>
+
+    <color name="purple">#c000dd</color>
+    <color name="light_purple">#ddb6e2</color>
+
+</resources>

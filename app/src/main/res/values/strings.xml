@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MustEat</string>
+    <string name="connection">Network error !!!</string>
+    <string name="email">Email</string>
+    <string name="forgot_pass_desc">Don\'t worry reseting your passwordiis Easy,
+        Enter your email address below to change your password.</string>
+</resources>
