@@ -64,78 +64,80 @@
         android:orientation="horizontal">
 
         <AutoCompleteTextView
-            android:maxLength="1"
-            android:textAlignment="center"
             android:id="@+id/actvsample1"
             android:layout_width="70dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:maxLength="1"
+            android:textAlignment="center" />
 
         <AutoCompleteTextView
-            android:maxLength="1"
-            android:textAlignment="center"
             android:id="@+id/actvsample2"
             android:layout_width="70dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:maxLength="1"
+            android:textAlignment="center" />
 
         <AutoCompleteTextView
-            android:textAlignment="center"
             android:id="@+id/actvsample3"
             android:layout_width="70dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:textAlignment="center" />
 
         <AutoCompleteTextView
-            android:textAlignment="center"
             android:id="@+id/actvsample4"
             android:layout_width="70dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
     <android.support.v7.widget.CardView
-        app:cardElevation="10dp"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="5dp"
-        android:layout_gravity="center"
-        app:cardBackgroundColor="@color/sendbutton"
         android:layout_width="270dp"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/sendbutton"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp">
+
         <Button
-            android:layout_gravity="center"
             android:id="@+id/next"
-            android:textColor="@color/white"
-            android:text="next"
-            android:background="@android:color/transparent"
             android:layout_width="260dp"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="next"
+            android:textColor="@color/white" />
 
     </android.support.v7.widget.CardView>
 
     <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TextView
-        android:gravity="center"
-        android:id="@+id/dontotp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:text="Didnt get the OTP?"
-        android:textSize="15dp" />
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dontotp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Didnt get the OTP?"
+            android:textColor="@color/red"
+            android:textSize="15dp" />
+
         <TextView
             android:id="@+id/dontotpreq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/red"
             android:text=" RESEND"
-            android:textStyle="bold"
-            android:textSize="15dp" />
+            android:textColor="@color/red"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

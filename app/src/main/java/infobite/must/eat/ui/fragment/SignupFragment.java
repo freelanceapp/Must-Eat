@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
-import infobite.must.eat.ui.activities.VerificationActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
 import infobite.must.eat.utils.EmailChecker;
@@ -113,7 +112,7 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
             Alerts.show(mContext, "Password length must be more than 5");
         } else {
             if (cd.isNetworkAvailable()) {
-                startNewActivity(VerificationActivity.class);
+                //startNewActivity(VerificationActivity.class);
             } else {
                 cd.show(mContext);
             }
