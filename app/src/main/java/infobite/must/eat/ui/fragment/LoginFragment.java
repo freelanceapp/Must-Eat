@@ -18,6 +18,7 @@ import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.ui.activities.VerificationActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
+import infobite.must.eat.utils.ConnectionDetector;
 import infobite.must.eat.utils.EmailChecker;
 
 /**
@@ -37,7 +38,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_login, container, false);
         mContext = getActivity();
-
+        cd = new ConnectionDetector(getActivity());
         init();
         return rootView;
     }
