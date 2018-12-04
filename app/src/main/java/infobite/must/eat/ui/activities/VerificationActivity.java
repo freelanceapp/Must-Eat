@@ -8,6 +8,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import infobite.must.eat.Activity.FindLocationActivity;
 import infobite.must.eat.R;
 
 /**
@@ -51,7 +52,7 @@ public class VerificationActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(VerificationActivity.this,MainActivity.class);
+                Intent intent = new Intent(VerificationActivity.this,FindLocationActivity.class);
                 startActivity(intent);
             }
         });

@@ -24,7 +24,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text="MUST EAT"
-        android:textColor="@color/white"
+        android:textColor="@color/colorWhite"
         android:textSize="30dp"
         android:textStyle="bold" />
 

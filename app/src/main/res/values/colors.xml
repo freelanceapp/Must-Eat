@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="white">#FFFFFF</color>
-    <color name="red">#FFE90D35</color>
-    <color name="googlered">#db3236</color>
-    <color name="sendbutton">#FFD412B7</color>
-    <color name="fbbackground">#3F51B5</color>
-    <color name="spinnerbackground">#4b9e999d</color>
-
-    <color name="purple">#c000dd</color>
-    <color name="light_purple">#ddb6e2</color>
+    <color name="colorPurpal">#c000dd</color>
+    <color name="colorRed">#c33332</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#c2c2c2</color>
+    <color name="colorGreen">#176e1a</color>
+    <color name="colorDarkGray">#8f8e8e</color>
 
 </resources>

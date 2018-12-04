@@ -63,14 +63,14 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="-45dp"
-                android:background="@color/red"
+                android:background="@color/colorRed"
                 android:gravity="center"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
                 android:text="@string/app_name"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_24" />
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                     android:layout_marginTop="30dp"
                     android:text="REGISTER"
                     android:textAlignment="center"
-                    android:textColor="@color/red"
+                    android:textColor="@color/colorRed"
                     android:textSize="22dp" />
 
                 <LinearLayout
@@ -100,14 +100,14 @@
                         android:paddingLeft="3dp"
                         android:text="Name"
                         android:textColor="#000"
-                        android:textSize="@dimen/text_size_14" />
+                        android:textSize="14dp" />
 
                     <EditText
                         android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:textSize="@dimen/text_size_16" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_email"
@@ -115,16 +115,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:paddingLeft="3dp"
-                        android:text="@string/email"
+                        android:text="Email"
                         android:textColor="#000"
-                        android:textSize="@dimen/text_size_14" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:textSize="@dimen/text_size_16" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_contact"
@@ -134,14 +134,14 @@
                         android:paddingLeft="3dp"
                         android:text="Contact"
                         android:textColor="#000"
-                        android:textSize="@dimen/text_size_14" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:textSize="@dimen/text_size_16" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_country_code"
@@ -151,14 +151,14 @@
                         android:paddingLeft="3dp"
                         android:text="Country code"
                         android:textColor="#000"
-                        android:textSize="@dimen/text_size_14" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_country_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:textSize="@dimen/text_size_16" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_password"
@@ -168,14 +168,14 @@
                         android:paddingLeft="3dp"
                         android:text="Password"
                         android:textColor="#000"
-                        android:textSize="@dimen/text_size_14" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:textSize="@dimen/text_size_16" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -198,7 +198,7 @@
                         android:elevation="8dp"
                         android:text="Register"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_size_12" />
 
                     <Button
@@ -215,7 +215,7 @@
                         android:elevation="8dp"
                         android:text="Login with Facebook"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_size_12" />
 
                     <Button
@@ -232,7 +232,7 @@
                         android:elevation="8dp"
                         android:text="Login with Gmail"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_size_12" />
                 </LinearLayout>
 

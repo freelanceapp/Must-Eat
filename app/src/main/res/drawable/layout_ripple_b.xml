@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/white">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/colorWhite"
+    tools:ignore="NewApi">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/white" />
+            <solid android:color="@color/colorWhite" />
             <corners android:radius="0dp" />
         </shape>
     </item>
@@ -12,8 +14,8 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="90"
-                android:endColor="@color/purple"
-                android:startColor="@color/purple"
+                android:endColor="@color/colorPurpal"
+                android:startColor="@color/colorPurpal"
                 android:type="linear" />
             <corners android:radius="0dp" />
         </shape>

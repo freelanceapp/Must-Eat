@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="infobite.must.eat.ui.activities.MainActivity">
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/iv_close"
