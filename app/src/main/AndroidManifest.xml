@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="infobite.must.eat">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,7 +14,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.activities.SplashScreenActivity"
             android:screenOrientation="portrait">
@@ -33,7 +35,10 @@
         <activity
             android:name=".ui.activities.RestaurantsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activities.PlaceOrderActivity" />
+
+        <activity
+            android:name=".ui.activities.PlaceOrderActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
             android:name=".Activity.FindLocationActivity"
@@ -59,6 +64,10 @@
             android:name=".Activity.RestaurentMenuActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activities.PaymentActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".ui.activities.TrackOrderActivity" />
     </application>
 
 </manifest>

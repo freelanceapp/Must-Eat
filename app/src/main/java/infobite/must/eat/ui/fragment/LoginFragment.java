@@ -16,6 +16,7 @@ import android.widget.TextView;
 import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.ui.activities.MainActivity;
+import infobite.must.eat.ui.activities.PlaceOrderActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
 import infobite.must.eat.utils.ConnectionDetector;
@@ -95,6 +96,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case R.id.tv_forgot_pass:
                 startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment());
+                break;
+            case R.id.bt_gmail:
+                startActivity(new Intent(mContext, PlaceOrderActivity.class));
                 break;
         }
     }
