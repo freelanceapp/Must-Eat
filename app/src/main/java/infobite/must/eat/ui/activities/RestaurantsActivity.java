@@ -22,8 +22,6 @@ import infobite.must.eat.modal.ProductDetails;
 public class RestaurantsActivity extends AppCompatActivity {
 
     private List<ProductDetails> product = new ArrayList<>();
-    private ImageView icon;
-    private TextView toptext;
     private RecyclerView recylerestaurant;
 
     @Override
@@ -31,52 +29,17 @@ public class RestaurantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
 
-        icon = (ImageView) findViewById(R.id.icon);
-        toptext = (TextView) findViewById(R.id.toptext);
         recylerestaurant = (RecyclerView) findViewById(R.id.recylerestaurant);
 
-        recylerestaurant.setHasFixedSize(true);
-        recylerestaurant.setLayoutManager(new LinearLayoutManager(this));
 
 
-        product.add(
-                new ProductDetails(
-                        R.drawable.logo,
-                        "The Noodle",
-                        "Additional Item",
-                        "More",
-                        R.drawable.forward
-                )
-        );
-        product.add(
-                new ProductDetails(
-                        R.drawable.logo,
-                        "The Noodle",
-                        "Additional Item",
-                        "More",
-                        R.drawable.forward
-                )
-        );
-        product.add(
-                new ProductDetails(
-                        R.drawable.logo,
-                        "The Noodle",
-                        "Additional Item",
-                        "More",
-                        R.drawable.forward
-                )
-        );
-        product.add(
-                new ProductDetails(
-                        R.drawable.logo,
-                        "The Noodle",
-                        "Additional Item",
-                        "More",
-                        R.drawable.forward
-                )
-        );
+        for (int i = 0 ; i < 10 ; i++) {
+            product.add(new ProductDetails(R.drawable.bg_food, "The Noodle", "Additional Item", "Menu", R.drawable.forward));
+            product.add(new ProductDetails(R.drawable.bg_food, "The Noodle", "Additional Item", "Menu", R.drawable.forward));
+            product.add(new ProductDetails(R.drawable.bg_food, "The Noodle", "Additional Item", "Menu", R.drawable.forward));
 
-        DataAdapter adapter = new DataAdapter(this, product);
+        }
+        DataAdapter adapter = new DataAdapter(RestaurantsActivity.this, product);
         LinearLayoutManager layoutManager = new LinearLayoutManager(RestaurantsActivity.this, LinearLayoutManager.VERTICAL, false);
         recylerestaurant.setLayoutManager(layoutManager);
         recylerestaurant.setItemAnimator(new DefaultItemAnimator());

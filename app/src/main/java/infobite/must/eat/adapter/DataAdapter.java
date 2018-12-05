@@ -43,7 +43,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
         holder.title.setText(getData.getTitle());
         holder.subtitle.setText(getData.getSubtitle());
         holder.more.setText(getData.getMore());
-        holder.imagetwo.setImageDrawable(ctx.getResources().getDrawable(Integer.parseInt(String.valueOf(getData.getImagetwo()))));
+        //holder.imagetwo.setImageDrawable(ctx.getResources().getDrawable(Integer.parseInt(String.valueOf(getData.getImagetwo()))));
 
     }
 

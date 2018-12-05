@@ -1,4 +1,4 @@
-package infobite.must.eat.Activity;
+package infobite.must.eat.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

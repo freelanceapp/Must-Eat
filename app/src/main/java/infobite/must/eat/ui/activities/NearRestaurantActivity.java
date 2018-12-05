@@ -1,4 +1,4 @@
-package infobite.must.eat.Activity;
+package infobite.must.eat.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -102,9 +102,13 @@ public class NearRestaurantActivity extends AppCompatActivity {
                 }
                 else if (view == fabcart) {
                     showToast("Button Cart clicked");
+                    Intent intent = new Intent(NearRestaurantActivity.this,RestaurantsActivity.class);
+                    startActivity(intent);
                 }
                 else if (view == faboffer){
                     showToast("Button Offer clicked");
+                    Intent intent = new Intent(NearRestaurantActivity.this,RestaurentMenuActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     showToast("Button Account clicked");

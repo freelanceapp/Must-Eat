@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.activities.SplashScreenActivity"
@@ -31,43 +31,50 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.activities.DisputesActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".ui.activities.RestaurantsActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.activities.PlaceOrderActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".Activity.FindLocationActivity"
+            android:name=".ui.activities.PlaceOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".ui.activities.FindLocationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity.ManualLocationActivity"
+            android:name=".ui.activities.ManualLocationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity.NearRestaurantActivity"
+            android:name=".ui.activities.NearRestaurantActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity.HomeActivity"
+            android:name=".ui.activities.HomeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity.AccountActivity"
+            android:name=".ui.activities.AccountActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity.RestaurentMenuActivity"
+            android:name=".ui.activities.RestaurentMenuActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.activities.PaymentActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".ui.activities.TrackOrderActivity" />
+        <activity
+            android:name=".ui.activities.TrackOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

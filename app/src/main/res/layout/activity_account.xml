@@ -6,5 +6,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/account_frame"
-    tools:context=".Activity.AccountActivity"/>
+    tools:context=".ui.activities.AccountActivity"/>
 

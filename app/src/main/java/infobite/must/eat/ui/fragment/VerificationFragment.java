@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import infobite.must.eat.Activity.FindLocationActivity;
+import infobite.must.eat.ui.activities.FindLocationActivity;
 import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.Alerts;

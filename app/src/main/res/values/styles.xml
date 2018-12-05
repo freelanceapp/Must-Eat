@@ -9,12 +9,13 @@
     </style>
 
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
     <!-- colorPrimary is used, for instance, for the default ActionBar
          (but not Toolbar) background.
         We specify the same color for the toolbar background in
         toolbar.xml.. -->
         <item name="colorPrimary">@color/colorPurpal</item>
+        <item name="android:typeface">monospace</item>
 
             <!-- colorPrimaryDark is used for the status bar (with the
             battery, clock, etc). -->
@@ -32,6 +33,17 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Widget"/>
+
+    <style name="customRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/customratingstars</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/food_rating_bar_full</item>
+        <item name="android:minHeight">23dip</item>
+        <item name="android:maxHeight">25dip</item>
+    </style>
 
     <!--<style name="Widget.TextInputLayout">
         <item name="android:layout_height">@dimen/wrap_content</item>

@@ -3,11 +3,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.HomeFragment">
+    tools:context=".ui.fragment.HomeFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/home_list"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recommendations for you"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorRed"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:textSize="@dimen/text_size_12"
+                    android:padding="3dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorPurpal"/>
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recommendation_list">
+            </android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Most Popular"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorRed"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:textSize="@dimen/text_size_12"
+                    android:padding="3dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorPurpal"/>
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/most_list">
+            </android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Surf your Favorite Cuisines"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorRed"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:textSize="@dimen/text_size_12"
+                    android:padding="3dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorPurpal"/>
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fav_list">
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </FrameLayout>

@@ -1,4 +1,4 @@
-package infobite.must.eat.Activity;
+package infobite.must.eat.ui.activities;
 
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -29,10 +29,11 @@ import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import infobite.must.eat.Fragment.AccountFragment;
-import infobite.must.eat.Fragment.HistoryFragment;
-import infobite.must.eat.Fragment.HomeFragment;
-import infobite.must.eat.Fragment.NotificationFragment;
+import infobite.must.eat.constant.Constant;
+import infobite.must.eat.ui.fragment.AccountFragment;
+import infobite.must.eat.ui.fragment.HistoryFragment;
+import infobite.must.eat.ui.fragment.HomeFragment;
+import infobite.must.eat.ui.fragment.NotificationFragment;
 import infobite.must.eat.R;
 import infobite.must.eat.Utils;
 import infobite.must.eat.adapter.DrawerListAdapter;
@@ -146,7 +147,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             fragmentManager
                     .beginTransaction()
                     .replace(R.id.home_frame, new HomeFragment(),
-                            Utils.Home_Fragment).commit();
+                            Constant.Home_Fragment).commit();
         }
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -180,7 +181,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             fragmentManager
                     .beginTransaction()
                     .replace(R.id.home_frame, new HomeFragment(),
-                            Utils.Home_Fragment).commit();
+                            Constant.Home_Fragment).commit();
             // Toast.makeText(getApplicationContext(),"NAV1 is Selected",Toast.LENGTH_SHORT).show();
         }
         if (position == NAV2) {
@@ -188,7 +189,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             fragmentManager
                     .beginTransaction()
                     .replace(R.id.home_frame, new HistoryFragment(),
-                            Utils.HistoryFragment).commit();
+                            Constant.HistoryFragment).commit();
 
             //Toast.makeText(getApplicationContext(),"NAV2 is Selected",Toast.LENGTH_SHORT).show();
         }
@@ -197,7 +198,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             fragmentManager
                     .beginTransaction()
                     .replace(R.id.home_frame, new NotificationFragment(),
-                            Utils.NotificationFragment).commit();
+                            Constant.NotificationFragment).commit();
             tooltext.setText("Notificatons ");
             //Toast.makeText(getApplicationContext(),"NAV3 is Selected",Toast.LENGTH_SHORT).show();
         }
@@ -273,7 +274,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 .beginTransaction()
                 .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
                 .replace(R.id.home_frame, new HomeFragment(),
-                        Utils.Home_Fragment).commit();
+                        Constant.Home_Fragment).commit();
 
     }
 
@@ -281,9 +282,9 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     public void onBackPressed() {
 
         // Find the tag of signup and forgot password fragment
-        Fragment HistoryFragment = fragmentManager.findFragmentByTag(Utils.HistoryFragment);
-        Fragment NotificationFragment = fragmentManager.findFragmentByTag(Utils.NotificationFragment);
-        Fragment AccountFragment = fragmentManager.findFragmentByTag(Utils.AccountFragment);
+        Fragment HistoryFragment = fragmentManager.findFragmentByTag(Constant.HistoryFragment);
+        Fragment NotificationFragment = fragmentManager.findFragmentByTag(Constant.NotificationFragment);
+        Fragment AccountFragment = fragmentManager.findFragmentByTag(Constant.AccountFragment);
 
 
         // Check if both are null or not
@@ -399,7 +400,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     fragmentManager
                             .beginTransaction()
                             .replace(R.id.home_frame, new AccountFragment(),
-                                    Utils.AccountFragment).commit();
+                                    Constant.AccountFragment).commit();
                 }
                 fam.close(true);
             }
