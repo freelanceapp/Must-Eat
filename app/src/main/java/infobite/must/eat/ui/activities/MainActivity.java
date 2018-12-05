@@ -47,10 +47,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         Fragment SignUp_Fragment = fragmentManager.findFragmentByTag(Constant.SignUp_Fragment);
         Fragment ForgotPassword_Fragment = fragmentManager.findFragmentByTag(Constant.ForgotPassword_Fragment);
+        Fragment Verification_Fragment = fragmentManager.findFragmentByTag(Constant.Verification_Fragment);
 
         if (SignUp_Fragment != null)
             replaceLoginFragment();
         else if (ForgotPassword_Fragment != null)
+            replaceLoginFragment();
+        else if (Verification_Fragment != null)
             replaceLoginFragment();
         else
             super.onBackPressed();

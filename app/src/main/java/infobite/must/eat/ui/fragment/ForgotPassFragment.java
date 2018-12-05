@@ -14,6 +14,7 @@ import android.widget.TextView;
 import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.BaseFragment;
+import infobite.must.eat.utils.CustomFont;
 
 /**
  * Created by Dell on 12/3/2018.
@@ -22,7 +23,7 @@ import infobite.must.eat.utils.BaseFragment;
 public class ForgotPassFragment extends BaseFragment implements View.OnClickListener {
 
     private View rootView;
-    private TextView tvBack, tvForgotPass, tvTextA;
+    private TextView tvForgotPass, tvTextA;
     private Button btnLogin;
     private EditText etEmail;
 
@@ -39,25 +40,18 @@ public class ForgotPassFragment extends BaseFragment implements View.OnClickList
     private void init() {
         MainActivity.ivClose.setVisibility(View.VISIBLE);
 
-        tvBack = (TextView) rootView.findViewById(R.id.tv_back);
         tvForgotPass = (TextView) rootView.findViewById(R.id.tv_forgot_pass);
         tvTextA = (TextView) rootView.findViewById(R.id.tv_text_a);
-
         etEmail = (EditText) rootView.findViewById(R.id.et_email);
-
         btnLogin = (Button) rootView.findViewById(R.id.bt_send);
 
         btnLogin.setOnClickListener(this);
         ((LinearLayout) rootView.findViewById(R.id.ll_back)).setOnClickListener(this);
 
-        Typeface titleFont = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-SemiBold.ttf");
-        Typeface fontB = Typeface.createFromAsset(mContext.getAssets(), "font/Raleway-Medium.ttf");
-        tvForgotPass.setTypeface(titleFont);
-
-        tvTextA.setTypeface(fontB);
-        tvBack.setTypeface(fontB);
-        etEmail.setTypeface(fontB);
-        btnLogin.setTypeface(fontB);
+        tvForgotPass.setTypeface(CustomFont.semiBold(mContext));
+        tvTextA.setTypeface(CustomFont.medium(mContext));
+        etEmail.setTypeface(CustomFont.medium(mContext));
+        btnLogin.setTypeface(CustomFont.medium(mContext));
     }
 
     @Override

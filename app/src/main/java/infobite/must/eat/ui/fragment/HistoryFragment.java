@@ -1,4 +1,4 @@
-package infobite.must.eat.Fragment;
+package infobite.must.eat.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,8 +25,6 @@ public class HistoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,6 +32,8 @@ public class HistoryFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_history, container, false);
         //tooltext.setText("Order History");
         history_list = (RecyclerView)view.findViewById(R.id.history_list);
+
+
 
         for (int i = 0 ; i < 10 ; i++) {
             HistoryModel historyModel = new HistoryModel();

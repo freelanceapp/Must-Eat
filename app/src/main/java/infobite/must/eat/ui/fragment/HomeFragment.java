@@ -1,4 +1,4 @@
-package infobite.must.eat.Fragment;
+package infobite.must.eat.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

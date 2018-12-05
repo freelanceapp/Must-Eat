@@ -1,6 +1,7 @@
 package infobite.must.eat.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 import infobite.must.eat.R;
 import infobite.must.eat.modal.SectionDataModel;
+import infobite.must.eat.ui.activities.RestaurantsActivity;
 
 
 public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDataAdapter.ItemRowHolder> {
@@ -58,7 +60,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
         return (null != dataList ? dataList.size() : 0);
     }
 
-    public class ItemRowHolder extends RecyclerView.ViewHolder {
+    public class ItemRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView itemTitle;
         protected RecyclerView recycler_view_list;
@@ -71,6 +73,13 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
             this.recycler_view_list = (RecyclerView) view.findViewById(R.id.recycler_view_list);
             this.btnMore= (TextView) view.findViewById(R.id.btnMore);
             recycler_view_list.setNestedScrollingEnabled(false);
+            this.btnMore.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(mContext,RestaurantsActivity.class);
+            mContext.startActivity(intent);
         }
     }
 }

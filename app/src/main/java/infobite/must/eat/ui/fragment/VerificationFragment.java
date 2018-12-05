@@ -1,7 +1,6 @@
 package infobite.must.eat.ui.fragment;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -11,15 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import infobite.must.eat.Activity.FindLocationActivity;
+import infobite.must.eat.ui.activities.FindLocationActivity;
 import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
-import infobite.must.eat.ui.activities.VerificationActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
+import infobite.must.eat.utils.CustomFont;
 
 /**
  * Created by Dell on 12/3/2018.
@@ -60,6 +58,8 @@ public class VerificationFragment extends BaseFragment implements View.OnClickLi
         btn_next = (Button) rootView.findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
         tv_resend.setOnClickListener(this);
+        btn_next.setTypeface(CustomFont.semiBold(mContext));
+
        /* btn_next.setTypeface(CustomFont.semiBold(mContext));
         tv_resend.setTypeface(CustomFont.semiBold(mContext));
         tv_phone.setTypeface(CustomFont.semiBold(mContext));
@@ -199,7 +199,7 @@ public class VerificationFragment extends BaseFragment implements View.OnClickLi
                     Alerts.show(mContext, "Please enter valid OTP");
                 } else {
                     Alerts.show(mContext, "Verify success");
-                    Intent intent = new Intent(getActivity(),FindLocationActivity.class);
+                    Intent intent = new Intent(getActivity(), FindLocationActivity.class);
                     startActivity(intent);
                 }
                 break;

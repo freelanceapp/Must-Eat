@@ -3,6 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000</color>
+    <color name="red">#FFE90D35</color>
+    <color name="googlered">#db3236</color>
+    <color name="sendbutton">#FFD412B7</color>
+    <color name="fbbackground">#3F51B5</color>
+    <color name="spinnerbackground">#4b9e999d</color>
+    <color name="yellow">#f1a604</color>
+
+    <color name="purple">#c000dd</color>
+    <color name="light_purple">#ddb6e2</color>
     <color name="colorPurpal">#c000dd</color>
     <color name="colorRed">#c33332</color>
     <color name="colorWhite">#FFFFFF</color>
@@ -11,4 +22,16 @@
     <color name="colorGreen">#176e1a</color>
     <color name="colorDarkGray">#8f8e8e</color>
 
+    <color name="text_color_a">#121212</color>
+    <color name="text_color_b">#212121</color>
+    <color name="text_color_c">#333333</color>
+    <color name="text_color_d">#454444</color>
+
+    <color name="gray_a">#585757</color>
+    <color name="gray_b">#696868</color>
+    <color name="gray_c">#7b7a7a</color>
+    <color name="gray_d">#919090</color>
+    <color name="gray_e">#aeadad</color>
+    <color name="gray_f">#cacaca</color>
+    <color name="gray_g">#dadada</color>
 </resources>
