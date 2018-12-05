@@ -1,6 +1,7 @@
 package infobite.must.eat.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import infobite.must.eat.R;
 import infobite.must.eat.modal.ProductDetails;
+import infobite.must.eat.ui.activities.RestaurentMenuActivity;
 
 /**
  * Created by Dell on 12/1/2018.
@@ -52,7 +54,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
         return product.size();
     }
 
-    public class ProductViewHolder extends RecyclerView.ViewHolder {
+    public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView image, imagetwo;
         TextView title, subtitle, more;
@@ -65,6 +67,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
             subtitle = itemView.findViewById(R.id.subtitle);
             more = itemView.findViewById(R.id.more);
             imagetwo = itemView.findViewById(R.id.imagetwo);
+
+            more.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent(ctx, RestaurentMenuActivity.class);
+            ctx.startActivity(i);
         }
     }
 }
