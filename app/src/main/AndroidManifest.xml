@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="infobite.must.eat">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,7 +14,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Base">
+        android:theme="@style/AppTheme.Base"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.activities.SplashScreenActivity"
             android:screenOrientation="portrait">
@@ -29,11 +31,17 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.activities.DisputesActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".ui.activities.RestaurantsActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.activities.PlaceOrderActivity" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".ui.activities.PlaceOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
             android:name=".ui.activities.FindLocationActivity"
@@ -59,6 +67,14 @@
             android:name=".ui.activities.RestaurentMenuActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activities.PaymentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activities.TrackOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

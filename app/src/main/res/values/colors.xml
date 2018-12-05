@@ -20,6 +20,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#c2c2c2</color>
     <color name="colorGreen">#176e1a</color>
+    <color name="colorLightGreen">#2cd131</color>
     <color name="colorDarkGray">#8f8e8e</color>
 
     <color name="text_color_a">#121212</color>
@@ -34,4 +35,6 @@
     <color name="gray_e">#aeadad</color>
     <color name="gray_f">#cacaca</color>
     <color name="gray_g">#dadada</color>
+    <color name="gray_h">#e6e5e5</color>
+    <color name="gray_i">#f2f0f0</color>
 </resources>
