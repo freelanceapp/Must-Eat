@@ -39,4 +39,5 @@ dependencies {
     implementation 'com.yarolegovich:sliding-root-nav:1.1.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
 }

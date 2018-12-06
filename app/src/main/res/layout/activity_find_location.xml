@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/button_bg"
+            android:id="@+id/currnet_location_btn"
             android:text="choose your current location"
             android:paddingTop="10sp"
             android:paddingBottom="10sp"
