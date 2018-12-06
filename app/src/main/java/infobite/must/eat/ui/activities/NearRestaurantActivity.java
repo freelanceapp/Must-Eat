@@ -102,12 +102,12 @@ public class NearRestaurantActivity extends AppCompatActivity {
                 }
                 else if (view == fabcart) {
                     showToast("Button Cart clicked");
-                    Intent intent = new Intent(NearRestaurantActivity.this,RestaurantsActivity.class);
+                    Intent intent = new Intent(NearRestaurantActivity.this,AddtoCartActivity.class);
                     startActivity(intent);
                 }
                 else if (view == faboffer){
                     showToast("Button Offer clicked");
-                    Intent intent = new Intent(NearRestaurantActivity.this,RestaurentMenuActivity.class);
+                    Intent intent = new Intent(NearRestaurantActivity.this,OffersActivity.class);
                     startActivity(intent);
                 }
                 else {

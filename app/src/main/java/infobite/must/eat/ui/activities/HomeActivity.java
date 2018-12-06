@@ -423,6 +423,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 }
                 else if (view == faboffer){
                     showToast("Button Offer clicked");
+                    Intent intent = new Intent(HomeActivity.this,OffersActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     showToast("Button Account clicked");
