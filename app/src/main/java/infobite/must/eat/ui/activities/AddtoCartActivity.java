@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class AddtoCartActivity extends AppCompatActivity implements RecyclerItem
     private RecyclerView recyclerView;
     private List<Item> cartList;
     private CartListAdapter mAdapter;
-    private CoordinatorLayout coordinatorLayout;
+    private LinearLayout cll_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,7 @@ public class AddtoCartActivity extends AppCompatActivity implements RecyclerItem
 
 
         recyclerView = findViewById(R.id.recycler_view);
-       // coordinatorLayout = findViewById(R.id.coordinator_layout);
+        cll_back = findViewById(R.id.cll_back);
         cartList = new ArrayList<>();
         mAdapter = new CartListAdapter(this, cartList);
 
@@ -60,7 +61,12 @@ public class AddtoCartActivity extends AppCompatActivity implements RecyclerItem
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
-
+        cll_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     /**

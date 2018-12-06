@@ -175,6 +175,8 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
             Toast.makeText(FindLocationActivity.this, "Location "+addresses.get(0).getAddressLine(0)+", "+
                     addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2)+ location.getLatitude() +" "+ location.getLongitude(), Toast.LENGTH_SHORT).show();
 
+            Intent intent = new Intent(FindLocationActivity.this, NearRestaurantActivity.class);
+            startActivity(intent);
         }catch(Exception e)
         {
 

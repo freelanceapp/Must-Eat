@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:orientation="vertical">
-
     <RelativeLayout
         android:id="@+id/rlTitle"
         android:layout_width="match_parent"
@@ -13,7 +12,6 @@
         android:background="@color/colorWhite"
         android:paddingTop="4dp"
         android:paddingBottom="12dp">
-
         <LinearLayout
             android:id="@+id/ll_close"
             android:layout_width="wrap_content"
@@ -24,12 +22,11 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:padding="8dp">
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_close" />
-
+                android:src="@drawable/ic_close"
+                android:id="@+id/close_btn"/>
         </LinearLayout>
 
         <TextView
@@ -427,13 +424,10 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_size_12"
                         android:textStyle="bold" />
-
                 </LinearLayout>
-
             </RelativeLayout>
-
             <Button
-                android:id="@+id/bt_login"
+                android:id="@+id/bt_cart"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_centerHorizontal="true"

@@ -2,6 +2,7 @@ package infobite.must.eat.adapter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import java.util.List;
 import infobite.must.eat.R;
 import infobite.must.eat.modal.HistoryModel;
 import infobite.must.eat.modal.MenuListModel;
+import infobite.must.eat.ui.activities.AddtoCartActivity;
+import infobite.must.eat.ui.activities.MenuQuntityActivity;
 
 
 public class ManuListShowAdapter extends RecyclerView.Adapter<ManuListShowAdapter.MyViewHolder> {
@@ -29,12 +32,14 @@ public class ManuListShowAdapter extends RecyclerView.Adapter<ManuListShowAdapte
             tv_menu_name = (TextView) view.findViewById(R.id.tv_menu_name);
             tv_menu_price = (TextView) view.findViewById(R.id.tv_menu_price);
             tv_add_btn = (TextView) view.findViewById(R.id.add_btn);
-
+            tv_add_btn.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
 
+            Intent intent = new Intent(context,MenuQuntityActivity.class);
+            context.startActivity(intent);
         }
     }
 
