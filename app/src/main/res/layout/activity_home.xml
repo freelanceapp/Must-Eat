@@ -88,15 +88,33 @@
             android:padding="10sp"
             android:textColor="@color/colorWhite"
             android:background="@color/colorPurpal"/>
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rl_profile3"
-            android:text="List By"
-            android:textSize="16sp"
-            android:padding="7sp"
-            android:textColor="@color/colorWhite"
-            android:background="@color/colorPurpal"/>
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/text_size_10">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="@dimen/text_size_20"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:id="@+id/filter3"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/filter1"
+                android:text="List By"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:textSize="16sp"
+                android:padding="7sp"
+                android:textColor="@color/colorWhite"
+                android:background="@color/colorPurpal"/>
+        </LinearLayout>
+
 
         <ListView
             android:id="@+id/lv_drawer1"
@@ -106,17 +124,35 @@
             android:background="@color/colorPurpal"
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="0dp"
+            android:visibility="gone"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/text_size_10">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="@dimen/text_size_20"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:id="@+id/filter4"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rl_profile2"
+            android:id="@+id/filter2"
             android:layout_below="@+id/lv_drawer1"
             android:text="Cuisine"
+            android:layout_gravity="end"
+            android:gravity="end"
             android:padding="5sp"
             android:textSize="16sp"
             android:textColor="@color/colorWhite"
             android:background="@color/colorPurpal"/>
+    </LinearLayout>
         <ListView
             android:id="@+id/lv_drawer2"
             android:layout_width="match_parent"
@@ -125,7 +161,8 @@
             android:background="@color/colorPurpal"
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="0dp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

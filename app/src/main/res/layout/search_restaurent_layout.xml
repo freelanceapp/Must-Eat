@@ -15,7 +15,7 @@
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="160sp"
+                    android:layout_height="165sp"
                     android:background="@drawable/bg_food"/>
 
                 <LinearLayout
@@ -25,7 +25,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="90sp"
+                        android:layout_marginTop="?actionBarSize"
                         android:text="Recommended Near You"
                         android:padding="10sp"
                         android:textColor="@color/colorRed"
@@ -63,7 +63,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Find Resturant Near You"
+                        android:text="Find Restaurant Near You"
                         android:padding="5sp"
                         android:layout_gravity="center"
                         android:textSize="15sp"
@@ -73,10 +73,10 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter Area/Resturant name"
+                        android:hint="Enter Area/Restaurant name"
                         android:gravity="center"
                         android:textColor="@color/colorRed"
-                        android:textColorHint="@color/colorAccent"
+                        android:textColorHint="@color/colorAccent1"
                         android:textSize="14sp"
                         android:background="@drawable/edittext_bg"
                         android:layout_marginLeft="15sp"
