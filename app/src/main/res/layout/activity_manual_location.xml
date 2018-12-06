@@ -17,6 +17,7 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <TextView
+                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:background="@color/colorPurpal"
@@ -40,12 +41,14 @@
                 android:textColorHint="#eae9e9"/>
 
             <TextView
+                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10sp"
                 android:text="use Current location"
                 android:textColor="@color/colorRed"/>
             <TextView
+                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10sp"

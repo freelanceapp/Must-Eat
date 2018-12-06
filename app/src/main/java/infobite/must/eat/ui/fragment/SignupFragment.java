@@ -1,7 +1,6 @@
 package infobite.must.eat.ui.fragment;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
-import infobite.must.eat.utils.CustomFont;
 import infobite.must.eat.utils.EmailChecker;
 
 /**
@@ -68,23 +66,6 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
         btRegister.setOnClickListener(this);
         btnFb.setOnClickListener(this);
         btnGmail.setOnClickListener(this);
-
-        tvTitle.setTypeface(CustomFont.semiBold(mContext));
-        tvSignupLbl.setTypeface(CustomFont.semiBold(mContext));
-
-        tvEmail.setTypeface(CustomFont.medium(mContext));
-        tvPassword.setTypeface(CustomFont.medium(mContext));
-        tvName.setTypeface(CustomFont.medium(mContext));
-        tvContact.setTypeface(CustomFont.medium(mContext));
-        tvCountryCode.setTypeface(CustomFont.medium(mContext));
-        etEmail.setTypeface(CustomFont.medium(mContext));
-        etPassword.setTypeface(CustomFont.medium(mContext));
-        etName.setTypeface(CustomFont.medium(mContext));
-        etContact.setTypeface(CustomFont.medium(mContext));
-        etCountryCode.setTypeface(CustomFont.medium(mContext));
-        btRegister.setTypeface(CustomFont.medium(mContext));
-        btnFb.setTypeface(CustomFont.medium(mContext));
-        btnGmail.setTypeface(CustomFont.medium(mContext));
     }
 
     @Override

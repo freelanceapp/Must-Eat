@@ -13,6 +13,8 @@ public class Constant {
     public static final String Home_Fragment = "Home_Fragment";
     public static final String HistoryFragment = "HistoryFragment";
     public static final String NotificationFragment = "NotificationFragment";
+    public static final String FeedbackFragment = "FeedbackFragment";
+    public static final String AboutFragment = "AboutFragment";
     public static final String AccountFragment = "AccountFragment";
     public static final String RestaurentMenuFragment = "RestaurentMenuFragment";
     public static final String RestaurentAboutFragment = "RestaurentAboutFragment";

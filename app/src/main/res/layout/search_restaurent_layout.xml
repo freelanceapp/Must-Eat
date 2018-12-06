@@ -71,6 +71,7 @@
                         android:textStyle="bold"/>
 
                     <EditText
+                        android:textStyle="normal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter Area/Restaurant name"

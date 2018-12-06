@@ -45,6 +45,7 @@
     </RelativeLayout>
 
     <TextView
+        android:textStyle="normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -96,6 +97,7 @@
                                 android:tint="@color/colorPurpal" />
 
                             <TextView
+                                android:textStyle="normal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"

@@ -17,7 +17,6 @@ import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
-import infobite.must.eat.utils.CustomFont;
 
 /**
  * Created by Dell on 12/3/2018.
@@ -58,21 +57,7 @@ public class VerificationFragment extends BaseFragment implements View.OnClickLi
         btn_next = (Button) rootView.findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
         tv_resend.setOnClickListener(this);
-        btn_next.setTypeface(CustomFont.semiBold(mContext));
 
-       /* btn_next.setTypeface(CustomFont.semiBold(mContext));
-        tv_resend.setTypeface(CustomFont.semiBold(mContext));
-        tv_phone.setTypeface(CustomFont.semiBold(mContext));
-        tv_a.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_a.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_b.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_c.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_d.setTypeface(CustomFont.semiBold(mContext));
-
-        tv_b.setTypeface(CustomFont.medium(mContext));
-        tv_d.setTypeface(CustomFont.medium(mContext));
-        tv_e.setTypeface(CustomFont.medium(mContext));
-*/
         verificationCode();
     }
 

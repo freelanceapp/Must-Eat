@@ -103,6 +103,7 @@
                 android:layout_marginRight="5sp"
                 android:layout_marginBottom="2sp"/>
             <EditText
+                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2sp"/>
@@ -117,6 +118,7 @@
                 android:layout_marginRight="5sp"
                 android:layout_marginBottom="2sp"/>
             <EditText
+                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2sp"/>
@@ -132,6 +134,7 @@
                 android:layout_marginRight="5sp"
                 android:layout_marginBottom="2sp"/>
             <EditText
+                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2sp"/>
@@ -146,6 +149,7 @@
                 android:layout_marginRight="5sp"
                 android:layout_marginBottom="2sp"/>
             <EditText
+                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2sp"/>

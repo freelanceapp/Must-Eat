@@ -34,6 +34,7 @@
                 android:padding="3dp"
                 android:id="@+id/rb_review_number"/>
             <TextView
+                android:textStyle="normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="The demo "
@@ -48,6 +49,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
         <TextView
+            android:textStyle="normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="The demo "

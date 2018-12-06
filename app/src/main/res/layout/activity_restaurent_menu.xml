@@ -47,6 +47,7 @@
                     android:orientation="vertical"
                     android:layout_weight="1">
                     <TextView
+                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Webi Sabi restaurant"
@@ -54,6 +55,7 @@
                         android:textColor="@color/colorBlack"
                         android:padding="2sp" />
                     <TextView
+                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New York, NY, USA "
@@ -74,6 +76,7 @@
                         app:cardCornerRadius="@dimen/text_size_10"
                         android:layout_marginRight="5sp">
                     <TextView
+                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="OPEN"
@@ -107,6 +110,7 @@
                     android:orientation="vertical"
                     android:layout_weight="1">
                     <TextView
+                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Menu"
@@ -131,6 +135,7 @@
                     android:orientation="vertical"
                     android:layout_weight="1">
                     <TextView
+                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="About"
@@ -155,6 +160,7 @@
                     android:orientation="vertical"
                     android:layout_weight="1">
                     <TextView
+                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Review"

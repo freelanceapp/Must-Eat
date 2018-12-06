@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
+            android:textStyle="normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/restaurent_about"
@@ -76,6 +77,7 @@
                     android:textStyle="bold"
                     />
                 <TextView
+                    android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Address : \t 123abc Block Indore"
@@ -83,6 +85,7 @@
                     android:textSize="@dimen/text_size_16"
                     android:textColor="@color/colorBlack"/>
                 <TextView
+                    android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Contact : \t 0731 4564654"
@@ -90,6 +93,7 @@
                     android:textSize="@dimen/text_size_16"
                     android:textColor="@color/colorBlack"/>
                 <TextView
+                    android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Website : \t www.123abc.com"

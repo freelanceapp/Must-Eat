@@ -59,6 +59,7 @@
 
             <TextView
                 android:id="@+id/tv_title"
+                android:textStyle="normal"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
@@ -78,6 +79,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textStyle="normal"
                     android:id="@+id/tv_register_lbl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,6 +96,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -103,6 +106,7 @@
                         android:textSize="14dp" />
 
                     <EditText
+                        android:textStyle="normal"
                         android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -111,6 +115,7 @@
 
                     <TextView
                         android:id="@+id/tv_email"
+                        android:textStyle="normal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -120,6 +125,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:textStyle="normal"
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -127,6 +133,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -137,6 +144,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:textStyle="normal"
                         android:id="@+id/et_contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -144,6 +152,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_country_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -154,6 +163,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:textStyle="normal"
                         android:id="@+id/et_country_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -161,6 +171,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -171,6 +182,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:textStyle="normal"
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
