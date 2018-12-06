@@ -3,6 +3,7 @@ package infobite.must.eat;
 import android.app.Application;
 
 public class CustomFontApp extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -11,4 +12,6 @@ public class CustomFontApp extends Application {
         FontsOverride.setDefaultFont(this, "SERIF", "font/Raleway-Medium.ttf");
         FontsOverride.setDefaultFont(this, "SANS_SERIF", "font/Raleway-Medium.ttf");
     }
+
+
 }

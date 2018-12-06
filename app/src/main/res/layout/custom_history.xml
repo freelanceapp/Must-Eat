@@ -19,30 +19,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageView
-                    android:layout_width="80sp"
-                    android:layout_height="80sp"
-                    android:src="@drawable/bg_food"
+                    android:id="@+id/h_img"
+                    android:layout_width="60sp"
+                    android:layout_height="50sp"
                     android:scaleType="centerCrop"
-                    android:id="@+id/h_img"/>
+                    android:src="@drawable/bg_food" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_margin="7sp">
+                    android:layout_margin="5sp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="Restaurent Name"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold"
-                        android:padding="3sp"
+                        android:paddingLeft="3sp"
                         android:id="@+id/h_name"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:paddingLeft="3sp"
                         android:id="@+id/h_address"
                         android:text="Restaurent Name"
@@ -51,7 +52,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="2sp"
+                android:layout_height="1sp"
                 android:layout_margin="5sp"
                 android:background="@color/colorGray"/>
 
@@ -59,11 +60,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ORDERID"
+                android:textSize="@dimen/text_size_12"
                 android:layout_marginLeft="7sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ABC1234"
+                android:textSize="@dimen/text_size_12"
                 android:id="@+id/h_orderid"
                 android:textColor="@color/colorBlack"
                 android:layout_marginLeft="7sp"/>
@@ -71,12 +74,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ITEMS"
+                android:textSize="@dimen/text_size_12"
                 android:layout_marginLeft="7sp"
                 android:layout_marginTop="3sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1* item"
+                android:textSize="@dimen/text_size_12"
                 android:id="@+id/h_itmes"
                 android:textColor="@color/colorBlack"
                 android:layout_marginLeft="7sp"/>
@@ -84,12 +89,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TOTAL"
+                android:textSize="@dimen/text_size_12"
                 android:layout_marginLeft="7sp"
                 android:layout_marginTop="3sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$258"
+                android:textSize="@dimen/text_size_12"
                 android:id="@+id/h_price"
                 android:textColor="@color/colorBlack"
                 android:layout_marginLeft="7sp"/>
@@ -97,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DELIVERED ON "
+                android:textSize="@dimen/text_size_12"
                 android:layout_marginTop="3sp"
                 android:id="@+id/h_delivered_time"
                 android:textColor="@color/colorBlack"

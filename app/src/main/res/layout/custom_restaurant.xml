@@ -52,7 +52,7 @@
                     android:max="5"
                     android:id="@+id/rc_rate"
                     android:textColor="@color/colorRed"
-                    style="@style/foodRatingBar" />
+                    style="@style/foodRatingBar1" />
 
             </LinearLayout>
             <LinearLayout

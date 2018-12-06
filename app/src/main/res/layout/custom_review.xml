@@ -22,13 +22,13 @@
                 android:text="David"
                 android:id="@+id/tv_review_name"
                 android:textSize="@dimen/text_size_14"
-                android:padding="3sp"
+                android:paddingLeft="3sp"
                 android:textColor="@color/colorBlack"
                 android:textStyle="bold"/>
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/foodRatingBar"
+                style="@style/foodRatingBar1"
                 android:rating="2"
                 android:numStars="5"
                 android:padding="3dp"
@@ -37,8 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="The demo "
-                android:textSize="@dimen/text_size_12"
-                android:padding="3sp"
+                android:textSize="@dimen/text_size_10"
+                android:paddingLeft="3sp"
                 android:id="@+id/tv_review_comment"
                 android:textColor="@color/colorBlack" />
         </LinearLayout>
@@ -62,7 +62,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="2sp"
+        android:layout_height=".5sp"
         android:layout_margin="5dp"
         android:background="@color/colorDarkGray"/>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package infobite.must.eat.ui.activities;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -55,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int NAV6 = 5;
     private static final int NAV7 = 6;
     private static final int EXIT = 7;
-
+    TextView filter1,filter2,filter3,filter4;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     public static TextView tooltext;
@@ -79,6 +80,10 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         fabcart = (FloatingActionButton) findViewById(R.id.cart_btn1);
         fabuser = (FloatingActionButton) findViewById(R.id.account_btn1);
         fam = (FloatingActionMenu) findViewById(R.id.fab_menu1);
+        filter1 = (TextView)findViewById(R.id.filter1);
+        filter2 = (TextView)findViewById(R.id.filter2);
+        filter3 = (TextView)findViewById(R.id.filter3);
+        filter4 = (TextView)findViewById(R.id.filter4);
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
                 .withMenuOpened(false)
@@ -91,6 +96,25 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         screenTitles = loadScreenTitles();
         init();
 
+
+        filter1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv_drawer1.setVisibility(View.VISIBLE);
+                lv_drawer2.setVisibility(View.GONE);
+                filter3.setText("-");
+                filter4.setText("+");
+
+            }
+        });
+        filter2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv_drawer1.setVisibility(View.GONE);
+                lv_drawer2.setVisibility(View.VISIBLE);
+                filter3.setText("+");
+                filter4.setText("-");            }
+        });
         //handling menu status (open or close)
         fam.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
             @Override
@@ -124,6 +148,9 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 }
             }
         });
+
+
+
 
         DrawerAdapter drawadapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(NAV1).setChecked(true),
@@ -391,6 +418,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 }
                 else if (view == fabcart) {
                     showToast("Button Cart clicked");
+                    Intent intent = new Intent(HomeActivity.this,AddtoCartActivity.class);
+                    startActivity(intent);
                 }
                 else if (view == faboffer){
                     showToast("Button Offer clicked");

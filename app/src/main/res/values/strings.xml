@@ -16,4 +16,8 @@
     <string name="verification_code">Verification Code</string>
     <string name="_04_1258658745">+04 1258658745</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="action_settings">Settings</string>
+    <string name="my_cart">My Cart</string>
+    <string name="delete">DELETE</string>
+    <string name="offer_text">There are special schemes with certain banks (credit cards/debit cards) that allow you to avail Goibibo cash back offers whilst booking flights</string>
 </resources>

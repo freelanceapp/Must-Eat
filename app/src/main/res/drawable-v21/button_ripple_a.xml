@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/colorWhite">
+    android:color="@color/white">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/colorWhite" />
-            <corners android:radius="0dp" />
+            <solid android:color="@color/white" />
+            <corners android:radius="24dp" />
         </shape>
     </item>
 
@@ -12,10 +12,10 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="90"
-                android:endColor="@color/colorPurpal"
-                android:startColor="@color/colorPurpal"
+                android:endColor="@color/purple"
+                android:startColor="@color/purple"
                 android:type="linear" />
-            <corners android:radius="0dp" />
+            <corners android:radius="24dp" />
         </shape>
     </item>
 </ripple>

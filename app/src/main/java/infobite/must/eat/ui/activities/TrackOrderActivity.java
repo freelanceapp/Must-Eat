@@ -13,7 +13,8 @@ public class TrackOrderActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_track_order);
-        setContentView(R.layout.fragment_add_to_cart);
+        //setContentView(R.layout.fragment_add_to_cart);
+        setContentView(R.layout.activity_gift_cards);
 
         //init();
     }
