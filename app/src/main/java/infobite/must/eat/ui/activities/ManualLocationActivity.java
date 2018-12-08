@@ -18,16 +18,24 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.PlaceArrayAdapter;
 
 
 public class ManualLocationActivity extends AppCompatActivity implements  GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiClient.ConnectionCallbacks{
+        GoogleApiClient.ConnectionCallbacks, OnMapReadyCallback {
     private static final String LOG_TAG = "MainActivity";
+    private SupportMapFragment mapFragment;
+
 
     String[] fruits = {"Plasia", "TI", "LIG", "Vijay Nagar", "Bhawarkua", "Vishnupuri", "MR 9", "TIT Group", "Pardesipura", "Palnipura"};
     ListView area_list;
@@ -56,7 +64,9 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
                 BOUNDS_MOUNTAIN_VIEW, null);
         actv.setAdapter(mPlaceArrayAdapter);
 
-
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fruits);
        /* //Getting the instance of AutoCompleteTextView
@@ -73,6 +83,9 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
                 startActivity(intent);
             }
         });
+
+
+
     }
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener
@@ -106,6 +119,21 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
 
             postal_address = place.getName()+" , "+place.getAddress();
 
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    googleMap.clear();
+                    googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(place.getLatLng().latitude, place.getLatLng().longitude))
+                            .title(""+place.getName())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(place.getLatLng().latitude, place.getLatLng().longitude),15));
+                }
+            });
+
         }
     };
 
@@ -130,6 +158,26 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
     public void onConnectionSuspended(int i) {
         mPlaceArrayAdapter.setGoogleApiClient(null);
         Log.e(LOG_TAG, "Google Places API connection suspended.");
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+       /* googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.4233438, -122.0728817))
+                .title("LinkedIn")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.4629101,-122.2449094))
+                .title("Facebook")
+                .snippet("Facebook HQ: Menlo Park"));
+
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(37.3092293, -122.1136845))
+                .title("Apple"));
+
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.4233438, -122.0728817), 10));*/
     }
 
 }
