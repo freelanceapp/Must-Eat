@@ -72,7 +72,7 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_login:
-                loginApi();
+
                 break;
             case R.id.tv_signup:
 
@@ -80,8 +80,10 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-    private void loginApi() {
-        String strEmail = etEmail.getText().toString();
+    private void signUpApi() {
+        String strName = etEmail.getText().toString();
+        String strEmail = etPassword.getText().toString();
+        String strPhone = etPassword.getText().toString();
         String strPassword = etPassword.getText().toString();
 
         if (!EmailChecker.isValid(strEmail)) {

@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import infobite.must.eat.retrofit_provider.RetrofitApiClient;
+import infobite.must.eat.retrofit_provider.RetrofitService;
+
 public class BaseFragment extends Fragment {
 
-    /*public RetrofitApiClient retrofitApiClient;
-    public RetrofitApiClient retrofitRxClient;*/
+    public RetrofitApiClient retrofitApiClient;
+    public RetrofitApiClient retrofitRxClient;
     public ConnectionDetector cd;
     public Context mContext;
     public Activity activity;
@@ -28,8 +31,8 @@ public class BaseFragment extends Fragment {
         mContext = getActivity();
         activity = getActivity();
         cd = new ConnectionDetector(mContext);
-        /*retrofitRxClient = RetrofitService.getRxClient();
-        retrofitApiClient = RetrofitService.getRetrofit();*/
+        retrofitRxClient = RetrofitService.getRxClient();
+        retrofitApiClient = RetrofitService.getRetrofit();
         return null;
     }
 }

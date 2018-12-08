@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.SectionDataModel;
+import infobite.must.eat.modal.default_modal.SectionDataModel;
 import infobite.must.eat.ui.activities.RestaurantsActivity;
 
 

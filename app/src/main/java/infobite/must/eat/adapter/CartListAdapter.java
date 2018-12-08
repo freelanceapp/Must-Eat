@@ -9,12 +9,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.Item;
+import infobite.must.eat.modal.default_modal.Item;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyViewHolder> {
         private Context context;

@@ -1,7 +1,5 @@
 package infobite.must.eat.ui.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,9 +14,8 @@ import java.util.ArrayList;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.CategoryManuAdapter;
-import infobite.must.eat.adapter.HistoryShowAdapter;
 import infobite.must.eat.constant.Constant;
-import infobite.must.eat.modal.CategoryManuModel;
+import infobite.must.eat.modal.default_modal.CategoryManuModel;
 
 public class RestaurentMenuFragment extends Fragment {
     public View view;

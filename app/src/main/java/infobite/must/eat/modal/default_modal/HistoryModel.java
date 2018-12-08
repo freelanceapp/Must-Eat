@@ -1,4 +1,4 @@
-package infobite.must.eat.modal;
+package infobite.must.eat.modal.default_modal;
 
 public class HistoryModel {
     String h_img;
