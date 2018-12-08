@@ -14,8 +14,10 @@ import infobite.must.eat.R;
 
 public class ManualLocationActivity extends AppCompatActivity {
 
-    String[] fruits = {"Plasia", "TI", "LIG", "Vijay Nagar", "Bhawarkua", "Vishnupuri", "MR 9", "TIT Group", "Pardesipura", "Palnipura"};
-    ListView area_list;
+    private String[] fruits = {"Plasia", "TI", "LIG", "Vijay Nagar", "Bhawarkua", "Vishnupuri",
+            "MR 9", "TIT Group", "Pardesipura", "Palnipura"};
+    private ListView area_list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +29,13 @@ public class ManualLocationActivity extends AppCompatActivity {
         actv.setThreshold(1);//will start working from first character
         actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
 
-        area_list = (ListView)findViewById(R.id.area_list);
+        area_list = (ListView) findViewById(R.id.area_list);
         area_list.setAdapter(adapter);
 
         area_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(ManualLocationActivity.this,NearRestaurantActivity.class);
+                Intent intent = new Intent(ManualLocationActivity.this, NearRestaurantActivity.class);
                 startActivity(intent);
             }
         });

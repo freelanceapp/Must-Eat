@@ -4,172 +4,217 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.AccountFragment">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="centerCrop"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Image"
-            android:textSize="16sp"
-            android:textColor="@color/colorBlack"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="3sp">
-            <TextView
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Personal"
-                android:textColor="@color/colorWhite"
+                android:background="@color/purple"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/layout_ripple_b"
+                    android:clickable="true"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_back" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Account"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_20"
+                    android:textStyle="normal" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/circle_background"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/image_profile" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_below="@+id/profile_image"
+                    android:layout_alignRight="@+id/profile_image"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="-26dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:elevation="4dp"
+                    android:src="@drawable/ic_add" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:text="Upload Image"
+                android:textColor="@color/colorBlack"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="4dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_margin="6dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorRed"
+                    android:gravity="center"
+                    android:padding="7sp"
+                    android:text="Personal"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_margin="6dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPurpal"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="7sp"
+                    android:text="Order History"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginTop="3sp"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginBottom="2sp"
+                    android:text="Name"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginTop="3sp"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginBottom="2sp"
+                    android:text="Contact"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginTop="3sp"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginBottom="2sp"
+                    android:text="Email"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginTop="3sp"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginBottom="2sp"
+                    android:text="Address"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_margin="22dp"
                 android:background="@color/colorRed"
-                android:padding="7sp"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:layout_weight="1.1"
-                android:layout_margin="5sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Order History"
-                android:lines="1"
-                android:textSize="12sp"
+                android:elevation="8dp"
+                android:paddingLeft="42dp"
+                android:paddingRight="42dp"
+                android:text="Edit"
+                android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
-                android:background="@color/colorPurpal"
-                android:padding="7sp"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_margin="5sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Wallet"
-                android:textSize="12sp"
-                android:textColor="@color/colorWhite"
-                android:background="@color/colorPurpal"
-                android:padding="7sp"
-                android:gravity="center"
-                android:layout_weight="1.1"
-                android:layout_margin="5sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Refer"
-                android:textSize="12sp"
-                android:textColor="@color/colorWhite"
-                android:background="@color/colorPurpal"
-                android:padding="7sp"
-                android:gravity="center"
-                android:layout_weight="1.1"
-                android:layout_margin="5sp"/>
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5sp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:layout_marginLeft="5sp"
-                android:layout_marginTop="3sp"
-                android:layout_marginRight="5sp"
-                android:layout_marginBottom="2sp"/>
-            <EditText
-                android:textStyle="normal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contact"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:layout_marginLeft="5sp"
-                android:layout_marginTop="3sp"
-                android:layout_marginRight="5sp"
-                android:layout_marginBottom="2sp"/>
-            <EditText
-                android:textStyle="normal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:layout_marginLeft="5sp"
-                android:layout_marginTop="3sp"
-                android:layout_marginRight="5sp"
-                android:layout_marginBottom="2sp"/>
-            <EditText
-                android:textStyle="normal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:layout_marginLeft="5sp"
-                android:layout_marginTop="3sp"
-                android:layout_marginRight="5sp"
-                android:layout_marginBottom="2sp"/>
-            <EditText
-                android:textStyle="normal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2sp"/>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:paddingTop="3sp"
-            android:paddingBottom="3sp"
-            android:paddingLeft="25sp"
-            android:paddingRight="25sp"
-            android:background="@color/colorRed"
-            android:textSize="18sp"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="20sp"/>
-    </LinearLayout>
     </ScrollView>
 </RelativeLayout>

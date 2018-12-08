@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,70 +10,101 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
         <ImageView
             android:layout_width="100sp"
             android:layout_height="100sp"
-            android:src="@drawable/icon_location"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/icon_location" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Hi, nice to meet you"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:layout_margin="4sp"
             android:padding="3sp"
-            android:textColor="@color/colorRed"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Choose your location to start find \n restaurants arround you."
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_margin="4sp"
-            android:padding="3sp" />
-
-
-        <TextView
-            android:textStyle="normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/button_bg"
-            android:id="@+id/currnet_location_btn"
-            android:text="choose your current location"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"
-            android:paddingRight="25sp"
-            android:paddingLeft="25sp"
-            android:textColor="@color/colorPurpal"
-            android:layout_marginTop="15sp"/>
-
-        <TextView
-            android:textStyle="normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="Select it manually"
-            android:layout_margin="10sp"
+            android:text="Hi, nice to meet you"
             android:textColor="@color/colorRed"
-            android:padding="4sp"
-            android:id="@+id/manual_location_btn"/>
-    </LinearLayout>
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="4sp"
+            android:gravity="center"
+            android:padding="3sp"
+            android:text="Choose your location to start find \n restaurants arround you."
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="100sp"
-            android:layout_height="5sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@color/colorRed"
-            android:layout_marginBottom="7sp"/>
+            android:id="@+id/ll_current_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/layout_ripple_c"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="32dp"
+            android:paddingTop="8dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:clickable="false"
+                android:src="@drawable/ic_plane" />
+
+            <TextView
+                android:id="@+id/currnet_location_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="choose your current location"
+                android:textColor="@color/colorPurpal"
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/manual_location_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Select it manually"
+                android:textColor="@color/colorRed"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorRed" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="100sp"
+        android:layout_height="5sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7sp"
+        android:background="@color/colorRed" />
 
 </RelativeLayout>

@@ -163,7 +163,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="32dp"
                             android:text="30-40 min"
-                            android:textColor="@color/text_color_a" />
+                            android:textColor="@color/text_color_a"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -189,7 +190,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="32dp"
                             android:text="is unavailable"
-                            android:textColor="@color/gray_d" />
+                            android:textColor="@color/gray_d"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 

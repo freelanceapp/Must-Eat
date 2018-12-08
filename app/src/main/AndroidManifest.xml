@@ -85,6 +85,7 @@
         <activity android:name=".ui.activities.OffersActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" ></activity>
+        <activity android:name=".ui.activities.MenuQuntityActivity" />
     </application>
 
 </manifest>

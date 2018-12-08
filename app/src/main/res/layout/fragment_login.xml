@@ -156,7 +156,7 @@
                         android:background="@drawable/layout_ripple"
                         android:clickable="true"
                         android:padding="6dp"
-                        android:text="Forgot Password"
+                        android:text="@string/forgot_password"
                         android:textAlignment="center"
                         android:textColor="@color/colorRed"
                         android:textSize="14sp" />

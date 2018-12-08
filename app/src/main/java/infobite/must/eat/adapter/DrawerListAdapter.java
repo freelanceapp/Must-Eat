@@ -15,15 +15,16 @@ import infobite.must.eat.R;
 
 public class DrawerListAdapter extends BaseAdapter {
     Activity activity;
-    int [] imageId;
-    private static LayoutInflater inflater=null;
+    int[] imageId;
+    private static LayoutInflater inflater = null;
     ArrayList<String> titles;
+
     public DrawerListAdapter(Activity activity, ArrayList<String> titles, int[] icons) {
 // TODO Auto-generated constructor stub
         this.titles = titles;
         this.activity = activity;
         imageId = icons;
-        inflater = ( LayoutInflater )activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -44,14 +45,14 @@ public class DrawerListAdapter extends BaseAdapter {
         return position;
     }
 
-    public class Holder
-    {
+    public class Holder {
         TextView tv_title;
     }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 // TODO Auto-generated method stub
-        Holder holder=new Holder();
+        Holder holder = new Holder();
         View view;
         view = inflater.inflate(R.layout.layout_drawer_item, null);
 

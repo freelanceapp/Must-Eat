@@ -128,8 +128,7 @@
                         android:layout_marginLeft="8dp"
                         android:gravity="center"
                         android:text="Select your method"
-                        android:textColor="@color/gray_a"
-                        android:textSize="@dimen/text_size_14" />
+                        android:textColor="@color/gray_a" />
 
                 </LinearLayout>
 
@@ -158,8 +157,8 @@
                                 android:layout_height="32dp"
                                 android:layout_centerHorizontal="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginBottom="12dp"
+                                android:layout_marginTop="14dp"
+                                android:layout_marginBottom="14dp"
                                 android:src="@drawable/ic_card"
                                 android:tint="@color/colorWhite" />
                         </RelativeLayout>
@@ -192,8 +191,8 @@
                             android:layout_height="32dp"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginBottom="12dp"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginBottom="14dp"
                             android:src="@drawable/ic_card"
                             android:tint="@color/gray_d" />
                     </RelativeLayout>
@@ -210,8 +209,8 @@
                             android:layout_height="32dp"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginBottom="12dp"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginBottom="14dp"
                             android:src="@drawable/ic_card"
                             android:tint="@color/gray_d" />
                     </RelativeLayout>
@@ -244,8 +243,7 @@
                         android:layout_marginLeft="8dp"
                         android:gravity="center"
                         android:text="Enter your payment details"
-                        android:textColor="@color/gray_a"
-                        android:textSize="@dimen/text_size_14" />
+                        android:textColor="@color/gray_a" />
 
                 </LinearLayout>
 
@@ -262,7 +260,7 @@
                         android:layout_height="wrap_content"
                         android:text="CARDHOLDER NAME"
                         android:textColor="@color/gray_e"
-                        android:textSize="@dimen/text_size_8" />
+                        android:textSize="@dimen/text_size_10" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -270,7 +268,8 @@
                         android:layout_marginTop="6dp"
                         android:text="David Beckham"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/text_size_12" />
+                        android:textSize="@dimen/text_size_14"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -288,7 +287,7 @@
                         android:layout_height="wrap_content"
                         android:text="CARD NUMBER"
                         android:textColor="@color/gray_c"
-                        android:textSize="@dimen/text_size_8" />
+                        android:textSize="@dimen/text_size_10" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -302,8 +301,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="numberPassword"
                             android:text="1111"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_14" />
+                            android:textColor="@color/colorBlack" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -311,8 +309,7 @@
                             android:layout_marginLeft="8dp"
                             android:inputType="numberPassword"
                             android:text="1111"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_14" />
+                            android:textColor="@color/colorBlack" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -320,16 +317,14 @@
                             android:layout_marginLeft="8dp"
                             android:inputType="numberPassword"
                             android:text="1111"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_14" />
+                            android:textColor="@color/colorBlack" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="1234"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_14" />
+                            android:textColor="@color/colorBlack" />
 
                     </LinearLayout>
 
@@ -369,15 +364,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="EXPIRATION DATE"
                                 android:textColor="@color/gray_e"
-                                android:textSize="@dimen/text_size_8" />
+                                android:textSize="@dimen/text_size_10" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
                                 android:text="10 / 19"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="@dimen/text_size_12" />
+                                android:textColor="@color/colorBlack" />
                         </LinearLayout>
 
                         <View
@@ -397,7 +391,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="CVV"
                                 android:textColor="@color/gray_e"
-                                android:textSize="@dimen/text_size_8" />
+                                android:textSize="@dimen/text_size_10" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -405,8 +399,7 @@
                                 android:layout_marginTop="6dp"
                                 android:inputType="numberPassword"
                                 android:text="123"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="@dimen/text_size_12" />
+                                android:textColor="@color/colorBlack" />
                         </LinearLayout>
 
                     </LinearLayout>

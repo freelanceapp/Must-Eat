@@ -20,6 +20,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,11 +36,12 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 
 public class FindLocationActivity extends AppCompatActivity implements View.OnClickListener, LocationListener {
-    TextView manual_location_btn, currnet_location_btn;
+
+    private TextView manual_location_btn;
     private static final int MY_PERMISSIONS_REQUEST_CODE = 123;
     private String provider;
-    LocationTrack locationTrack;
-    Double lat, longi;
+    private LocationTrack locationTrack;
+    private Double lat, longi;
     private LocationManager locationManager;
 
     @Override
@@ -58,8 +60,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         manual_location_btn = (TextView) findViewById(R.id.manual_location_btn);
         manual_location_btn.setOnClickListener(this);
-        currnet_location_btn = (TextView) findViewById(R.id.currnet_location_btn);
-        currnet_location_btn.setOnClickListener(this);
+        ((LinearLayout) findViewById(R.id.ll_current_location)).setOnClickListener(this);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                 Intent intent = new Intent(FindLocationActivity.this, ManualLocationActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.currnet_location_btn:
+            case R.id.ll_current_location:
                 getLocation();
 
                 break;
@@ -77,15 +78,14 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-
-    protected void checkPermission(){
-        if( ContextCompat.checkSelfPermission
-                (FindLocationActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED){
+    protected void checkPermission() {
+        if (ContextCompat.checkSelfPermission
+                (FindLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
 
             // Do something, when permissions not granted
-            if( ActivityCompat.shouldShowRequestPermissionRationale(
-                    FindLocationActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION)){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    FindLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
                 // If we should give explanation of requested permissions
                 // Show an alert dialog here with request explanation
                 android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(FindLocationActivity.this);
@@ -96,7 +96,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ActivityCompat.requestPermissions(
                                 FindLocationActivity.this,
-                                new String[]{ Manifest.permission.ACCESS_FINE_LOCATION
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION
                                 },
                                 MY_PERMISSIONS_REQUEST_CODE
                         );
@@ -110,7 +110,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                 });
                 android.support.v7.app.AlertDialog dialog = builder.create();
                 dialog.show();
-            }else{
+            } else {
                 // Directly request for required permissions, without explanation
                 ActivityCompat.requestPermissions(
                         FindLocationActivity.this,
@@ -119,30 +119,30 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                         MY_PERMISSIONS_REQUEST_CODE
                 );
             }
-        }else {
+        } else {
             // Do something, when permissions are already granted
-            Toast.makeText(FindLocationActivity.this,"Permissions already granted",Toast.LENGTH_SHORT).show();
+            Toast.makeText(FindLocationActivity.this, "Permissions already granted", Toast.LENGTH_SHORT).show();
 
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
-        switch (requestCode){
-            case MY_PERMISSIONS_REQUEST_CODE:{
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CODE: {
                 // When request is cancelled, the results array are empty
-                if(
-                        (grantResults.length >0) &&
+                if (
+                        (grantResults.length > 0) &&
                                 (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                        ){
+                        ) {
                     // Permissions are granted
-                    Toast.makeText(FindLocationActivity.this,"Permissions granted.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FindLocationActivity.this, "Permissions granted.", Toast.LENGTH_SHORT).show();
 
                     // close this activity
                     finish();
-                }else {
+                } else {
                     // Permissions are denied
-                    Toast.makeText(FindLocationActivity.this,"Permissions denied.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FindLocationActivity.this, "Permissions denied.", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 return;
@@ -159,8 +159,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, (LocationListener) this);
-        }
-        catch(SecurityException e) {
+        } catch (SecurityException e) {
             e.printStackTrace();
         }
     }
@@ -172,13 +171,12 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            Toast.makeText(FindLocationActivity.this, "Location "+addresses.get(0).getAddressLine(0)+", "+
-                    addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2)+ location.getLatitude() +" "+ location.getLongitude(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(FindLocationActivity.this, "Location " + addresses.get(0).getAddressLine(0) + ", " +
+                    addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2) + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(FindLocationActivity.this, NearRestaurantActivity.class);
             startActivity(intent);
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
 
         }
 

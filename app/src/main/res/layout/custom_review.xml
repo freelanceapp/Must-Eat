@@ -1,70 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="4sp"
-        >
+        android:paddingLeft="16dp"
+        android:paddingTop="10dp"
+        android:paddingRight="16dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="5dp">
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@+id/tv_review_date"
+            android:orientation="vertical">
+
             <TextView
+                android:id="@+id/tv_review_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="David"
-                android:id="@+id/tv_review_name"
-                android:textSize="@dimen/text_size_14"
-                android:paddingLeft="3sp"
                 android:textColor="@color/colorBlack"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="bold" />
+
             <RatingBar
+                android:id="@+id/rb_review_number"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/foodRatingBar1"
-                android:rating="2"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:isIndicator="true"
                 android:numStars="5"
-                android:padding="3dp"
-                android:id="@+id/rb_review_number"/>
+                android:progressTint="@color/yellow"
+                android:rating="5"
+                android:stepSize="1.0" />
+
             <TextView
-                android:textStyle="normal"
+                android:id="@+id/tv_review_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="The demo "
+                android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_10"
-                android:paddingLeft="3sp"
-                android:id="@+id/tv_review_comment"
-                android:textColor="@color/colorBlack" />
+                android:textStyle="normal" />
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+
         <TextView
-            android:textStyle="normal"
+            android:id="@+id/tv_review_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="The demo "
+            android:layout_alignParentRight="true"
+            android:text="Nov 20 2018"
+            android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_12"
-            android:padding="3sp"
-            android:id="@+id/tv_review_date"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="end"
-            android:textColor="@color/colorBlack" />
-    </LinearLayout>
+            android:textStyle="normal" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height=".5sp"
-        android:layout_margin="5dp"
-        android:background="@color/colorDarkGray"/>
+        android:layout_height="1sp"
+        android:layout_margin="6dp"
+        android:background="@color/gray_g" />
 </LinearLayout>

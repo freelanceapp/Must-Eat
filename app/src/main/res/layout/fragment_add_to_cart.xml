@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/rlTitle"
         android:layout_width="match_parent"
@@ -12,6 +13,7 @@
         android:background="@color/colorWhite"
         android:paddingTop="4dp"
         android:paddingBottom="12dp">
+
         <LinearLayout
             android:id="@+id/ll_close"
             android:layout_width="wrap_content"
@@ -22,11 +24,12 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:padding="8dp">
+
             <ImageView
+                android:id="@+id/close_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_close"
-                android:id="@+id/close_btn"/>
+                android:src="@drawable/ic_close" />
         </LinearLayout>
 
         <TextView
@@ -35,10 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:textStyle="normal"
             android:text="Chicken Soup"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/text_size_18" />
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="normal" />
     </RelativeLayout>
 
     <ScrollView
@@ -55,11 +58,11 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPurpal"
                 android:paddingLeft="16dp"
-                android:textStyle="normal"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="Choose your choice"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="normal" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -74,26 +77,21 @@
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:textStyle="normal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="32dp"
                         android:buttonTint="@color/colorRed"
                         android:checked="true"
                         android:paddingLeft="6dp"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        android:text="Half" />
+                        android:text="Half"
+                        android:textStyle="normal" />
 
                     <RadioButton
-                        android:textStyle="normal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="-8dp"
+                        android:layout_height="32dp"
                         android:buttonTint="@color/colorRed"
                         android:paddingLeft="6dp"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        android:text="Full" />
+                        android:text="Full"
+                        android:textStyle="normal" />
                 </RadioGroup>
 
                 <LinearLayout
@@ -106,53 +104,49 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="32dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/currency_symbol"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="50"
-                            android:textStyle="normal"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="32dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/currency_symbol"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="100"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
 
             <TextView
-                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPurpal"
@@ -160,12 +154,14 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="Add Extra Stuffs"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="normal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingLeft="8dp"
                 android:paddingTop="8dp">
 
                 <RelativeLayout
@@ -174,15 +170,12 @@
                     android:paddingRight="16dp">
 
                     <CheckBox
-                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
                         android:buttonTint="@color/colorRed"
                         android:paddingLeft="6dp"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        android:text="Extra Sauce" />
+                        android:text="Extra Sauce"
+                        android:textStyle="normal" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -192,20 +185,18 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/currency_symbol"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="20"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -213,20 +204,16 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-10dp"
                     android:paddingRight="16dp">
 
                     <CheckBox
-                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
                         android:buttonTint="@color/colorRed"
                         android:checked="true"
                         android:paddingLeft="6dp"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        android:text="Extra Gravy" />
+                        android:text="Extra Gravy"
+                        android:textStyle="normal" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -236,20 +223,18 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/currency_symbol"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -257,20 +242,16 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-10dp"
                     android:paddingRight="16dp">
 
                     <CheckBox
-                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
                         android:buttonTint="@color/colorRed"
                         android:checked="true"
                         android:paddingLeft="6dp"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        android:text="Salad" />
+                        android:text="Salad"
+                        android:textStyle="normal" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -280,20 +261,18 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/currency_symbol"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -301,20 +280,16 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-10dp"
                     android:paddingRight="16dp">
 
                     <CheckBox
-                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:buttonTint="@color/colorRed"
                         android:checked="true"
                         android:paddingLeft="6dp"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        android:text="Papad" />
+                        android:text="Papad"
+                        android:textStyle="normal" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -324,20 +299,18 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/currency_symbol"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
 
                         <TextView
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3"
                             android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/text_size_12" />
+                            android:textStyle="normal" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -345,7 +318,6 @@
             </LinearLayout>
 
             <TextView
-                android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -354,7 +326,8 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="Special Instructions"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="normal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -363,19 +336,18 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:textStyle="normal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:text="Add Note"
-                    android:textSize="@dimen/text_size_12" />
+                    android:textSize="@dimen/text_size_12"
+                    android:textStyle="normal" />
 
                 <EditText
-                    android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_size_14" />
+                    android:textStyle="normal" />
             </LinearLayout>
 
             <RelativeLayout
@@ -426,6 +398,7 @@
                         android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
+
             <Button
                 android:id="@+id/bt_cart"
                 android:layout_width="match_parent"

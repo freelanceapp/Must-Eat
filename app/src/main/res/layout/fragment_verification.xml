@@ -7,45 +7,47 @@
 
     <TextView
         android:id="@+id/tv_a"
-        android:textStyle="normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/verification_code"
         android:textColor="@color/colorRed"
-        android:textSize="@dimen/text_size_24" />
+        android:textSize="@dimen/text_size_24"
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/tv_b"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textStyle="normal"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="32dp"
         android:gravity="center"
         android:text="@string/verify_text_a"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_size_18"
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/tv_phone"
-        android:textStyle="normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:text="@string/_04_1258658745"
         android:textColor="@color/colorRed"
-        android:textSize="@dimen/text_size_18" />
+        android:textSize="@dimen/text_size_18"
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/tv_d"
-        android:textStyle="normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/enter_otp"
         android:textColor="@color/colorRed"
-        android:textSize="@dimen/text_size_10" />
+        android:textSize="@dimen/text_size_10"
+        android:textStyle="normal" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -59,44 +61,44 @@
             android:orientation="horizontal">
 
             <EditText
-                android:textStyle="normal"
                 android:id="@+id/et_otp_a"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_size_20" />
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="normal" />
 
             <EditText
-                android:textStyle="normal"
                 android:id="@+id/et_otp_b"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_size_20" />
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="normal" />
 
             <EditText
-                android:textStyle="normal"
                 android:id="@+id/et_otp_c"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_size_20" />
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="normal" />
 
             <EditText
-                android:textStyle="normal"
                 android:id="@+id/et_otp_d"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_size_20" />
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="normal" />
 
         </LinearLayout>
 
@@ -111,7 +113,8 @@
             android:elevation="8dp"
             android:text="next"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_size_18" />
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -123,14 +126,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textStyle="normal"
             android:id="@+id/tv_e"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Didnt get the OTP ?"
             android:textColor="@color/colorRed"
-            android:textSize="@dimen/text_size_14" />
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/tv_resend"

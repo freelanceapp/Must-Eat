@@ -1,6 +1,5 @@
 package infobite.must.eat.ui.activities;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,27 +9,27 @@ import android.widget.TextView;
 
 import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
-import infobite.must.eat.ui.fragment.HomeFragment;
 import infobite.must.eat.ui.fragment.RestaurentAboutFragment;
 import infobite.must.eat.ui.fragment.RestaurentMenuFragment;
 import infobite.must.eat.ui.fragment.RestaurentReviewFragment;
 
 public class RestaurentMenuActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView manu_btn,about_btn,review_btn;
-    RelativeLayout manu_line,about_line,review_line;
+    TextView manu_btn, about_btn, review_btn;
+    RelativeLayout manu_line, about_line, review_line;
 
     FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurent_menu);
-        manu_btn = (TextView)findViewById(R.id.menu_btn);
-        about_btn = (TextView)findViewById(R.id.about_btn);
-        review_btn = (TextView)findViewById(R.id.review_btn);
+        manu_btn = (TextView) findViewById(R.id.menu_btn);
+        about_btn = (TextView) findViewById(R.id.about_btn);
+        review_btn = (TextView) findViewById(R.id.review_btn);
 
         manu_line = (RelativeLayout) findViewById(R.id.menu_line);
-        about_line = (RelativeLayout)findViewById(R.id.about_line);
-        review_line = (RelativeLayout)findViewById(R.id.review_line);
+        about_line = (RelativeLayout) findViewById(R.id.about_line);
+        review_line = (RelativeLayout) findViewById(R.id.review_line);
 
         fragmentManager = getSupportFragmentManager();
         // If savedinstnacestate is null then replace login fragment
@@ -50,9 +49,8 @@ public class RestaurentMenuActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
-            case R.id.menu_btn :
+        switch (view.getId()) {
+            case R.id.menu_btn:
                 fragmentManager
                         .beginTransaction()
                         .replace(R.id.resturent_menu_frame, new RestaurentMenuFragment(),
@@ -65,7 +63,7 @@ public class RestaurentMenuActivity extends AppCompatActivity implements View.On
                 review_line.setVisibility(View.GONE);
 
                 break;
-            case R.id.about_btn :
+            case R.id.about_btn:
                 fragmentManager
                         .beginTransaction()
                         .replace(R.id.resturent_menu_frame, new RestaurentAboutFragment(),
@@ -78,7 +76,7 @@ public class RestaurentMenuActivity extends AppCompatActivity implements View.On
                 about_line.setVisibility(View.VISIBLE);
                 review_line.setVisibility(View.GONE);
                 break;
-            case R.id.review_btn :
+            case R.id.review_btn:
                 fragmentManager
                         .beginTransaction()
                         .replace(R.id.resturent_menu_frame, new RestaurentReviewFragment(),

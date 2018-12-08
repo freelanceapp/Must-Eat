@@ -25,7 +25,7 @@ import infobite.must.eat.utils.BaseFragment;
 public class VerificationFragment extends BaseFragment implements View.OnClickListener {
 
     private View rootView;
-    private TextView tv_a, tv_b, tv_phone, tv_d, tv_e, tv_resend;
+    private TextView tv_resend;
     private Button btn_next;
     private EditText et_otp_a, et_otp_b, et_otp_c, et_otp_d;
 
@@ -42,11 +42,6 @@ public class VerificationFragment extends BaseFragment implements View.OnClickLi
     private void init() {
         MainActivity.ivClose.setVisibility(View.VISIBLE);
 
-        tv_a = (TextView) rootView.findViewById(R.id.tv_a);
-        tv_b = (TextView) rootView.findViewById(R.id.tv_b);
-        tv_d = (TextView) rootView.findViewById(R.id.tv_d);
-        tv_e = (TextView) rootView.findViewById(R.id.tv_e);
-        tv_phone = (TextView) rootView.findViewById(R.id.tv_phone);
         tv_resend = (TextView) rootView.findViewById(R.id.tv_resend);
 
         et_otp_a = (EditText) rootView.findViewById(R.id.et_otp_a);
