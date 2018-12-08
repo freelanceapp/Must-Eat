@@ -14,8 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -130,23 +129,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choose your Area "
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:padding="5dp"/>
 
                 <ListView
                     android:id="@+id/area_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:divider="@color/colorWhite" />
+                    android:divider="@color/colorWhite"
+                    android:visibility="gone"/>
             </LinearLayout>
 
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
 
-        </FrameLayout>
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="match_parent" />
 
     </LinearLayout>
 

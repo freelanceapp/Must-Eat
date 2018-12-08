@@ -63,8 +63,8 @@ public class RestaurantsActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void setItemAdapter(RecyclerView.LayoutManager layout, String strView) {
-        DataAdapter adapter = new DataAdapter(RestaurantsActivity.this, product, "list");
-        recylerestaurant.setLayoutManager(new LinearLayoutManager(RestaurantsActivity.this, LinearLayoutManager.VERTICAL, false));
+        DataAdapter adapter = new DataAdapter(RestaurantsActivity.this, product, strView);
+        recylerestaurant.setLayoutManager(layout);
         recylerestaurant.setItemAnimator(new DefaultItemAnimator());
         recylerestaurant.setAdapter(adapter);
     }
