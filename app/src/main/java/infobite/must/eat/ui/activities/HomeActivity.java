@@ -31,7 +31,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import infobite.must.eat.constant.Constant;
+import infobite.must.eat.ui.fragment.AboutFragment;
 import infobite.must.eat.ui.fragment.AccountFragment;
+import infobite.must.eat.ui.fragment.FeedbackFragment;
 import infobite.must.eat.ui.fragment.HistoryFragment;
 import infobite.must.eat.ui.fragment.HomeFragment;
 import infobite.must.eat.ui.fragment.NotificationFragment;
@@ -43,7 +45,7 @@ import infobite.must.eat.menu.DrawerItem;
 import infobite.must.eat.menu.SimpleItem;
 
 
-public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener{
+public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
     private FloatingActionMenu fam;
     private FloatingActionButton fabuser, fabcart, faboffer, fabhome;
     private static FragmentManager fragmentManager;
@@ -56,16 +58,16 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int NAV6 = 5;
     private static final int NAV7 = 6;
     private static final int EXIT = 7;
-    TextView filter1,filter2,filter3,filter4;
+    TextView filter1, filter2, filter3, filter4;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     public static TextView tooltext;
     ArrayList<String> navigation_filter;
     ArrayList<String> navigation_filter1;
     private DrawerListAdapter drawerListAdapter;
-    private ListView lv_drawer1,lv_drawer2;
-    public static int[] drawer_icons = {R.drawable.homeicon6, R.drawable.homeicon6, R.drawable.homeicon6,R.drawable.homeicon6,
-            R.drawable.homeicon6, R.drawable.homeicon6,R.drawable.homeicon6, R.drawable.homeicon6};
+    private ListView lv_drawer1, lv_drawer2;
+    public static int[] drawer_icons = {R.drawable.homeicon6, R.drawable.homeicon6, R.drawable.homeicon6, R.drawable.homeicon6,
+            R.drawable.homeicon6, R.drawable.homeicon6, R.drawable.homeicon6, R.drawable.homeicon6};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,17 +75,17 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        tooltext = (TextView)findViewById(R.id.tooltext);
+        tooltext = (TextView) findViewById(R.id.tooltext);
         fragmentManager = getSupportFragmentManager();
         fabhome = (FloatingActionButton) findViewById(R.id.home_btn1);
         faboffer = (FloatingActionButton) findViewById(R.id.offer_btn1);
         fabcart = (FloatingActionButton) findViewById(R.id.cart_btn1);
         fabuser = (FloatingActionButton) findViewById(R.id.account_btn1);
         fam = (FloatingActionMenu) findViewById(R.id.fab_menu1);
-        filter1 = (TextView)findViewById(R.id.filter1);
-        filter2 = (TextView)findViewById(R.id.filter2);
-        filter3 = (TextView)findViewById(R.id.filter3);
-        filter4 = (TextView)findViewById(R.id.filter4);
+        filter1 = (TextView) findViewById(R.id.filter1);
+        filter2 = (TextView) findViewById(R.id.filter2);
+        filter3 = (TextView) findViewById(R.id.filter3);
+        filter4 = (TextView) findViewById(R.id.filter4);
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
                 .withMenuOpened(false)
@@ -113,7 +115,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 lv_drawer1.setVisibility(View.GONE);
                 lv_drawer2.setVisibility(View.VISIBLE);
                 filter3.setText("+");
-                filter4.setText("-");            }
+                filter4.setText("-");
+            }
         });
         //handling menu status (open or close)
         fam.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
@@ -148,8 +151,6 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 }
             }
         });
-
-
 
 
         DrawerAdapter drawadapter = new DrawerAdapter(Arrays.asList(
@@ -203,7 +204,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             finish();
         }
         if (position == NAV1) {
-           // fragment = new AllFragment();
+            // fragment = new AllFragment();
             tooltext.setText("Home");
             fragmentManager
                     .beginTransaction()
@@ -231,19 +232,25 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         }
 
         if (position == NAV4) {
-           // fragment = new KidsFragment();
+            // fragment = new KidsFragment();
             tooltext.setText("Offers");
             //Toast.makeText(getApplicationContext(),"NAV4 is Selected",Toast.LENGTH_SHORT).show();
 
         }
         if (position == NAV5) {
-            //fragment = new HomeFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.home_frame, new FeedbackFragment(),
+                            Constant.FeedbackFragment).commit();
             tooltext.setText("Feedback");
             //Toast.makeText(getApplicationContext(),"NAV5 is Selected",Toast.LENGTH_SHORT).show();
 
         }
         if (position == NAV6) {
-            //fragment = new WishlistFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.home_frame, new AboutFragment(),
+                            Constant.FeedbackFragment).commit();
             tooltext.setText("About");
             //Toast.makeText(getApplicationContext(),"NAV5 is Selected",Toast.LENGTH_SHORT).show();
         }
@@ -255,8 +262,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         }
 
 
-            //Toast.makeText(this, "You have chosen " + text, Toast.LENGTH_LONG).show();
-            slidingRootNav.closeMenu();
+        //Toast.makeText(this, "You have chosen " + text, Toast.LENGTH_LONG).show();
+        slidingRootNav.closeMenu();
 
         //slidingRootNav.closeMenu();
         // Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
@@ -264,9 +271,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
 
-
     private DrawerItem createItemFor(int position) {
-        return new SimpleItem( screenTitles[position])
+        return new SimpleItem(screenTitles[position])
                 .withIconTint(color(R.color.colorWhite))
                 .withTextTint(color(R.color.colorWhite))
                 .withSelectedIconTint(color(R.color.colorBlack))
@@ -289,6 +295,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         ta.recycle();
         return icons;
     }
+
     @ColorInt
     private int color(@ColorRes int res) {
         return ContextCompat.getColor(this, res);
@@ -328,7 +335,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             super.onBackPressed();
     }
 
-    private void init(){
+    private void init() {
         navigation_filter = new ArrayList<>();
         navigation_filter.add("Best Match");
         navigation_filter.add("Distance");
@@ -360,15 +367,15 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(navigation_filter.get(position).equalsIgnoreCase("Any")){
+                if (navigation_filter.get(position).equalsIgnoreCase("Any")) {
 
                     //tv_selected_navigation.setText("Selected Call");
 
-                }else if(navigation_filter.get(position).equalsIgnoreCase("Rs 10,000 to 20,000")){
+                } else if (navigation_filter.get(position).equalsIgnoreCase("Rs 10,000 to 20,000")) {
 
                     //tv_selected_navigation.setText("Selected Favorite");
 
-                }else if(navigation_filter.get(position).equalsIgnoreCase("Rs 20,000 to 30,000")){
+                } else if (navigation_filter.get(position).equalsIgnoreCase("Rs 20,000 to 30,000")) {
 
                     //tv_selected_navigation.setText("Selected Search");
 
@@ -385,15 +392,15 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(navigation_filter1.get(position).equalsIgnoreCase("Any")){
+                if (navigation_filter1.get(position).equalsIgnoreCase("Any")) {
 
                     //tv_selected_navigation.setText("Selected Call");
 
-                }else if(navigation_filter1.get(position).equalsIgnoreCase("2 Nights")){
+                } else if (navigation_filter1.get(position).equalsIgnoreCase("2 Nights")) {
 
                     //tv_selected_navigation.setText("Selected Favorite");
 
-                }else if(navigation_filter1.get(position).equalsIgnoreCase("3 Nights")){
+                } else if (navigation_filter1.get(position).equalsIgnoreCase("3 Nights")) {
 
                     //tv_selected_navigation.setText("Selected Search");
 
@@ -415,18 +422,14 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     showToast("Button home clicked");
                    /* Intent intent = new Intent(NearRestaurantActivity.this,HomeActivity.class);
                     startActivity(intent);*/
-                }
-                else if (view == fabcart) {
+                } else if (view == fabcart) {
                     showToast("Button Cart clicked");
-                    Intent intent = new Intent(HomeActivity.this,AddtoCartActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, AddtoCartActivity.class);
                     startActivity(intent);
-                }
-                else if (view == faboffer){
-                    showToast("Button Offer clicked");
-                    Intent intent = new Intent(HomeActivity.this,OffersActivity.class);
+                } else if (view == faboffer) {
+                    Intent intent = new Intent(HomeActivity.this, OffersActivity.class);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     showToast("Button Account clicked");
                     fragmentManager
                             .beginTransaction()

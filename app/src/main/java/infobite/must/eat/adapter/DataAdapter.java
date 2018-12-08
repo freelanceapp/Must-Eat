@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,16 +24,24 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
 
     private Context ctx;
     private List<ProductDetails> product;
+    private String strViewType;
 
-    public DataAdapter(Context ctx, List<ProductDetails> product) {
+    public DataAdapter(Context ctx, List<ProductDetails> product, String strViewType) {
         this.ctx = ctx;
         this.product = product;
+        this.strViewType = strViewType;
     }
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
-        View view = inflater.inflate(R.layout.recylerestaurantdesign, null);
+        View view;
+        if (strViewType.equals("list")) {
+            view = inflater.inflate(R.layout.row_list_items, null);
+        } else {
+            view = inflater.inflate(R.layout.row_grid_items, null);
+        }
+
         return new ProductViewHolder(view);
     }
 
@@ -44,7 +53,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
         holder.image.setImageDrawable(ctx.getResources().getDrawable(Integer.parseInt(String.valueOf(getData.getImage()))));
         holder.title.setText(getData.getTitle());
         holder.subtitle.setText(getData.getSubtitle());
-        holder.more.setText(getData.getMore());
+        //holder.more.setText(getData.getMore());
         //holder.imagetwo.setImageDrawable(ctx.getResources().getDrawable(Integer.parseInt(String.valueOf(getData.getImagetwo()))));
 
     }
@@ -57,7 +66,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
     public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView image, imagetwo;
-        TextView title, subtitle, more;
+        LinearLayout ll_more;
+        TextView title, subtitle;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -65,10 +75,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
             image = itemView.findViewById(R.id.image);
             title = itemView.findViewById(R.id.title);
             subtitle = itemView.findViewById(R.id.subtitle);
-            more = itemView.findViewById(R.id.more);
+            ll_more = itemView.findViewById(R.id.ll_more);
             imagetwo = itemView.findViewById(R.id.imagetwo);
 
-            more.setOnClickListener(this);
+            ll_more.setOnClickListener(this);
         }
 
         @Override

@@ -38,6 +38,7 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,13 +63,13 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
         actv.setThreshold(1);//will start working from first character
         actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView*/
 
-        area_list = (ListView)findViewById(R.id.area_list);
+        area_list = (ListView) findViewById(R.id.area_list);
         area_list.setAdapter(adapter);
 
         area_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(ManualLocationActivity.this,NearRestaurantActivity.class);
+                Intent intent = new Intent(ManualLocationActivity.this, NearRestaurantActivity.class);
                 startActivity(intent);
             }
         });

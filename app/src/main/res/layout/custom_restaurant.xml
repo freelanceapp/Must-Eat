@@ -1,76 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="4sp"
+        android:layout_margin="7sp"
         app:cardCornerRadius="4sp"
-        android:layout_margin="7sp">
+        app:cardElevation="2sp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
+
             <ImageView
+                android:id="@+id/rc_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/bg_food"
-                android:scaleType="centerCrop"
                 android:layout_weight="1.1"
-                android:id="@+id/rc_img"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_food" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight=".7"
                 android:orientation="vertical"
-                android:layout_weight=".7">
+                android:paddingLeft="8dp">
+
                 <TextView
+                    android:id="@+id/rc_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="The Breakfast Box"
-                    android:padding="5sp"
-                    android:textColor="@color/colorRed"
                     android:lines="1"
-                    android:id="@+id/rc_name"/>
+                    android:paddingTop="5sp"
+                    android:paddingRight="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="The Breakfast Box"
+                    android:textColor="@color/colorRed" />
+
                 <TextView
+                    android:id="@+id/rc_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="5sp"
+                    android:paddingRight="5sp"
+                    android:paddingBottom="5sp"
+
                     android:text="OPEN"
-                    android:padding="5sp"
-                    android:id="@+id/rc_type"
                     android:textColor="@color/colorGreen"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
                 <RatingBar
+                    android:id="@+id/rc_rate"
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="The Breakfast Box"
-                    android:padding="5sp"
+                    android:isIndicator="true"
                     android:numStars="5"
-                    android:rating="2"
-                    android:max="5"
-                    android:id="@+id/rc_rate"
-                    android:textColor="@color/colorRed"
-                    style="@style/foodRatingBar1" />
+                    android:progressTint="@color/yellow"
+                    android:rating="5"
+                    android:stepSize="1.0" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
+                    android:id="@+id/rc_offer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="30% Off"
-                    android:padding="7sp"
-                    android:layout_margin="5sp"
-                    android:id="@+id/rc_offer"
+                    android:layout_marginLeft="6dp"
                     android:background="@color/colorPurpal"
-                    android:textColor="@color/colorWhite"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:padding="7sp"
+                    android:text="30% Off"
+                    android:textColor="@color/colorWhite" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

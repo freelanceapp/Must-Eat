@@ -8,100 +8,136 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:orientation="horizontal"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp">
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recommendations for you"
-                    android:textSize="@dimen/text_size_16"
                     android:layout_centerVertical="true"
+                    android:text="Recommendations for you"
                     android:textColor="@color/colorRed"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
                 <TextView
+                    android:id="@+id/recommendation_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View All"
-                    android:textSize="@dimen/text_size_12"
-                    android:padding="3dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="View All"
                     android:textColor="@color/colorPurpal"
-                    android:id="@+id/recommendation_btn"/>
+                    android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_f" />
+
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/recommendation_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recommendation_list">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_marginTop="8dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:orientation="horizontal"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp">
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:text="Most Popular"
-                    android:textSize="@dimen/text_size_16"
-                    android:layout_centerVertical="true"
                     android:textColor="@color/colorRed"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
                 <TextView
+                    android:id="@+id/popular_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View All"
-                    android:textSize="@dimen/text_size_12"
-                    android:padding="3dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="View All"
                     android:textColor="@color/colorPurpal"
-                    android:id="@+id/popular_btn"/>
+                    android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_f" />
+
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/most_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/most_list">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_marginTop="8dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:orientation="horizontal"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp">
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Surf your Favorite Cuisines"
-                    android:textSize="@dimen/text_size_16"
                     android:layout_centerVertical="true"
+                    android:text="Surf your Favorite Cuisines"
                     android:textColor="@color/colorRed"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
                 <TextView
+                    android:id="@+id/fav_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View All"
-                    android:id="@+id/fav_btn"
-                    android:textSize="@dimen/text_size_12"
-                    android:padding="3dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:textColor="@color/colorPurpal"/>
+                    android:padding="3dp"
+                    android:text="View All"
+                    android:textColor="@color/colorPurpal"
+                    android:textSize="@dimen/text_size_12" />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_f" />
+
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/fav_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/fav_list">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_marginTop="8dp" />
 
 
         </LinearLayout>

@@ -17,7 +17,6 @@ import infobite.must.eat.R;
 import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
-import infobite.must.eat.utils.CustomFont;
 
 /**
  * Created by Dell on 12/3/2018.
@@ -26,7 +25,7 @@ import infobite.must.eat.utils.CustomFont;
 public class VerificationFragment extends BaseFragment implements View.OnClickListener {
 
     private View rootView;
-    private TextView tv_a, tv_b, tv_phone, tv_d, tv_e, tv_resend;
+    private TextView tv_resend;
     private Button btn_next;
     private EditText et_otp_a, et_otp_b, et_otp_c, et_otp_d;
 
@@ -43,11 +42,6 @@ public class VerificationFragment extends BaseFragment implements View.OnClickLi
     private void init() {
         MainActivity.ivClose.setVisibility(View.VISIBLE);
 
-        tv_a = (TextView) rootView.findViewById(R.id.tv_a);
-        tv_b = (TextView) rootView.findViewById(R.id.tv_b);
-        tv_d = (TextView) rootView.findViewById(R.id.tv_d);
-        tv_e = (TextView) rootView.findViewById(R.id.tv_e);
-        tv_phone = (TextView) rootView.findViewById(R.id.tv_phone);
         tv_resend = (TextView) rootView.findViewById(R.id.tv_resend);
 
         et_otp_a = (EditText) rootView.findViewById(R.id.et_otp_a);
@@ -58,21 +52,7 @@ public class VerificationFragment extends BaseFragment implements View.OnClickLi
         btn_next = (Button) rootView.findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
         tv_resend.setOnClickListener(this);
-        btn_next.setTypeface(CustomFont.semiBold(mContext));
 
-       /* btn_next.setTypeface(CustomFont.semiBold(mContext));
-        tv_resend.setTypeface(CustomFont.semiBold(mContext));
-        tv_phone.setTypeface(CustomFont.semiBold(mContext));
-        tv_a.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_a.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_b.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_c.setTypeface(CustomFont.semiBold(mContext));
-        et_otp_d.setTypeface(CustomFont.semiBold(mContext));
-
-        tv_b.setTypeface(CustomFont.medium(mContext));
-        tv_d.setTypeface(CustomFont.medium(mContext));
-        tv_e.setTypeface(CustomFont.medium(mContext));
-*/
         verificationCode();
     }
 

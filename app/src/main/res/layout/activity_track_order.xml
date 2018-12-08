@@ -51,7 +51,8 @@
         android:layout_margin="6dp"
         android:text="Customer Name"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/text_size_18" />
+        android:textSize="@dimen/text_size_18"
+        android:textStyle="normal" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardElevation="6dp">
+                app:cardElevation="4dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -102,7 +103,8 @@
                                 android:layout_marginLeft="8dp"
                                 android:text="Your Order is accepted"
                                 android:textColor="@color/colorBlack"
-                                android:textSize="@dimen/text_size_12" />
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="normal" />
                         </LinearLayout>
 
                         <TextView

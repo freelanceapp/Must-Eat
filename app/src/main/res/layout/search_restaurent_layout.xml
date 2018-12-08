@@ -1,110 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ScrollView
+    android:orientation="vertical">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+        android:layout_height="wrap_content">
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bg_food" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="18dp"
+            app:cardCornerRadius="5sp"
+            app:cardElevation="8sp">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="165sp"
-                    android:background="@drawable/bg_food"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="?actionBarSize"
-                        android:text="Recommended Near You"
-                        android:padding="10sp"
-                        android:textColor="@color/colorRed"
-                        android:textStyle="bold"/>
-                    <android.support.v7.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/restaurent_list"
-                        android:scrollbars="vertical"
-                        android:overScrollMode="always"/>
-
-                </LinearLayout>
-            </LinearLayout>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60sp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp"
-                app:cardElevation="10sp"
-                app:cardCornerRadius="5sp">
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingTop="12dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MustEat"
-                        android:padding="5sp"
-                        android:layout_gravity="center"
-                        android:textSize="18sp"
-                        android:textColor="@color/colorPurpal"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Find Restaurant Near You"
-                        android:padding="5sp"
-                        android:layout_gravity="center"
-                        android:textSize="15sp"
-                        android:textColor="@color/colorPurpal"
-                        android:textStyle="bold"/>
+                    android:layout_gravity="center"
+                    android:padding="5sp"
+                    android:text="MustEat"
+                    android:textColor="@color/colorPurpal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Enter Area/Restaurant name"
-                        android:gravity="center"
-                        android:textColor="@color/colorRed"
-                        android:textColorHint="@color/colorAccent1"
-                        android:textSize="14sp"
-                        android:background="@drawable/edittext_bg"
-                        android:layout_marginLeft="15sp"
-                        android:layout_marginRight="15sp"
-                        android:layout_marginTop="3sp"
-                        android:layout_marginBottom="3sp"
-                        android:padding="7sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5sp"
+                    android:text="Find Restaurant Near You"
+                    android:textColor="@color/colorPurpal"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Find food"
-                        android:gravity="center"
-                        android:textColor="@color/colorWhite"
-                        android:textColorHint="@color/colorAccent"
-                        android:background="@drawable/button_bg1"
-                        android:layout_marginLeft="15sp"
-                        android:layout_marginRight="15sp"
-                        android:padding="7sp"
-                        android:layout_marginTop="2sp"
-                        android:layout_marginBottom="15sp"
-                        android:textAllCaps="false" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edittext_back_a"
+                    android:gravity="center"
+                    android:hint="Enter Area/Restaurant name"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textColor="@color/colorRed"
+                    android:textColorHint="@color/colorAccent1"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="normal" />
 
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16sp"
+                    android:layout_marginTop="12sp"
+                    android:layout_marginRight="16sp"
+                    android:layout_marginBottom="16sp"
+                    android:background="@drawable/button_ripple_a"
+                    android:elevation="8dp"
+                    android:gravity="center"
+                    android:padding="7sp"
+                    android:text="Find food"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorAccent"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
 
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
+    </RelativeLayout>
 
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:text="Recommended Near You"
+            android:textColor="@color/colorRed"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/restaurent_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="always"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+</LinearLayout>

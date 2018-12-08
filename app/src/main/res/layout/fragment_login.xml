@@ -47,6 +47,7 @@
             </RelativeLayout>
 
             <TextView
+                android:textStyle="normal"
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
@@ -67,6 +68,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textStyle="normal"
                     android:id="@+id/tv_login_lbl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,6 +85,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -92,6 +95,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:textStyle="normal"
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -99,6 +103,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -109,6 +114,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:textStyle="normal"
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,6 +146,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_forgot_pass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -149,12 +156,13 @@
                         android:background="@drawable/layout_ripple"
                         android:clickable="true"
                         android:padding="6dp"
-                        android:text="Forgot Password"
+                        android:text="@string/forgot_password"
                         android:textAlignment="center"
                         android:textColor="@color/colorRed"
                         android:textSize="14sp" />
 
                     <TextView
+                        android:textStyle="normal"
                         android:id="@+id/tv_or"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -201,6 +209,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:textStyle="normal"
                     android:id="@+id/tv_signup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
