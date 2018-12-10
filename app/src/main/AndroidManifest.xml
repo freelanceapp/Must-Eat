@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -89,7 +88,6 @@
             android:name=".ui.activities.OffersActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
         <activity
             android:name=".ui.activities.MenuQuntityActivity"
             android:screenOrientation="portrait"
@@ -101,6 +99,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCRE19dYa5MaLKvH7sqDD55X8oUEv0_-uk" />
+
     </application>
 
 </manifest>

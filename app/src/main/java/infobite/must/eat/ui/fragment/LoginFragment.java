@@ -3,9 +3,11 @@ package infobite.must.eat.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -42,10 +54,13 @@ import retrofit2.Response;
  * Created by Dell on 12/3/2018.
  */
 
-public class LoginFragment extends BaseFragment implements View.OnClickListener {
+public class LoginFragment extends BaseFragment implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private View rootView;
     private static FragmentManager fragmentManager;
+    private GoogleApiClient mGoogleApiClient;
+    private static final int RC_SIGN_IN = 007;
+
 
     @Nullable
     @Override
@@ -58,6 +73,17 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     }
 
     private void init() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(new Scope(Scopes.PLUS_LOGIN))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(mContext)
+                .enableAutoManage(getActivity() /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .addApi(Plus.API)
+                .build();
+
         retrofitApiClient = RetrofitService.getRetrofit();
         MainActivity.ivClose.setVisibility(View.GONE);
         fragmentManager = getActivity().getSupportFragmentManager();
@@ -80,8 +106,25 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment(), "");
                 break;
             case R.id.bt_gmail:
-                startActivity(new Intent(mContext, PlaceOrderActivity.class));
+                //startActivity(new Intent(mContext, PlaceOrderActivity.class));
+                googleSignIn();
                 break;
+        }
+    }
+
+    private void googleSignIn() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
         }
     }
 
@@ -150,4 +193,44 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         super.onResume();
         MainActivity.ivClose.setVisibility(View.GONE);
     }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d("#############", "onConnectionFailed:" + connectionResult);
+
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d("###########", "handleSignInResult:" + result.isSuccess());
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            Person person = null;
+            if (mGoogleApiClient.isConnected()) {
+                person = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+            }
+
+            Log.e("####", "display name: " + acct.getDisplayName());
+
+            String personName = acct.getDisplayName();
+            String personPhotoUrl="";
+            if (acct.getPhotoUrl()!=null){
+                personPhotoUrl = acct.getPhotoUrl().toString();}
+            String email = acct.getEmail();
+            String id = acct.getId();
+            String gender = "";
+            if (person!=null && person.hasGender()) {
+                gender = String.valueOf(person.getGender());
+            }
+            String msg = "Name: " + personName + ",\n\n email: " + email+ ",\n\n Gender: " + gender+ ",\n\n Id: " + id
+                    + ",\n\n Image: " + personPhotoUrl;
+
+            Log.e("#####", msg);
+
+            //logiSocial(personName,email,personPhotoUrl,id, "Google");
+        } else {
+            Alerts.show(mContext,"Could not connect to google, please try after sometime. ");
+        }
+    }
+
 }
