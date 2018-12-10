@@ -41,24 +41,7 @@ public class RetrofitService {
         return client;
     }
 
-    public static void getRegistration(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
-        if (dialog != null)
-            AppProgressDialog.show(dialog);
-
-        method.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                WebServiceResponse.handleResponse(response, webResponse);
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                webResponse.onResponseFailed(throwable.getMessage());
-            }
-        });
-    }
-
-    public static void getLoginData(final Dialog dialog, final Call<LoginModal> method, final WebResponse webResponse) {
+    public static void getUserData(final Dialog dialog, final Call<LoginModal> method, final WebResponse webResponse) {
         if (dialog != null)
             AppProgressDialog.show(dialog);
 

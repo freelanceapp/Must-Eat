@@ -74,10 +74,10 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 loginApi();
                 break;
             case R.id.tv_signup:
-                startFragment(Constant.SignUp_Fragment, new SignupFragment());
+                startFragment(Constant.SignUp_Fragment, new SignupFragment(), "");
                 break;
             case R.id.tv_forgot_pass:
-                startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment());
+                startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment(), "");
                 break;
             case R.id.bt_gmail:
                 startActivity(new Intent(mContext, PlaceOrderActivity.class));
@@ -98,7 +98,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         } else {
             if (cd.isNetworkAvailable()) {
 
-                RetrofitService.getLoginData(new Dialog(mContext), retrofitApiClient.userLogin(strEmail, strPassword), new WebResponse() {
+                RetrofitService.getUserData(new Dialog(mContext), retrofitApiClient.userLogin(strEmail, strPassword), new WebResponse() {
                     @Override
                     public void onResponseSuccess(Response<?> result) {
                         LoginModal loginModal = (LoginModal) result.body();
@@ -118,7 +118,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                         } else {
                             Alerts.show(mContext, loginModal.getMessage());
                             if (loginModal.getMessage().equals("User is Not Verified")) {
-                                startFragment(Constant.Verification_Fragment, new VerificationFragment());
+                                startFragment(Constant.Verification_Fragment, new VerificationFragment(), loginModal.getUser().getPhone());
                             }
                         }
                     }
@@ -135,13 +135,14 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         }
     }
 
-    private void startFragment(String tag, Fragment fragment) {
+    private void startFragment(String tag, Fragment fragment, String strMobile) {
+        Bundle args = new Bundle();
+        args.putString("mobile", strMobile);
+        fragment.setArguments(args);
         fragmentManager
                 .beginTransaction()
                 .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-                .replace(R.id.fram_container,
-                        fragment,
-                        tag).commit();
+                .replace(R.id.fram_container, fragment, tag).commit();
     }
 
     @Override

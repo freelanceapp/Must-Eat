@@ -32,8 +32,7 @@ public class LoginModal implements Parcelable
             return (new LoginModal[size]);
         }
 
-    }
-            ;
+    };
 
     protected LoginModal(Parcel in) {
         this.error = ((Boolean) in.readValue((Boolean.class.getClassLoader())));

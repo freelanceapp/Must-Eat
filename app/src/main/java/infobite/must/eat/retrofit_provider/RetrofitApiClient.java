@@ -28,6 +28,11 @@ public interface RetrofitApiClient {
                                @Field("password") String password);
 
     @FormUrlEncoded
+    @POST(Constant.VERIFICATION)
+    Call<LoginModal> userVerification(@Field("mobile_number") String mobile_number,
+                                      @Field("otp_number") String otp_number);
+
+    @FormUrlEncoded
     @POST(Constant.FOROGOT_PASSWORD)
     Call<ResponseBody> forgotPassword(@Field("email") String email);
 

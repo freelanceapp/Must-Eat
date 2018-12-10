@@ -24,10 +24,7 @@ import infobite.must.eat.utils.EmailChecker;
 public class SignupFragment extends BaseFragment implements View.OnClickListener {
 
     private View rootView;
-    private TextView tvTitle, tvSignupLbl, tvEmail, tvPassword, tvName, tvContact, tvCountryCode;
-    private Button btRegister, btnFb, btnGmail;
     private EditText etEmail, etPassword, etContact, etName, etCountryCode;
-    private ImageView ivBack;
 
 
     @Nullable
@@ -43,29 +40,14 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
     private void init() {
         MainActivity.ivClose.setVisibility(View.VISIBLE);
 
-        ivBack = (ImageView) rootView.findViewById(R.id.iv_back);
-        tvTitle = (TextView) rootView.findViewById(R.id.tv_title);
-        tvSignupLbl = (TextView) rootView.findViewById(R.id.tv_register_lbl);
-        tvEmail = (TextView) rootView.findViewById(R.id.tv_email);
-        tvPassword = (TextView) rootView.findViewById(R.id.tv_password);
-        tvName = (TextView) rootView.findViewById(R.id.tv_name);
-        tvContact = (TextView) rootView.findViewById(R.id.tv_contact);
-        tvCountryCode = (TextView) rootView.findViewById(R.id.tv_country_code);
+        etEmail = rootView.findViewById(R.id.et_email);
+        etPassword = rootView.findViewById(R.id.et_password);
+        etName = rootView.findViewById(R.id.et_name);
+        etContact = rootView.findViewById(R.id.et_contact);
+        etCountryCode = rootView.findViewById(R.id.et_country_code);
 
-        etEmail = (EditText) rootView.findViewById(R.id.et_email);
-        etPassword = (EditText) rootView.findViewById(R.id.et_password);
-        etName = (EditText) rootView.findViewById(R.id.et_name);
-        etContact = (EditText) rootView.findViewById(R.id.et_contact);
-        etCountryCode = (EditText) rootView.findViewById(R.id.et_country_code);
-
-        btRegister = (Button) rootView.findViewById(R.id.bt_register);
-        btnFb = (Button) rootView.findViewById(R.id.bt_fb);
-        btnGmail = (Button) rootView.findViewById(R.id.bt_gmail);
-
-        ivBack.setOnClickListener(this);
-        btRegister.setOnClickListener(this);
-        btnFb.setOnClickListener(this);
-        btnGmail.setOnClickListener(this);
+        rootView.findViewById(R.id.iv_back).setOnClickListener(this);
+        rootView.findViewById(R.id.bt_register).setOnClickListener(this);
     }
 
     @Override

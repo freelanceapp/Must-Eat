@@ -62,7 +62,7 @@
 
             <EditText
                 android:id="@+id/et_otp_a"
-                android:layout_width="65dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
@@ -72,7 +72,7 @@
 
             <EditText
                 android:id="@+id/et_otp_b"
-                android:layout_width="65dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
@@ -82,7 +82,7 @@
 
             <EditText
                 android:id="@+id/et_otp_c"
-                android:layout_width="65dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
@@ -92,7 +92,27 @@
 
             <EditText
                 android:id="@+id/et_otp_d"
-                android:layout_width="65dp"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/et_otp_e"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/et_otp_f"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"

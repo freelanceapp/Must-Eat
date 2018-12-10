@@ -9,6 +9,7 @@ public class Constant {
     public static final String BASE_URL = "http://codeencrypt.in/must_eat/";
     public static final String USER_REGISTRATION = "api/user-signup.php";
     public static final String USER_LOGIN = "api/user-login.php";
+    public static final String VERIFICATION = "api/user-verification.php";
     public static final String FOROGOT_PASSWORD = "jain/api/forgot.php";
 
     // Fragment constant
