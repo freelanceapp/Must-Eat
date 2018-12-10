@@ -37,7 +37,7 @@
             android:layout_margin="4sp"
             android:gravity="center"
             android:padding="3sp"
-            android:text="Choose your location to start find \n restaurants arround you."
+            android:text="@string/choose_your_location"
             android:textStyle="bold" />
 
         <LinearLayout

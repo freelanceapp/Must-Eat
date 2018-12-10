@@ -4,6 +4,7 @@ import android.app.Dialog;
 
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.api_modal.login_response.LoginModal;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailModal;
 import infobite.must.eat.utils.AppProgressDialog;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -41,6 +42,27 @@ public class RetrofitService {
         return client;
     }
 
+    public static void getResponse(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.show(dialog);
+
+        method.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+
     public static void getUserData(final Dialog dialog, final Call<LoginModal> method, final WebResponse webResponse) {
         if (dialog != null)
             AppProgressDialog.show(dialog);
@@ -55,6 +77,28 @@ public class RetrofitService {
 
             @Override
             public void onFailure(Call<LoginModal> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+
+    /* Vendor detaila data */
+    public static void getVendorDetailsData(final Dialog dialog, final Call<VendorDetailModal> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.show(dialog);
+
+        method.enqueue(new Callback<VendorDetailModal>() {
+            @Override
+            public void onResponse(Call<VendorDetailModal> call, Response<VendorDetailModal> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<VendorDetailModal> call, Throwable throwable) {
                 if (dialog != null)
                     AppProgressDialog.hide(dialog);
                 webResponse.onResponseFailed(throwable.getMessage());

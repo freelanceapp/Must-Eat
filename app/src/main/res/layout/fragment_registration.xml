@@ -82,7 +82,7 @@
                     android:id="@+id/tv_register_lbl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:text="REGISTER"
                     android:textAlignment="center"
                     android:textColor="@color/colorRed"
@@ -95,10 +95,40 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/circle_background"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/image_profile" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_below="@+id/profile_image"
+                            android:layout_alignRight="@+id/profile_image"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="-26dp"
+                            android:layout_marginRight="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:elevation="4dp"
+                            android:src="@drawable/ic_add" />
+
+                    </RelativeLayout>
+
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:paddingLeft="3dp"
                         android:text="Name"
                         android:textColor="#000"

@@ -1,19 +1,25 @@
 package infobite.must.eat.ui.fragment;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -28,27 +34,33 @@ import com.google.android.gms.plus.model.people.Person;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.User;
 import infobite.must.eat.modal.api_modal.login_response.LoginModal;
+import infobite.must.eat.retrofit_provider.RetrofitApiClient;
 import infobite.must.eat.retrofit_provider.RetrofitService;
 import infobite.must.eat.retrofit_provider.WebResponse;
 import infobite.must.eat.ui.activities.FindLocationActivity;
 import infobite.must.eat.ui.activities.MainActivity;
-import infobite.must.eat.ui.activities.PlaceOrderActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.AppPreference;
 import infobite.must.eat.utils.BaseFragment;
 import infobite.must.eat.utils.ConnectionDetector;
 import infobite.must.eat.utils.EmailChecker;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Dell on 12/3/2018.
@@ -56,7 +68,16 @@ import retrofit2.Response;
 
 public class LoginFragment extends BaseFragment implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
+    private static final String IMAGE_DIRECTORY = "/musteat";
+    private ResponseBody responseBody;
+    private Boolean per = false;
+    private String[] permissions = new String[]{
+            Manifest.permission.INTERNET,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
     private View rootView;
+    private static int RESULT_LOAD_IMAGE = 1;
     private static FragmentManager fragmentManager;
     private GoogleApiClient mGoogleApiClient;
     private static final int RC_SIGN_IN = 007;
@@ -100,7 +121,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 loginApi();
                 break;
             case R.id.tv_signup:
-                startFragment(Constant.SignUp_Fragment, new SignupFragment(), "");
+
                 break;
             case R.id.tv_forgot_pass:
                 startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment(), "");
@@ -117,6 +138,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -150,6 +172,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                             Alerts.show(mContext, loginModal.getMessage());
 
                             AppPreference.setBooleanPreference(mContext, Constant.Is_Login, true);
+                            AppPreference.setStringPreference(mContext, Constant.User_Id, loginModal.getUser().getUserId());
 
                             Gson gson = new GsonBuilder().setLenient().create();
                             String data = gson.toJson(loginModal);
@@ -213,24 +236,149 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
             Log.e("####", "display name: " + acct.getDisplayName());
 
             String personName = acct.getDisplayName();
-            String personPhotoUrl="";
-            if (acct.getPhotoUrl()!=null){
-                personPhotoUrl = acct.getPhotoUrl().toString();}
+            String personPhotoUrl = "";
+            if (acct.getPhotoUrl() != null) {
+                personPhotoUrl = acct.getPhotoUrl().toString();
+            }
             String email = acct.getEmail();
             String id = acct.getId();
             String gender = "";
-            if (person!=null && person.hasGender()) {
+            if (person != null && person.hasGender()) {
                 gender = String.valueOf(person.getGender());
             }
-            String msg = "Name: " + personName + ",\n\n email: " + email+ ",\n\n Gender: " + gender+ ",\n\n Id: " + id
+            String msg = "Name: " + personName + ",\n\n email: " + email + ",\n\n Gender: " + gender + ",\n\n Id: " + id
                     + ",\n\n Image: " + personPhotoUrl;
 
             Log.e("#####", msg);
-
+            //checkPermissions();
+            if (personPhotoUrl.isEmpty()) {
+                getRetrofitImage(Constant.IMAGE, personName, email);
+            } else {
+                getRetrofitImage(personPhotoUrl, personName, email);
+            }
             //logiSocial(personName,email,personPhotoUrl,id, "Google");
         } else {
-            Alerts.show(mContext,"Could not connect to google, please try after sometime. ");
+            /*checkPermissions();
+            getRetrofitImage(Constant.IMAGE);*/
+            Alerts.show(mContext, "Could not connect to google, please try after sometime. ");
         }
     }
 
+    /*
+     * Download image from Facebook and Gmail
+     * */
+    void getRetrofitImage(String strBaseUrl, String name, String email) {
+        RetrofitService.getResponse(new Dialog(mContext), retrofitApiClient.getImageDetails(strBaseUrl), new WebResponse() {
+            @Override
+            public void onResponseSuccess(Response<?> result) {
+                responseBody = (ResponseBody) result.body();
+                assert responseBody != null;
+                boolean file = DownloadImage(responseBody);
+                if (file) {
+                    Bundle bundle = new Bundle();
+                    SignupFragment signupFragment = new SignupFragment();
+                    bundle.putString("name", name);
+                    bundle.putString("email", email);
+                    signupFragment.setArguments(bundle);
+                    fragmentManager
+                            .beginTransaction()
+                            .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
+                            .replace(R.id.fram_container, new SignupFragment(), Constant.SignUp_Fragment).commit();
+                }
+            }
+
+            @Override
+            public void onResponseFailed(String error) {
+                Alerts.show(mContext, error);
+            }
+        });
+    }
+
+    private boolean DownloadImage(ResponseBody body) {
+        try {
+            Log.e("DownloadImage", "Reading and writing file");
+            InputStream in = null;
+            FileOutputStream out = null;
+            try {
+                in = body.byteStream();
+                out = new FileOutputStream(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY + "MustEatProfile.jpg");
+                int c;
+                while ((c = in.read()) != -1) {
+                    out.write(c);
+                }
+            } catch (IOException e) {
+                Log.e("DownloadImage", e.toString());
+                return false;
+            } finally {
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
+            }
+
+            int width, height;
+            Bitmap bMap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY + "MustEatProfile.jpg");
+            width = bMap.getWidth();
+            height = bMap.getHeight();
+            Bitmap bMap2 = Bitmap.createScaledBitmap(bMap, width, height, false);
+
+            File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                    + File.separator + "MustEatProfile.jpg");
+
+            return true;
+        } catch (IOException e) {
+            Log.e("DownloadImage", e.toString());
+            return false;
+        }
+    }
+
+
+    /*
+     * Request permissions
+     * */
+    private boolean checkPermissions() {
+        int result;
+        List listPermissionsNeeded = new ArrayList<>();
+        for (String p : permissions) {
+            result = ContextCompat.checkSelfPermission(mContext, p);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(p);
+                Log.e("-----------", "granteddddd ddddddddddd ");
+            } else {
+                Log.e("-----------", "granteddddd elseeeeeeeeeeeeeeee");
+
+            }
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(activity, (String[]) listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),
+                    100);
+            Log.e("-----------", "granteddddd  iffff");
+            return false;
+        } else {
+            Log.e("-----------", "granteddddd 666666666(");
+            startActivity(new Intent(mContext, MainActivity.class));
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                boolean file = DownloadImage(responseBody);
+                if (file) {
+                    Alerts.show(mContext, "Image download failed");
+                } else {
+                    Alerts.show(mContext, "Image downloading");
+                }
+            } else {
+                Alerts.show(mContext, "Image not download");
+            }
+        }
+    }
 }
