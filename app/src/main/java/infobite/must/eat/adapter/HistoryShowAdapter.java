@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.HistoryModel;
+import infobite.must.eat.modal.default_modal.HistoryModel;
 
 
 public class HistoryShowAdapter extends RecyclerView.Adapter<HistoryShowAdapter.MyViewHolder> {

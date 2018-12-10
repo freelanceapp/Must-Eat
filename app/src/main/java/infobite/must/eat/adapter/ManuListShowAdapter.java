@@ -7,15 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.HistoryModel;
-import infobite.must.eat.modal.MenuListModel;
-import infobite.must.eat.ui.activities.AddtoCartActivity;
+import infobite.must.eat.modal.default_modal.MenuListModel;
 import infobite.must.eat.ui.activities.MenuQuntityActivity;
 
 

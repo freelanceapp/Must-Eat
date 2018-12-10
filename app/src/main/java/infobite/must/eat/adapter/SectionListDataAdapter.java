@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.HomeRestaurentModel;
+import infobite.must.eat.modal.default_modal.HomeRestaurentModel;
 
 
 public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListDataAdapter.SingleItemRowHolder> {

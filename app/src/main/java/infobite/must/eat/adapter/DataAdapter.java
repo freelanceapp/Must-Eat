@@ -2,6 +2,7 @@ package infobite.must.eat.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.ProductDetails;
+import infobite.must.eat.modal.default_modal.ProductDetails;
 import infobite.must.eat.ui.activities.RestaurentMenuActivity;
 
 /**
@@ -65,6 +66,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
 
     public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private CardView cardViewItem;
         ImageView image, imagetwo;
         LinearLayout ll_more;
         TextView title, subtitle;
@@ -72,6 +74,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
         public ProductViewHolder(View itemView) {
             super(itemView);
 
+            cardViewItem = itemView.findViewById(R.id.cardViewItem);
             image = itemView.findViewById(R.id.image);
             title = itemView.findViewById(R.id.title);
             subtitle = itemView.findViewById(R.id.subtitle);
@@ -79,6 +82,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
             imagetwo = itemView.findViewById(R.id.imagetwo);
 
             ll_more.setOnClickListener(this);
+            cardViewItem.setOnClickListener(this);
         }
 
         @Override

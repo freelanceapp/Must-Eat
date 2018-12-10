@@ -6,7 +6,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,7 +14,7 @@ import java.util.List;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.DataAdapter;
-import infobite.must.eat.modal.ProductDetails;
+import infobite.must.eat.modal.default_modal.ProductDetails;
 
 /**
  * Created by Dell on 12/1/2018.

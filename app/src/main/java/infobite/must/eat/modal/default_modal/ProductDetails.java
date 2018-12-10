@@ -1,4 +1,4 @@
-package infobite.must.eat.modal;
+package infobite.must.eat.modal.default_modal;
 
 /**
  * Created by Dell on 12/1/2018.

@@ -1,7 +1,5 @@
 package infobite.must.eat.ui.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,9 +12,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import infobite.must.eat.R;
-import infobite.must.eat.adapter.CategoryManuAdapter;
 import infobite.must.eat.adapter.ManuListShowAdapter;
-import infobite.must.eat.modal.MenuListModel;
+import infobite.must.eat.modal.default_modal.MenuListModel;
 
 public class MenuListFragment extends Fragment {
 

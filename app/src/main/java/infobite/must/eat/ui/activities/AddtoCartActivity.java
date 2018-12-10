@@ -1,8 +1,5 @@
 package infobite.must.eat.ui.activities;
 
-import android.graphics.Color;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,7 +16,7 @@ import java.util.List;
 import infobite.must.eat.R;
 import infobite.must.eat.RecyclerItemTouchHelper;
 import infobite.must.eat.adapter.CartListAdapter;
-import infobite.must.eat.modal.Item;
+import infobite.must.eat.modal.default_modal.Item;
 
 public class AddtoCartActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
     private static final String TAG = MainActivity.class.getSimpleName();

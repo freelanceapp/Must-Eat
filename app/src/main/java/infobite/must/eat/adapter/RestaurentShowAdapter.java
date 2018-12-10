@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.RestaurentModel;
+import infobite.must.eat.modal.default_modal.RestaurentModel;
 
 
 public class RestaurentShowAdapter extends RecyclerView.Adapter<RestaurentShowAdapter.MyViewHolder> {

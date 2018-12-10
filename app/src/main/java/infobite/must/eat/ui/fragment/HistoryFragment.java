@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.HistoryShowAdapter;
-import infobite.must.eat.modal.HistoryModel;
+import infobite.must.eat.modal.default_modal.HistoryModel;
 
 
 public class HistoryFragment extends Fragment {

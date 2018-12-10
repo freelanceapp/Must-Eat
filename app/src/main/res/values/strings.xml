@@ -23,4 +23,11 @@
     <string name="forgot_password">Forgot Password ?</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="menu">Menu</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCRE19dYa5MaLKvH7sqDD55X8oUEv0_-uk</string>
+    <string name="title_activity_map_tracking">Map Route Tracking</string>
+    <string name="track_path_on_map">Walk and route your path on map</string>
+    <string name="permission_notice">Please note that your location permission is important if you want to draw your route on map while walking or running</string>
+    <string name="permission_title">Location Permission Denied</string>
+    <string name="cancel_permission_notice">Wow, please come back again when you need it and grant the permission</string>
+
 </resources>

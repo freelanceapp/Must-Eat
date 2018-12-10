@@ -60,27 +60,28 @@
         <item name="colorControlActivated">@color/yellow</item>
     </style>
 
-    <!--<style name="Widget.TextInputLayout">
-        <item name="android:layout_height">@dimen/wrap_content</item>
-        <item name="android:layout_width">@dimen/input_width</item>
-        <item name="android:textColorHint">@color/color_input_hint</item>
+    <!-- Loading indicator -->
+    <style name="AVLoadingIndicatorView">
+        <item name="minWidth">48dip</item>
+        <item name="maxWidth">48dip</item>
+        <item name="minHeight">48dip</item>
+        <item name="maxHeight">48dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
     </style>
 
-    <style name="Widget.TextEdit">
-        <item name="android:layout_height">@dimen/match_parent</item>
-        <item name="android:layout_width">@dimen/match_parent</item>
-        <item name="android:textColorHighlight">@color/color_text_highlight</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColorHint">@color/color_input_hint</item>
-        <item name="android:background">@drawable/input_state</item>
-        <item name="android:textColor">@color/color_text</item>
-        <item name="android:padding">@dimen/text_padding</item>
+    <style name="AVLoadingIndicatorView.Large">
+        <item name="minWidth">76dip</item>
+        <item name="maxWidth">76dip</item>
+        <item name="minHeight">76dip</item>
+        <item name="maxHeight">76dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
     </style>
 
-    <style name="Widget.Hint">
-        <item name="android:textSize">17sp</item>
-        <item name="android:textColor">@color/color_text</item>
-        <item name="android:textStyle">bold</item>
-    </style>-->
-
+    <style name="AVLoadingIndicatorView.Small">
+        <item name="minWidth">24dip</item>
+        <item name="maxWidth">24dip</item>
+        <item name="minHeight">24dip</item>
+        <item name="maxHeight">24dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
 </resources>

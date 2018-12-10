@@ -15,10 +15,8 @@ import java.util.ArrayList;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.FavRestaurentListAdapter;
-import infobite.must.eat.adapter.RecyclerViewDataAdapter;
 import infobite.must.eat.adapter.SectionListDataAdapter;
-import infobite.must.eat.modal.HomeRestaurentModel;
-import infobite.must.eat.modal.SectionDataModel;
+import infobite.must.eat.modal.default_modal.HomeRestaurentModel;
 import infobite.must.eat.ui.activities.RestaurantsActivity;
 
 
