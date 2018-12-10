@@ -100,6 +100,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCRE19dYa5MaLKvH7sqDD55X8oUEv0_-uk" />
 
+
+
     </application>
 
 </manifest>
