@@ -23,16 +23,16 @@ public class RestaurentMenuActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurent_menu);
-        manu_btn = (TextView) findViewById(R.id.menu_btn);
-        about_btn = (TextView) findViewById(R.id.about_btn);
-        review_btn = (TextView) findViewById(R.id.review_btn);
+        manu_btn = findViewById(R.id.menu_btn);
+        about_btn = findViewById(R.id.about_btn);
+        review_btn = findViewById(R.id.review_btn);
 
-        manu_line = (RelativeLayout) findViewById(R.id.menu_line);
-        about_line = (RelativeLayout) findViewById(R.id.about_line);
-        review_line = (RelativeLayout) findViewById(R.id.review_line);
+        manu_line = findViewById(R.id.menu_line);
+        about_line = findViewById(R.id.about_line);
+        review_line = findViewById(R.id.review_line);
 
         fragmentManager = getSupportFragmentManager();
-        // If savedinstnacestate is null then replace login fragment
+        // If saved instance state is null then replace login fragment
         if (savedInstanceState == null) {
             fragmentManager
                     .beginTransaction()

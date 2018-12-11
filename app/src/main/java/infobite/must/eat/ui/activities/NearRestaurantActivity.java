@@ -18,23 +18,24 @@ import infobite.must.eat.R;
 import infobite.must.eat.adapter.RestaurentShowAdapter;
 import infobite.must.eat.modal.default_modal.RestaurentModel;
 
+public class NearRestaurantActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class NearRestaurantActivity extends AppCompatActivity {
     private FloatingActionMenu fam;
     private FloatingActionButton fabuser, fabcart, faboffer, fabhome;
     RecyclerView restaurent_list;
     ArrayList<RestaurentModel> restaurentModelArrayList = new ArrayList<>();
     RestaurentShowAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_restaurant);
-        fabhome = (FloatingActionButton) findViewById(R.id.home_btn);
-        faboffer = (FloatingActionButton) findViewById(R.id.offer_btn);
-        fabcart = (FloatingActionButton) findViewById(R.id.cart_btn);
-        fabuser = (FloatingActionButton) findViewById(R.id.account_btn);
-        fam = (FloatingActionMenu) findViewById(R.id.fab_menu);
-        restaurent_list = (RecyclerView) findViewById(R.id.restaurent_list);
+        fabhome = findViewById(R.id.home_btn);
+        faboffer = findViewById(R.id.offer_btn);
+        fabcart = findViewById(R.id.cart_btn);
+        fabuser = findViewById(R.id.account_btn);
+        fam = findViewById(R.id.fab_menu);
+        restaurent_list = findViewById(R.id.restaurent_list);
         //handling menu status (open or close)
         fam.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
             @Override
@@ -56,22 +57,19 @@ public class NearRestaurantActivity extends AppCompatActivity {
         });
 
         //handling each floating action button clicked
-        fabuser.setOnClickListener(onButtonClick());
-        fabcart.setOnClickListener(onButtonClick());
-        faboffer.setOnClickListener(onButtonClick());
-        fabhome.setOnClickListener(onButtonClick());
+        fabuser.setOnClickListener(this);
+        fabcart.setOnClickListener(this);
+        faboffer.setOnClickListener(this);
+        fabhome.setOnClickListener(this);
 
         fam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (fam.isOpened()) {
-                    fam.close(true);
-                }
+
             }
         });
 
-        for (int i = 0; i < 15 ; i++)
-        {
+        for (int i = 0; i < 15; i++) {
             RestaurentModel restaurentModel = new RestaurentModel();
             restaurentModel.setR_discount("30% OFF");
             restaurentModel.setR_name("Restaurent Name");
@@ -88,39 +86,35 @@ public class NearRestaurantActivity extends AppCompatActivity {
         restaurent_list.setAdapter(adapter);
 
 
-
     }
 
-    private View.OnClickListener onButtonClick() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (view == fabhome) {
-                    showToast("Button home clicked");
-                    Intent intent = new Intent(NearRestaurantActivity.this,HomeActivity.class);
-                    startActivity(intent);
-                }
-                else if (view == fabcart) {
-                    showToast("Button Cart clicked");
-                    Intent intent = new Intent(NearRestaurantActivity.this,AddtoCartActivity.class);
-                    startActivity(intent);
-                }
-                else if (view == faboffer){
-                    showToast("Button Offer clicked");
-                    Intent intent = new Intent(NearRestaurantActivity.this,OffersActivity.class);
-                    startActivity(intent);
-                }
-                else {
-                    showToast("Button Account clicked");
-                    Intent intent = new Intent(NearRestaurantActivity.this,AccountActivity.class);
-                    startActivity(intent);
-                }
-                fam.close(true);
-            }
-        };
-    }
 
     private void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == fabhome) {
+            showToast("Button home clicked");
+            Intent intent = new Intent(NearRestaurantActivity.this, HomeActivity.class);
+            startActivity(intent);
+        } else if (view == fabcart) {
+            showToast("Button Cart clicked");
+            Intent intent = new Intent(NearRestaurantActivity.this, AddtoCartActivity.class);
+            startActivity(intent);
+        } else if (view == faboffer) {
+            showToast("Button Offer clicked");
+            Intent intent = new Intent(NearRestaurantActivity.this, OffersActivity.class);
+            startActivity(intent);
+        } else {
+            showToast("Button Account clicked");
+            Intent intent = new Intent(NearRestaurantActivity.this, AccountActivity.class);
+            startActivity(intent);
+        }
+        if (fam.isOpened()) {
+            fam.close(true);
+        }
+        //fam.close(true);
     }
 }

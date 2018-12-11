@@ -1,21 +1,17 @@
 package infobite.must.eat.ui.activities;
 
 import android.Manifest;
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
-import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,19 +20,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import infobite.must.eat.R;
 import infobite.must.eat.utils.LocationTrack;
 
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-
 
 public class FindLocationActivity extends AppCompatActivity implements View.OnClickListener, LocationListener {
 
+    private String strLat = "", strLng = "";
+    private Location mLocation;
     private TextView manual_location_btn;
     private static final int MY_PERMISSIONS_REQUEST_CODE = 123;
     private String provider;
@@ -58,9 +52,9 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         }
         // Get the location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        manual_location_btn = (TextView) findViewById(R.id.manual_location_btn);
+        manual_location_btn = findViewById(R.id.manual_location_btn);
         manual_location_btn.setOnClickListener(this);
-        ((LinearLayout) findViewById(R.id.ll_current_location)).setOnClickListener(this);
+        findViewById(R.id.ll_current_location).setOnClickListener(this);
     }
 
     @Override
@@ -76,7 +70,6 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
-
 
     protected void checkPermission() {
         if (ContextCompat.checkSelfPermission
@@ -112,12 +105,8 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                 dialog.show();
             } else {
                 // Directly request for required permissions, without explanation
-                ActivityCompat.requestPermissions(
-                        FindLocationActivity.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION
-                        },
-                        MY_PERMISSIONS_REQUEST_CODE
-                );
+                ActivityCompat.requestPermissions(FindLocationActivity.this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_CODE);
             }
         } else {
             // Do something, when permissions are already granted
@@ -131,21 +120,15 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_CODE: {
                 // When request is cancelled, the results array are empty
-                if (
-                        (grantResults.length > 0) &&
-                                (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                        ) {
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // Permissions are granted
                     Toast.makeText(FindLocationActivity.this, "Permissions granted.", Toast.LENGTH_SHORT).show();
-
-                    // close this activity
                     finish();
                 } else {
                     // Permissions are denied
                     Toast.makeText(FindLocationActivity.this, "Permissions denied.", Toast.LENGTH_SHORT).show();
                     finish();
                 }
-                return;
             }
         }
     }
@@ -158,7 +141,11 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
     void getLocation() {
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, (LocationListener) this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
+
+            /*if (!strLat.isEmpty()) {
+                restaurantActivity();
+            }*/
         } catch (SecurityException e) {
             e.printStackTrace();
         }
@@ -170,14 +157,15 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
 
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            mLocation = location;
+            strLat = String.valueOf(location.getLatitude());
+            strLng = String.valueOf(location.getLongitude());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            Toast.makeText(FindLocationActivity.this, "Location " + addresses.get(0).getAddressLine(0) + ", " +
-                    addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2) + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(FindLocationActivity.this, NearRestaurantActivity.class);
-            startActivity(intent);
+            /*Toast.makeText(FindLocationActivity.this, "Location " + addresses.get(0).getAddressLine(0) + ", " +
+                    addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2) + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();*/
+            restaurantActivity();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
     }
@@ -195,5 +183,11 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onProviderEnabled(String provider) {
 
+    }
+
+    private void restaurantActivity() {
+        Intent intent = new Intent(FindLocationActivity.this, NearRestaurantActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
