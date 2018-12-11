@@ -105,4 +105,27 @@ public class RetrofitService {
             }
         });
     }
+
+    /* Vendor detaila data */
+    public static void getVendorList(final Dialog dialog, final Call<VendorDetailModal> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.show(dialog);
+
+        method.enqueue(new Callback<VendorDetailModal>() {
+            @Override
+            public void onResponse(Call<VendorDetailModal> call, Response<VendorDetailModal> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<VendorDetailModal> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+
 }
