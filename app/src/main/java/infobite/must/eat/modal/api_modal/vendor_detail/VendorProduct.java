@@ -1,4 +1,3 @@
-
 package infobite.must.eat.modal.api_modal.vendor_detail;
 
 import android.os.Parcel;
@@ -46,6 +45,9 @@ public class VendorProduct implements Parcelable
     @SerializedName("product_type")
     @Expose
     private String productType;
+    @SerializedName("product_category_id")
+    @Expose
+    private String productCategoryId;
     @SerializedName("product_topping_name")
     @Expose
     private String productToppingName;
@@ -67,11 +69,11 @@ public class VendorProduct implements Parcelable
     @SerializedName("product_created_date")
     @Expose
     private String productCreatedDate;
-    public final static Creator<VendorProduct> CREATOR = new Creator<VendorProduct>() {
+    public final static Parcelable.Creator<VendorProduct> CREATOR = new Creator<VendorProduct>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public VendorProduct createFromParcel(Parcel in) {
             return new VendorProduct(in);
@@ -82,7 +84,7 @@ public class VendorProduct implements Parcelable
         }
 
     }
-    ;
+            ;
 
     protected VendorProduct(Parcel in) {
         this.productId = ((String) in.readValue((String.class.getClassLoader())));
@@ -97,6 +99,7 @@ public class VendorProduct implements Parcelable
         this.productStockQuantity = ((String) in.readValue((String.class.getClassLoader())));
         this.productDeliveryTimeSlot = ((String) in.readValue((String.class.getClassLoader())));
         this.productType = ((String) in.readValue((String.class.getClassLoader())));
+        this.productCategoryId = ((String) in.readValue((String.class.getClassLoader())));
         this.productToppingName = ((String) in.readValue((String.class.getClassLoader())));
         this.productToppingRate = ((String) in.readValue((String.class.getClassLoader())));
         this.productDeliveryTime = ((String) in.readValue((String.class.getClassLoader())));
@@ -205,6 +208,14 @@ public class VendorProduct implements Parcelable
         this.productType = productType;
     }
 
+    public String getProductCategoryId() {
+        return productCategoryId;
+    }
+
+    public void setProductCategoryId(String productCategoryId) {
+        this.productCategoryId = productCategoryId;
+    }
+
     public String getProductToppingName() {
         return productToppingName;
     }
@@ -274,6 +285,7 @@ public class VendorProduct implements Parcelable
         dest.writeValue(productStockQuantity);
         dest.writeValue(productDeliveryTimeSlot);
         dest.writeValue(productType);
+        dest.writeValue(productCategoryId);
         dest.writeValue(productToppingName);
         dest.writeValue(productToppingRate);
         dest.writeValue(productDeliveryTime);
@@ -284,7 +296,7 @@ public class VendorProduct implements Parcelable
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

@@ -1,5 +1,6 @@
 package infobite.must.eat.ui.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,46 +14,67 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.RestaurentShowAdapter;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorList;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorListMainModal;
 import infobite.must.eat.modal.default_modal.RestaurentModel;
+import infobite.must.eat.retrofit_provider.RetrofitService;
+import infobite.must.eat.retrofit_provider.WebResponse;
+import infobite.must.eat.utils.Alerts;
+import infobite.must.eat.utils.BaseActivity;
+import infobite.must.eat.utils.ConnectionDetector;
+import retrofit2.Response;
 
-public class NearRestaurantActivity extends AppCompatActivity implements View.OnClickListener {
+public class NearRestaurantActivity extends BaseActivity implements View.OnClickListener {
 
+    private double latitude = 0, longitude = 0;
     private FloatingActionMenu fam;
     private FloatingActionButton fabuser, fabcart, faboffer, fabhome;
-    RecyclerView restaurent_list;
-    ArrayList<RestaurentModel> restaurentModelArrayList = new ArrayList<>();
-    RestaurentShowAdapter adapter;
+    private RecyclerView recyclerViewVendorList;
+    private List<VendorList> vendorLists = new ArrayList<>();
+    private RestaurentShowAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_restaurant);
+        init();
+    }
+
+    private void init() {
+        mContext = this;
+        cd = new ConnectionDetector(mContext);
+        retrofitRxClient = RetrofitService.getRxClient();
+        retrofitApiClient = RetrofitService.getRetrofit();
+
+        if (getIntent() == null)
+            return;
+        latitude = getIntent().getDoubleExtra("latitude", 0);
+        longitude = getIntent().getDoubleExtra("longitude", 0);
+
         fabhome = findViewById(R.id.home_btn);
         faboffer = findViewById(R.id.offer_btn);
         fabcart = findViewById(R.id.cart_btn);
         fabuser = findViewById(R.id.account_btn);
         fam = findViewById(R.id.fab_menu);
-        restaurent_list = findViewById(R.id.restaurent_list);
+        recyclerViewVendorList = findViewById(R.id.recyclerViewVendorList);
         //handling menu status (open or close)
-        fam.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
-            @Override
-            public void onMenuToggle(boolean opened) {
-                if (opened) {
-                    showToast("Menu is opened");
-                    fabhome.setVisibility(View.VISIBLE);
-                    faboffer.setVisibility(View.VISIBLE);
-                    fabcart.setVisibility(View.VISIBLE);
-                    fabuser.setVisibility(View.VISIBLE);
-                } else {
-                    showToast("Menu is closed");
-                    fabhome.setVisibility(View.GONE);
-                    faboffer.setVisibility(View.GONE);
-                    fabcart.setVisibility(View.GONE);
-                    fabuser.setVisibility(View.GONE);
-                }
+        fam.setOnMenuToggleListener(opened -> {
+            if (opened) {
+                Alerts.show(mContext, "Menu is opened");
+                fabhome.setVisibility(View.VISIBLE);
+                faboffer.setVisibility(View.VISIBLE);
+                fabcart.setVisibility(View.VISIBLE);
+                fabuser.setVisibility(View.VISIBLE);
+            } else {
+                Alerts.show(mContext, "Menu is closed");
+                fabhome.setVisibility(View.GONE);
+                faboffer.setVisibility(View.GONE);
+                fabcart.setVisibility(View.GONE);
+                fabuser.setVisibility(View.GONE);
             }
         });
 
@@ -61,60 +83,81 @@ public class NearRestaurantActivity extends AppCompatActivity implements View.On
         fabcart.setOnClickListener(this);
         faboffer.setOnClickListener(this);
         fabhome.setOnClickListener(this);
+        fam.setOnClickListener(this);
 
-        fam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        for (int i = 0; i < 15; i++) {
-            RestaurentModel restaurentModel = new RestaurentModel();
-            restaurentModel.setR_discount("30% OFF");
-            restaurentModel.setR_name("Restaurent Name");
-            restaurentModel.setR_type("OPEN");
-            restaurentModel.setR_img1(R.drawable.bg_food);
-            restaurentModelArrayList.add(restaurentModel);
-        }
-
-        adapter = new RestaurentShowAdapter(restaurentModelArrayList, NearRestaurantActivity.this);
+        adapter = new RestaurentShowAdapter(vendorLists, mContext, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(NearRestaurantActivity.this);
         //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
-        restaurent_list.setLayoutManager(mLayoutManager);
-        restaurent_list.setItemAnimator(new DefaultItemAnimator());
-        restaurent_list.setAdapter(adapter);
+        recyclerViewVendorList.setLayoutManager(mLayoutManager);
+        recyclerViewVendorList.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewVendorList.setAdapter(adapter);
 
-
-    }
-
-
-    private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        restaurantListApi();
     }
 
     @Override
     public void onClick(View view) {
-        if (view == fabhome) {
-            showToast("Button home clicked");
-            Intent intent = new Intent(NearRestaurantActivity.this, HomeActivity.class);
-            startActivity(intent);
-        } else if (view == fabcart) {
-            showToast("Button Cart clicked");
-            Intent intent = new Intent(NearRestaurantActivity.this, AddtoCartActivity.class);
-            startActivity(intent);
-        } else if (view == faboffer) {
-            showToast("Button Offer clicked");
-            Intent intent = new Intent(NearRestaurantActivity.this, OffersActivity.class);
-            startActivity(intent);
-        } else {
-            showToast("Button Account clicked");
-            Intent intent = new Intent(NearRestaurantActivity.this, AccountActivity.class);
-            startActivity(intent);
+        switch (view.getId()) {
+            case R.id.home_btn:
+                Intent intent = new Intent(NearRestaurantActivity.this, HomeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.cart_btn:
+                Intent intentB = new Intent(NearRestaurantActivity.this, AddtoCartActivity.class);
+                startActivity(intentB);
+                break;
+            case R.id.offer_btn:
+                Intent intentC = new Intent(NearRestaurantActivity.this, OffersActivity.class);
+                startActivity(intentC);
+                break;
+            case R.id.account_btn:
+                Intent intentD = new Intent(NearRestaurantActivity.this, AccountActivity.class);
+                startActivity(intentD);
+                break;
+            case R.id.cardViewItem:
+                int pos = Integer.parseInt(view.getTag().toString());
+                VendorList vendorList = vendorLists.get(pos);
+                Intent i = new Intent(mContext, RestaurentMenuActivity.class);
+                i.putExtra("vendor_id", vendorList.getVendorId());
+                startActivity(i);
+                break;
         }
         if (fam.isOpened()) {
             fam.close(true);
         }
         //fam.close(true);
+    }
+
+    private void restaurantListApi() {
+        if (latitude == 0) {
+            Alerts.show(mContext, "Location empty");
+        } else if (longitude == 0) {
+            Alerts.show(mContext, "Location empty");
+        } else {
+            if (cd.isNetworkAvailable()) {
+                RetrofitService.getVendorList(new Dialog(mContext), retrofitApiClient.vendorList(latitude, longitude, "500"),
+                        new WebResponse() {
+                            @Override
+                            public void onResponseSuccess(Response<?> result) {
+                                VendorListMainModal listMainModal = (VendorListMainModal) result.body();
+                                vendorLists.clear();
+                                assert listMainModal != null;
+                                if (!listMainModal.getError()) {
+                                    vendorLists.addAll(listMainModal.getVendor());
+                                    adapter.notifyDataSetChanged();
+                                } else {
+                                    Alerts.show(mContext, listMainModal.getMessage());
+                                }
+                            }
+
+                            @Override
+                            public void onResponseFailed(String error) {
+                                Alerts.show(mContext, error);
+                            }
+                        });
+            } else {
+                cd.show(mContext);
+            }
+        }
     }
 }

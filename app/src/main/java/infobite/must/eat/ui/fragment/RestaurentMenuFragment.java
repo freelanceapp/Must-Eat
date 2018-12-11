@@ -1,28 +1,36 @@
 package infobite.must.eat.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.CategoryManuAdapter;
-import infobite.must.eat.constant.Constant;
-import infobite.must.eat.modal.default_modal.CategoryManuModel;
+import infobite.must.eat.adapter.ProductListAdapter;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorItemCategory;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorProduct;
+import infobite.must.eat.utils.BaseFragment;
 
-public class RestaurentMenuFragment extends Fragment {
-    public View view;
-    public RecyclerView menu_category_list;
-    CategoryManuAdapter adapter;
-    FragmentManager fragmentManager;
-    ArrayList<CategoryManuModel> categoryManuModelArrayList = new ArrayList<>();
+public class RestaurentMenuFragment extends BaseFragment implements View.OnClickListener {
+
+    private View view;
+    private RecyclerView menu_category_list, rv_menu_list;
+    private CategoryManuAdapter adapter;
+    private ProductListAdapter productListAdapter;
+    private List<VendorItemCategory> itemCategories = new ArrayList<>();
+    private List<VendorProduct> vendorProducts = new ArrayList<>();
+
     public RestaurentMenuFragment() {
         // Required empty public constructor
     }
@@ -32,32 +40,53 @@ public class RestaurentMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_restaurent_menu, container, false);
-        menu_category_list = (RecyclerView)view.findViewById(R.id.menu_category_list);
-
-        fragmentManager = getActivity().getSupportFragmentManager();
-        // If savedinstnacestate is null then replace login fragment
-        if (savedInstanceState == null) {
-            fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.menu_frame, new MenuListFragment(),
-                            Constant.MenuListFragment).commit();
-        }
-
-        for (int i = 0 ; i <10 ; i++) {
-            CategoryManuModel categoryManuModel = new CategoryManuModel();
-            categoryManuModel.setCategoryMenu("Special Offers");
-            categoryManuModelArrayList.add(categoryManuModel);
-        }
-        adapter = new CategoryManuAdapter(categoryManuModelArrayList, getActivity());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
-        menu_category_list.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
-        //menu_category_list.setLayoutManager(mLayoutManager);
-        menu_category_list.setItemAnimator(new DefaultItemAnimator());
-        menu_category_list.setAdapter(adapter);
-
+        init();
         return view;
     }
 
+    private void init() {
+        mContext = getActivity();
+        if (getArguments() == null)
+            return;
+        Bundle bundle = getArguments();
+        String strVendorDetail = bundle.getString("vendor_detail");
+        Gson gson = new Gson();
+        VendorDetailMainModal mainModal = gson.fromJson(strVendorDetail, VendorDetailMainModal.class);
+        itemCategories.addAll(mainModal.getCategory());
+        vendorProducts.addAll(mainModal.getProduct());
 
+        menu_category_list = (RecyclerView) view.findViewById(R.id.menu_category_list);
+        rv_menu_list = (RecyclerView) view.findViewById(R.id.rv_menu_list);
+        setCategoryRecyclerview();
+        setProductRecyclerview();
+    }
+
+    private void setCategoryRecyclerview() {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true);
+        mLayoutManager.scrollToPositionWithOffset(0, 0);
+        menu_category_list.setLayoutManager(mLayoutManager);
+        menu_category_list.setItemAnimator(new DefaultItemAnimator());
+        adapter = new CategoryManuAdapter(itemCategories, mContext, this);
+        menu_category_list.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void setProductRecyclerview() {
+        rv_menu_list.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_menu_list.setItemAnimator(new DefaultItemAnimator());
+        productListAdapter = new ProductListAdapter(vendorProducts, mContext, this);
+        rv_menu_list.setAdapter(productListAdapter);
+        productListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_category_menu:
+                int pos = Integer.parseInt(v.getTag().toString());
+                VendorItemCategory category = itemCategories.get(pos);
+                ((TextView) view.findViewById(R.id.category_name)).setText(category.getCategoryName());
+                break;
+        }
+    }
 }

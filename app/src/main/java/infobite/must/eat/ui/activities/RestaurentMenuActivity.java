@@ -1,28 +1,52 @@
 package infobite.must.eat.ui.activities;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
+import infobite.must.eat.retrofit_provider.RetrofitService;
+import infobite.must.eat.retrofit_provider.WebResponse;
 import infobite.must.eat.ui.fragment.RestaurentAboutFragment;
 import infobite.must.eat.ui.fragment.RestaurentMenuFragment;
 import infobite.must.eat.ui.fragment.RestaurentReviewFragment;
+import infobite.must.eat.utils.Alerts;
+import infobite.must.eat.utils.BaseActivity;
+import retrofit2.Response;
 
-public class RestaurentMenuActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView manu_btn, about_btn, review_btn;
-    RelativeLayout manu_line, about_line, review_line;
+public class RestaurentMenuActivity extends BaseActivity implements View.OnClickListener {
 
-    FragmentManager fragmentManager;
+    private Bundle bundle;
+    private VendorDetailMainModal mainModal;
+    private String strRestaurantId = "";
+    private TextView manu_btn, about_btn, review_btn;
+    private RelativeLayout manu_line, about_line, review_line;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurent_menu);
+        init();
+    }
+
+    private void init() {
+        mContext = this;
+        retrofitApiClient = RetrofitService.getRetrofit();
+        if (getIntent() == null)
+            return;
+        strRestaurantId = getIntent().getStringExtra("vendor_id");
+
         manu_btn = findViewById(R.id.menu_btn);
         about_btn = findViewById(R.id.about_btn);
         review_btn = findViewById(R.id.review_btn);
@@ -33,28 +57,21 @@ public class RestaurentMenuActivity extends AppCompatActivity implements View.On
 
         fragmentManager = getSupportFragmentManager();
         // If saved instance state is null then replace login fragment
-        if (savedInstanceState == null) {
-            fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.resturent_menu_frame, new RestaurentMenuFragment(),
-                            Constant.RestaurentMenuFragment).commit();
-        }
 
         manu_btn.setOnClickListener(this);
         about_btn.setOnClickListener(this);
         review_btn.setOnClickListener(this);
         manu_line.setVisibility(View.VISIBLE);
-
+        getRestaurantDetail();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.menu_btn:
-                fragmentManager
-                        .beginTransaction()
-                        .replace(R.id.resturent_menu_frame, new RestaurentMenuFragment(),
-                                Constant.RestaurentMenuFragment).commit();
+                RestaurentMenuFragment restaurentMenuFragment = new RestaurentMenuFragment();
+                restaurentMenuFragment.setArguments(bundle);
+                changeFragment(restaurentMenuFragment, Constant.RestaurentMenuFragment);
                 manu_btn.setTextColor(getResources().getColor(R.color.colorRed));
                 about_btn.setTextColor(getResources().getColor(R.color.colorDarkGray));
                 review_btn.setTextColor(getResources().getColor(R.color.colorDarkGray));
@@ -64,11 +81,9 @@ public class RestaurentMenuActivity extends AppCompatActivity implements View.On
 
                 break;
             case R.id.about_btn:
-                fragmentManager
-                        .beginTransaction()
-                        .replace(R.id.resturent_menu_frame, new RestaurentAboutFragment(),
-                                Constant.RestaurentAboutFragment).commit();
-
+                RestaurentAboutFragment aboutFragment = new RestaurentAboutFragment();
+                aboutFragment.setArguments(bundle);
+                changeFragment(aboutFragment, Constant.RestaurentAboutFragment);
                 manu_btn.setTextColor(getResources().getColor(R.color.colorDarkGray));
                 about_btn.setTextColor(getResources().getColor(R.color.colorRed));
                 review_btn.setTextColor(getResources().getColor(R.color.colorDarkGray));
@@ -77,20 +92,57 @@ public class RestaurentMenuActivity extends AppCompatActivity implements View.On
                 review_line.setVisibility(View.GONE);
                 break;
             case R.id.review_btn:
-                fragmentManager
-                        .beginTransaction()
-                        .replace(R.id.resturent_menu_frame, new RestaurentReviewFragment(),
-                                Constant.RestaurentReviewFragment).commit();
-
+                RestaurentReviewFragment reviewFragment = new RestaurentReviewFragment();
+                reviewFragment.setArguments(bundle);
+                changeFragment(reviewFragment, Constant.RestaurentReviewFragment);
                 manu_btn.setTextColor(getResources().getColor(R.color.colorDarkGray));
                 about_btn.setTextColor(getResources().getColor(R.color.colorDarkGray));
                 review_btn.setTextColor(getResources().getColor(R.color.colorRed));
-
                 manu_line.setVisibility(View.GONE);
                 about_line.setVisibility(View.GONE);
                 review_line.setVisibility(View.VISIBLE);
-
                 break;
+        }
+    }
+
+    private void changeFragment(Fragment fragment, String strTag) {
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.resturent_menu_frame, fragment,
+                        strTag).commit();
+    }
+
+    private void getRestaurantDetail() {
+        if (strRestaurantId.isEmpty()) {
+            Alerts.show(mContext, "Restaurant id empty");
+        } else {
+            if (cd.isNetworkAvailable()) {
+                RetrofitService.getVendorDetailsData(new Dialog(mContext), retrofitApiClient.vendorDetail(strRestaurantId),
+                        new WebResponse() {
+                            @Override
+                            public void onResponseSuccess(Response<?> result) {
+                                mainModal = (VendorDetailMainModal) result.body();
+                                if (!mainModal.getError()) {
+                                    RestaurentMenuFragment restaurentMenuFragment = new RestaurentMenuFragment();
+                                    bundle = new Bundle();
+                                    Gson gson = new GsonBuilder().setLenient().create();
+                                    String strCategory = gson.toJson(mainModal);
+                                    bundle.putString("vendor_detail", strCategory);
+                                    restaurentMenuFragment.setArguments(bundle);
+                                    changeFragment(restaurentMenuFragment, Constant.RestaurentMenuFragment);
+                                } else {
+                                    Alerts.show(mContext, mainModal.getMessage());
+                                }
+                            }
+
+                            @Override
+                            public void onResponseFailed(String error) {
+                                Alerts.show(mContext, error);
+                            }
+                        });
+            } else {
+                cd.show(mContext);
+            }
         }
     }
 }

@@ -11,32 +11,20 @@ import android.widget.TextView;
 import java.util.List;
 
 import infobite.must.eat.R;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorItemCategory;
 import infobite.must.eat.modal.default_modal.CategoryManuModel;
 
 
 public class CategoryManuAdapter extends RecyclerView.Adapter<CategoryManuAdapter.MyViewHolder> {
 
-    ProgressDialog pDialog;
-    private List<CategoryManuModel> restaurentModelList;
-    Context context;
+    private List<VendorItemCategory> itemCategories;
+    private Context context;
+    private View.OnClickListener onClickListener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView tv_category_menu;
-        public MyViewHolder(View view) {
-            super(view);
-            tv_category_menu = (TextView) view.findViewById(R.id.tv_category_menu);
-        }
-
-        @Override
-        public void onClick(View v) {
-
-        }
-    }
-
-
-    public CategoryManuAdapter(List<CategoryManuModel> restaurentModelList, Context context) {
-        this.restaurentModelList = restaurentModelList;
+    public CategoryManuAdapter(List<VendorItemCategory> itemCategories, Context context, View.OnClickListener onClickListener) {
+        this.itemCategories = itemCategories;
         this.context = context;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -48,13 +36,22 @@ public class CategoryManuAdapter extends RecyclerView.Adapter<CategoryManuAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        CategoryManuModel historyModel = restaurentModelList.get(position);
-        holder.tv_category_menu.setText(historyModel.getCategoryMenu());
-        //Picasso.with(context).load(memoireModel.getMemoire_img1()).placeholder(R.drawable.img1).resize(500,150).error(R.drawable.img1).noFade().into(holder.memoire_img);
-    }
-    @Override
-    public int getItemCount() {
-        return restaurentModelList.size();
+        holder.tv_category_menu.setText(itemCategories.get(position).getCategoryName());
+        holder.tv_category_menu.setTag(position);
+        holder.tv_category_menu.setOnClickListener(onClickListener);
     }
 
+    @Override
+    public int getItemCount() {
+        return itemCategories.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView tv_category_menu;
+
+        public MyViewHolder(View view) {
+            super(view);
+            tv_category_menu = (TextView) view.findViewById(R.id.tv_category_menu);
+        }
+    }
 }

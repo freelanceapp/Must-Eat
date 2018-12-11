@@ -1,4 +1,3 @@
-
 package infobite.must.eat.modal.api_modal.vendor_detail;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VendorVendor implements Parcelable
+public class VendorDetail implements Parcelable
 {
 
     @SerializedName("vendor_id")
@@ -17,7 +16,7 @@ public class VendorVendor implements Parcelable
     private String vendorId;
     @SerializedName("vendor_display_name")
     @Expose
-    private Object vendorDisplayName;
+    private String vendorDisplayName;
     @SerializedName("vendor_name")
     @Expose
     private String vendorName;
@@ -48,6 +47,12 @@ public class VendorVendor implements Parcelable
     @SerializedName("vendor_website")
     @Expose
     private String vendorWebsite;
+    @SerializedName("vendor_most_popular")
+    @Expose
+    private String vendorMostPopular;
+    @SerializedName("vendor_recommandation")
+    @Expose
+    private String vendorRecommandation;
     @SerializedName("vendor_banner")
     @Expose
     private String vendorBanner;
@@ -62,33 +67,33 @@ public class VendorVendor implements Parcelable
     private String vendorType;
     @SerializedName("vendor_opening_closing_time")
     @Expose
-    private List<VendorOpeningClosingTime> vendorOpeningClosingTime = new ArrayList<VendorOpeningClosingTime>();
+    private List<VendorOpenCloseTime> vendorOpeningClosingTime = new ArrayList<VendorOpenCloseTime>();
     @SerializedName("vendor_delivery_area")
     @Expose
     private String vendorDeliveryArea;
     @SerializedName("vendor_registration_date")
     @Expose
     private String vendorRegistrationDate;
-    public final static Creator<VendorVendor> CREATOR = new Creator<VendorVendor>() {
+    public final static Parcelable.Creator<VendorDetail> CREATOR = new Creator<VendorDetail>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
-        public VendorVendor createFromParcel(Parcel in) {
-            return new VendorVendor(in);
+        public VendorDetail createFromParcel(Parcel in) {
+            return new VendorDetail(in);
         }
 
-        public VendorVendor[] newArray(int size) {
-            return (new VendorVendor[size]);
+        public VendorDetail[] newArray(int size) {
+            return (new VendorDetail[size]);
         }
 
     }
-    ;
+            ;
 
-    protected VendorVendor(Parcel in) {
+    protected VendorDetail(Parcel in) {
         this.vendorId = ((String) in.readValue((String.class.getClassLoader())));
-        this.vendorDisplayName = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.vendorDisplayName = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorName = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorLat = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorLong = ((String) in.readValue((String.class.getClassLoader())));
@@ -99,16 +104,18 @@ public class VendorVendor implements Parcelable
         this.vendorCounty = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorLandmark = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorWebsite = ((String) in.readValue((String.class.getClassLoader())));
+        this.vendorMostPopular = ((String) in.readValue((String.class.getClassLoader())));
+        this.vendorRecommandation = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorBanner = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorLogo = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorDescription = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorType = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.vendorOpeningClosingTime, (VendorOpeningClosingTime.class.getClassLoader()));
+        in.readList(this.vendorOpeningClosingTime, (VendorOpenCloseTime.class.getClassLoader()));
         this.vendorDeliveryArea = ((String) in.readValue((String.class.getClassLoader())));
         this.vendorRegistrationDate = ((String) in.readValue((String.class.getClassLoader())));
     }
 
-    public VendorVendor() {
+    public VendorDetail() {
     }
 
     public String getVendorId() {
@@ -119,11 +126,11 @@ public class VendorVendor implements Parcelable
         this.vendorId = vendorId;
     }
 
-    public Object getVendorDisplayName() {
+    public String getVendorDisplayName() {
         return vendorDisplayName;
     }
 
-    public void setVendorDisplayName(Object vendorDisplayName) {
+    public void setVendorDisplayName(String vendorDisplayName) {
         this.vendorDisplayName = vendorDisplayName;
     }
 
@@ -207,6 +214,22 @@ public class VendorVendor implements Parcelable
         this.vendorWebsite = vendorWebsite;
     }
 
+    public String getVendorMostPopular() {
+        return vendorMostPopular;
+    }
+
+    public void setVendorMostPopular(String vendorMostPopular) {
+        this.vendorMostPopular = vendorMostPopular;
+    }
+
+    public String getVendorRecommandation() {
+        return vendorRecommandation;
+    }
+
+    public void setVendorRecommandation(String vendorRecommandation) {
+        this.vendorRecommandation = vendorRecommandation;
+    }
+
     public String getVendorBanner() {
         return vendorBanner;
     }
@@ -239,11 +262,11 @@ public class VendorVendor implements Parcelable
         this.vendorType = vendorType;
     }
 
-    public List<VendorOpeningClosingTime> getVendorOpeningClosingTime() {
+    public List<VendorOpenCloseTime> getVendorOpeningClosingTime() {
         return vendorOpeningClosingTime;
     }
 
-    public void setVendorOpeningClosingTime(List<VendorOpeningClosingTime> vendorOpeningClosingTime) {
+    public void setVendorOpeningClosingTime(List<VendorOpenCloseTime> vendorOpeningClosingTime) {
         this.vendorOpeningClosingTime = vendorOpeningClosingTime;
     }
 
@@ -276,6 +299,8 @@ public class VendorVendor implements Parcelable
         dest.writeValue(vendorCounty);
         dest.writeValue(vendorLandmark);
         dest.writeValue(vendorWebsite);
+        dest.writeValue(vendorMostPopular);
+        dest.writeValue(vendorRecommandation);
         dest.writeValue(vendorBanner);
         dest.writeValue(vendorLogo);
         dest.writeValue(vendorDescription);
@@ -286,7 +311,7 @@ public class VendorVendor implements Parcelable
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

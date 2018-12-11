@@ -1,7 +1,10 @@
 package infobite.must.eat.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,41 +13,30 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import infobite.must.eat.R;
-import infobite.must.eat.modal.default_modal.RestaurentModel;
+import infobite.must.eat.constant.Constant;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorList;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorOpeningClosingTime;
 
 
 public class RestaurentShowAdapter extends RecyclerView.Adapter<RestaurentShowAdapter.MyViewHolder> {
 
-    ProgressDialog pDialog;
-    private ArrayList<RestaurentModel> restaurentModelList;
-    Context context;
+    private List<VendorList> vendorLists;
+    private Context mContext;
+    private View.OnClickListener onClickListener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView rc_name, rc_type, rc_offer;
-        public ImageView rc_img;
-        public RatingBar rc_rate;
-        public MyViewHolder(View view) {
-            super(view);
-            rc_name = (TextView) view.findViewById(R.id.rc_name);
-            rc_offer = (TextView) view.findViewById(R.id.rc_offer);
-            rc_type = (TextView) view.findViewById(R.id.rc_type);
-            rc_img = (ImageView)view.findViewById(R.id.rc_img);
-            rc_rate = (RatingBar)view.findViewById(R.id.rc_rate);
-        }
-
-        @Override
-        public void onClick(View v) {
-
-        }
-    }
-
-
-    public RestaurentShowAdapter(ArrayList<RestaurentModel> restaurentModelList, Context context) {
-        this.restaurentModelList = restaurentModelList;
-        this.context = context;
+    public RestaurentShowAdapter(List<VendorList> vendorLists, Context mContext, View.OnClickListener onClickListener) {
+        this.vendorLists = vendorLists;
+        this.mContext = mContext;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -56,20 +48,76 @@ public class RestaurentShowAdapter extends RecyclerView.Adapter<RestaurentShowAd
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        RestaurentModel restaurentModel = restaurentModelList.get(position);
-        holder.rc_name.setText(restaurentModel.getR_name());
-        holder.rc_type.setText(restaurentModel.getR_type());
-        holder.rc_offer.setText(restaurentModel.getR_discount());
-        holder.rc_img.setImageResource(restaurentModel.getR_img1());
+        holder.rc_name.setText(vendorLists.get(position).getVendorName());
+        float rate = vendorLists.get(position).getReviewRate();
+        holder.rc_rate.setRating(rate);
+        holder.cardViewItem.setTag(position);
+        holder.cardViewItem.setOnClickListener(onClickListener);
 
-        //Picasso.with(context).load(memoireModel.getMemoire_img1()).placeholder(R.drawable.img1).resize(500,150).error(R.drawable.img1).noFade().into(holder.memoire_img);
+        List<VendorOpeningClosingTime> times = new ArrayList<>(vendorLists.get(position).getVendorOpeningClosingTime());
+        String strDay = getCurrentDay();
+        int hour = getHour(getTime());
+        for (int i = 0; i < times.size(); i++) {
+            if (strDay.equalsIgnoreCase(times.get(i).getWeek())) {
+                int startHourB = getHour(times.get(i).getStart());
+                int endHourB = getHour(times.get(i).getEnd());
 
+                if (hour >= startHourB && hour <= endHourB) {
+                    holder.rc_type.setText("OPEN");
+                    holder.rc_type.setTextColor(mContext.getResources().getColor(R.color.colorGreen));
+                } else {
+                    holder.rc_type.setText("CLOSE");
+                    holder.rc_type.setTextColor(mContext.getResources().getColor(R.color.colorRed));
+                }
+            }
+        }
 
+        String sImg = Constant.BASE_URL + vendorLists.get(position).getVendorLogo();
+        Glide.with(mContext).load(sImg)
+                .into(holder.rc_img);
+
+    }
+
+    private int getHour(String strTime) {
+        String[] strH = strTime.split(":");
+        if (strH[0].isEmpty()) {
+            strH[0] = "0";
+        }
+        return Integer.parseInt(strH[0]);
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private String getCurrentDay() {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+        return sdf.format(d);
+    }
+
+    private String getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(new Date());
     }
 
     @Override
     public int getItemCount() {
-        return restaurentModelList.size();
+        return vendorLists.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView rc_name, rc_type, rc_offer;
+        public ImageView rc_img;
+        public RatingBar rc_rate;
+        private CardView cardViewItem;
+
+        public MyViewHolder(View view) {
+            super(view);
+            cardViewItem = view.findViewById(R.id.cardViewItem);
+            rc_name = view.findViewById(R.id.rc_name);
+            rc_offer = view.findViewById(R.id.rc_offer);
+            rc_type = view.findViewById(R.id.rc_type);
+            rc_img = view.findViewById(R.id.rc_img);
+            rc_rate = view.findViewById(R.id.rc_rate);
+        }
     }
 
 }

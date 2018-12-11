@@ -1,4 +1,3 @@
-
 package infobite.must.eat.modal.api_modal.vendor_detail;
 
 import android.os.Parcel;
@@ -7,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VendorCategory implements Parcelable
+public class VendorItemCategory implements Parcelable
 {
 
     @SerializedName("category_id")
@@ -31,24 +30,24 @@ public class VendorCategory implements Parcelable
     @SerializedName("category_created_date")
     @Expose
     private String categoryCreatedDate;
-    public final static Creator<VendorCategory> CREATOR = new Creator<VendorCategory>() {
+    public final static Parcelable.Creator<VendorItemCategory> CREATOR = new Creator<VendorItemCategory>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
-        public VendorCategory createFromParcel(Parcel in) {
-            return new VendorCategory(in);
+        public VendorItemCategory createFromParcel(Parcel in) {
+            return new VendorItemCategory(in);
         }
 
-        public VendorCategory[] newArray(int size) {
-            return (new VendorCategory[size]);
+        public VendorItemCategory[] newArray(int size) {
+            return (new VendorItemCategory[size]);
         }
 
     }
-    ;
+            ;
 
-    protected VendorCategory(Parcel in) {
+    protected VendorItemCategory(Parcel in) {
         this.categoryId = ((String) in.readValue((String.class.getClassLoader())));
         this.categoryName = ((String) in.readValue((String.class.getClassLoader())));
         this.categoryImage = ((String) in.readValue((String.class.getClassLoader())));
@@ -58,7 +57,7 @@ public class VendorCategory implements Parcelable
         this.categoryCreatedDate = ((String) in.readValue((String.class.getClassLoader())));
     }
 
-    public VendorCategory() {
+    public VendorItemCategory() {
     }
 
     public String getCategoryId() {
@@ -128,7 +127,7 @@ public class VendorCategory implements Parcelable
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

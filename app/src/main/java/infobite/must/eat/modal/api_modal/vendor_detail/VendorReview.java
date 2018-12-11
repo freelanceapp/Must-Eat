@@ -1,4 +1,3 @@
-
 package infobite.must.eat.modal.api_modal.vendor_detail;
 
 import android.os.Parcel;
@@ -10,20 +9,20 @@ import com.google.gson.annotations.SerializedName;
 public class VendorReview implements Parcelable
 {
 
-    @SerializedName("name")
+    @SerializedName("review_id")
     @Expose
-    private String name;
-    @SerializedName("rating")
+    private String reviewId;
+    @SerializedName("review_rate")
     @Expose
-    private String rating;
-    @SerializedName("comments")
+    private String reviewRate;
+    @SerializedName("review_date")
     @Expose
-    private String comments;
-    public final static Creator<VendorReview> CREATOR = new Creator<VendorReview>() {
+    private String reviewDate;
+    public final static Parcelable.Creator<VendorReview> CREATOR = new Creator<VendorReview>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public VendorReview createFromParcel(Parcel in) {
             return new VendorReview(in);
@@ -34,49 +33,49 @@ public class VendorReview implements Parcelable
         }
 
     }
-    ;
+            ;
 
     protected VendorReview(Parcel in) {
-        this.name = ((String) in.readValue((String.class.getClassLoader())));
-        this.rating = ((String) in.readValue((String.class.getClassLoader())));
-        this.comments = ((String) in.readValue((String.class.getClassLoader())));
+        this.reviewId = ((String) in.readValue((String.class.getClassLoader())));
+        this.reviewRate = ((String) in.readValue((String.class.getClassLoader())));
+        this.reviewDate = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public VendorReview() {
     }
 
-    public String getName() {
-        return name;
+    public String getReviewId() {
+        return reviewId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setReviewId(String reviewId) {
+        this.reviewId = reviewId;
     }
 
-    public String getRating() {
-        return rating;
+    public String getReviewRate() {
+        return reviewRate;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setReviewRate(String reviewRate) {
+        this.reviewRate = reviewRate;
     }
 
-    public String getComments() {
-        return comments;
+    public String getReviewDate() {
+        return reviewDate;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setReviewDate(String reviewDate) {
+        this.reviewDate = reviewDate;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(name);
-        dest.writeValue(rating);
-        dest.writeValue(comments);
+        dest.writeValue(reviewId);
+        dest.writeValue(reviewRate);
+        dest.writeValue(reviewDate);
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

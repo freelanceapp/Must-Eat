@@ -2,7 +2,8 @@ package infobite.must.eat.retrofit_provider;
 
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.api_modal.login_response.LoginModal;
-import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailModal;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorListMainModal;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -40,12 +41,12 @@ public interface RetrofitApiClient {
 
     @FormUrlEncoded
     @POST(Constant.VENDOR_DETAIL)
-    Call<VendorDetailModal> vendorDetail(@Field("vendor_id") String vendor_id);
+    Call<VendorDetailMainModal> vendorDetail(@Field("vendor_id") String vendor_id);
 
     @FormUrlEncoded
     @POST(Constant.VENDOR_LIST)
-    Call<VendorDetailModal> vendorList(@Field("latitude") String latitude, @Field("longitude") String longitude,
-                                       @Field("radius") String radius);
+    Call<VendorListMainModal> vendorList(@Field("latitude") double latitude, @Field("longitude") double longitude,
+                                         @Field("radius") String radius);
 
     @FormUrlEncoded
     @POST(Constant.FOROGOT_PASSWORD)

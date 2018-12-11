@@ -1,5 +1,4 @@
-
-package infobite.must.eat.modal.api_modal.vendor_detail;
+package infobite.must.eat.modal.api_modal.vendor_list;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -22,11 +21,11 @@ public class VendorOpeningClosingTime implements Parcelable
     @SerializedName("status")
     @Expose
     private String status;
-    public final static Creator<VendorOpeningClosingTime> CREATOR = new Creator<VendorOpeningClosingTime>() {
+    public final static Parcelable.Creator<VendorOpeningClosingTime> CREATOR = new Creator<VendorOpeningClosingTime>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public VendorOpeningClosingTime createFromParcel(Parcel in) {
             return new VendorOpeningClosingTime(in);
@@ -37,7 +36,7 @@ public class VendorOpeningClosingTime implements Parcelable
         }
 
     }
-    ;
+            ;
 
     protected VendorOpeningClosingTime(Parcel in) {
         this.week = ((String) in.readValue((String.class.getClassLoader())));
@@ -89,7 +88,7 @@ public class VendorOpeningClosingTime implements Parcelable
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

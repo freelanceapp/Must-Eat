@@ -31,7 +31,7 @@ import infobite.must.eat.R;
 import infobite.must.eat.adapter.PlaceArrayAdapter;
 
 
-public class ManualLocationActivity extends AppCompatActivity implements  GoogleApiClient.OnConnectionFailedListener,
+public class ManualLocationActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks, OnMapReadyCallback {
     private static final String LOG_TAG = "MainActivity";
     private SupportMapFragment mapFragment;
@@ -83,9 +83,6 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
                 startActivity(intent);
             }
         });
-
-
-
     }
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener
@@ -115,23 +112,20 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
             final Place place = places.get(0);
             CharSequence attributions = places.getAttributions();
 
-            Log.e("Address",place.getName()+"..."+place.getAddress());
+            Log.e("Address", place.getName() + "..." + place.getAddress());
 
-            postal_address = place.getName()+" , "+place.getAddress();
+            postal_address = place.getName() + " , " + place.getAddress();
 
-            mapFragment.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap googleMap) {
-                    googleMap.clear();
-                    googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            mapFragment.getMapAsync(googleMap -> {
+                googleMap.clear();
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-                    googleMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(place.getLatLng().latitude, place.getLatLng().longitude))
-                            .title(""+place.getName())
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                googleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(place.getLatLng().latitude, place.getLatLng().longitude))
+                        .title("" + place.getName())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(place.getLatLng().latitude, place.getLatLng().longitude),15));
-                }
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(place.getLatLng().latitude, place.getLatLng().longitude), 15));
             });
 
         }

@@ -35,7 +35,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
     private static final int MY_PERMISSIONS_REQUEST_CODE = 123;
     private String provider;
     private LocationTrack locationTrack;
-    private Double lat, longi;
+    private Double lat = 0.0, longi = 0.0;
     private LocationManager locationManager;
 
     @Override
@@ -45,8 +45,6 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
 
         //get the permissions we have asked for before but are not granted..
         //we will store this in a global list to access later.
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermission();
         }
@@ -66,7 +64,6 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.ll_current_location:
                 getLocation();
-
                 break;
         }
     }
@@ -158,16 +155,13 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             mLocation = location;
-            strLat = String.valueOf(location.getLatitude());
-            strLng = String.valueOf(location.getLongitude());
+            lat = (location.getLatitude());
+            longi = (location.getLongitude());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            /*Toast.makeText(FindLocationActivity.this, "Location " + addresses.get(0).getAddressLine(0) + ", " +
-                    addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2) + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();*/
-            restaurantActivity();
+            restaurantActivity(lat, longi);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -185,9 +179,22 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    private void restaurantActivity() {
+    private void restaurantActivity(double latitude, double longitude) {
         Intent intent = new Intent(FindLocationActivity.this, NearRestaurantActivity.class);
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longitude", longitude);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onPause() {
+        locationManager.removeUpdates(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

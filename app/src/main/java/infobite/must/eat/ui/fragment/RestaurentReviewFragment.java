@@ -9,46 +9,54 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.ReviewAdapter;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorReview;
 import infobite.must.eat.modal.default_modal.ReviewModel;
 
 public class RestaurentReviewFragment extends Fragment {
-    public View view;
 
-    RecyclerView review_list;
-    ReviewAdapter reviewAdapter;
-    ArrayList<ReviewModel> reviewModelArrayList = new ArrayList<>();
+    private View view;
+    private RecyclerView review_list;
+    private ReviewAdapter reviewAdapter;
+    private List<VendorReview> reviewModelArrayList = new ArrayList<>();
+
     public RestaurentReviewFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_restaurent_review, container, false);
-        review_list = (RecyclerView)view.findViewById(R.id.review_list);
+        init();
+        return view;
+    }
 
-        for (int i = 0 ; i < 20 ; i++) {
-            ReviewModel reviewModel = new ReviewModel();
-            reviewModel.setReview_name("Devid");
-            reviewModel.setReview_comment("KFjerivb lkvhwe lkvhw iwh ");
-            reviewModel.setReview_date("nov 20, 2018");
-            reviewModelArrayList.add(reviewModel);
-        }
+    private void init() {
+        review_list = (RecyclerView) view.findViewById(R.id.review_list);
+
+        if (getArguments() == null)
+            return;
+        Bundle bundle = getArguments();
+        String strVendorDetail = bundle.getString("vendor_detail");
+        Gson gson = new Gson();
+        VendorDetailMainModal mainModal = gson.fromJson(strVendorDetail, VendorDetailMainModal.class);
+        reviewModelArrayList.addAll(mainModal.getReview());
 
         reviewAdapter = new ReviewAdapter(reviewModelArrayList, getActivity());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
         review_list.setLayoutManager(mLayoutManager);
         review_list.setItemAnimator(new DefaultItemAnimator());
         review_list.setAdapter(reviewAdapter);
-
-        return view;
+        reviewAdapter.notifyDataSetChanged();
     }
 
 

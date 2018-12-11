@@ -87,6 +87,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvVendorAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/text_size_6"
@@ -96,6 +97,7 @@
                         android:textStyle="normal" />
 
                     <TextView
+                        android:id="@+id/tvVendorContact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/text_size_6"
@@ -105,6 +107,7 @@
                         android:textStyle="normal" />
 
                     <TextView
+                        android:id="@+id/tvVendorWebsite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"

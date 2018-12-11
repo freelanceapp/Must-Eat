@@ -3,14 +3,14 @@ package infobite.must.eat.modal.api_modal.vendor_detail;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VendorDetailModal implements Parcelable
-{
+public class VendorDetailMainModal implements Parcelable {
 
     @SerializedName("error")
     @Expose
@@ -20,43 +20,42 @@ public class VendorDetailModal implements Parcelable
     private String message;
     @SerializedName("vendor")
     @Expose
-    private VendorVendor vendor;
-    @SerializedName("VendorReview")
+    private VendorDetail vendor;
+    @SerializedName("Review")
     @Expose
     private List<VendorReview> review = new ArrayList<VendorReview>();
     @SerializedName("category")
     @Expose
-    private List<VendorCategory> category = new ArrayList<VendorCategory>();
+    private List<VendorItemCategory> category = new ArrayList<VendorItemCategory>();
     @SerializedName("product")
     @Expose
     private List<VendorProduct> product = new ArrayList<VendorProduct>();
-    public final static Creator<VendorDetailModal> CREATOR = new Creator<VendorDetailModal>() {
+    public final static Parcelable.Creator<VendorDetailMainModal> CREATOR = new Creator<VendorDetailMainModal>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
-        public VendorDetailModal createFromParcel(Parcel in) {
-            return new VendorDetailModal(in);
+        public VendorDetailMainModal createFromParcel(Parcel in) {
+            return new VendorDetailMainModal(in);
         }
 
-        public VendorDetailModal[] newArray(int size) {
-            return (new VendorDetailModal[size]);
+        public VendorDetailMainModal[] newArray(int size) {
+            return (new VendorDetailMainModal[size]);
         }
 
-    }
-    ;
+    };
 
-    protected VendorDetailModal(Parcel in) {
+    protected VendorDetailMainModal(Parcel in) {
         this.error = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
         this.message = ((String) in.readValue((String.class.getClassLoader())));
-        this.vendor = ((VendorVendor) in.readValue((VendorVendor.class.getClassLoader())));
+        this.vendor = ((VendorDetail) in.readValue((VendorDetail.class.getClassLoader())));
         in.readList(this.review, (VendorReview.class.getClassLoader()));
-        in.readList(this.category, (VendorCategory.class.getClassLoader()));
+        in.readList(this.category, (VendorItemCategory.class.getClassLoader()));
         in.readList(this.product, (VendorProduct.class.getClassLoader()));
     }
 
-    public VendorDetailModal() {
+    public VendorDetailMainModal() {
     }
 
     public Boolean getError() {
@@ -75,11 +74,11 @@ public class VendorDetailModal implements Parcelable
         this.message = message;
     }
 
-    public VendorVendor getVendor() {
+    public VendorDetail getVendor() {
         return vendor;
     }
 
-    public void setVendor(VendorVendor vendor) {
+    public void setVendor(VendorDetail vendor) {
         this.vendor = vendor;
     }
 
@@ -91,11 +90,11 @@ public class VendorDetailModal implements Parcelable
         this.review = review;
     }
 
-    public List<VendorCategory> getCategory() {
+    public List<VendorItemCategory> getCategory() {
         return category;
     }
 
-    public void setCategory(List<VendorCategory> category) {
+    public void setCategory(List<VendorItemCategory> category) {
         this.category = category;
     }
 
@@ -117,7 +116,7 @@ public class VendorDetailModal implements Parcelable
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }
