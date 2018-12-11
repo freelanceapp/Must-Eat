@@ -285,7 +285,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                     fragmentManager
                             .beginTransaction()
                             .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-                            .replace(R.id.fram_container, new SignupFragment(), Constant.SignUp_Fragment).commit();
+                            .replace(R.id.fram_container, signupFragment, Constant.SignUp_Fragment).commit();
                 }
             }
 
@@ -302,8 +302,17 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
             InputStream in = null;
             FileOutputStream out = null;
             try {
+                File wallpaperDirectory = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+                Log.e("File", wallpaperDirectory.getPath());
+                Log.e("wallpaperDirectory", "..." + wallpaperDirectory.exists());
+                Log.e("wallpaperDirectory", "===" + wallpaperDirectory.mkdirs());
+                if (!wallpaperDirectory.exists()) {
+                    wallpaperDirectory.mkdirs();
+                }
+                File file = new File(wallpaperDirectory, "MustEatProfile.jpg");
+                file.createNewFile();
                 in = body.byteStream();
-                out = new FileOutputStream(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY + "MustEatProfile.jpg");
+                out = new FileOutputStream(file);
                 int c;
                 while ((c = in.read()) != -1) {
                     out.write(c);
@@ -320,14 +329,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 }
             }
 
-            int width, height;
-            Bitmap bMap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY + "MustEatProfile.jpg");
-            width = bMap.getWidth();
-            height = bMap.getHeight();
-            Bitmap bMap2 = Bitmap.createScaledBitmap(bMap, width, height, false);
 
-            File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    + File.separator + "MustEatProfile.jpg");
 
             return true;
         } catch (IOException e) {
@@ -382,5 +384,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 Alerts.show(mContext, "Image not download");
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
     }
 }

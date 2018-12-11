@@ -97,6 +97,16 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
 
         rootView.findViewById(R.id.iv_back).setOnClickListener(this);
         rootView.findViewById(R.id.bt_register).setOnClickListener(this);
+
+        int width, height;
+        Bitmap bMap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY + "MustEatProfile.jpg");
+        width = bMap.getWidth();
+        height = bMap.getHeight();
+        Bitmap bMap2 = Bitmap.createScaledBitmap(bMap, width, height, false);
+
+        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                + File.separator + "MustEatProfile.jpg");
+        profile_image.setImageBitmap(bMap2);
     }
 
     @Override
