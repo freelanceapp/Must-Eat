@@ -21,7 +21,7 @@ public class VendorDetailModal implements Parcelable
     @SerializedName("vendor")
     @Expose
     private VendorVendor vendor;
-    @SerializedName("VendorReview")
+    @SerializedName("Review")
     @Expose
     private List<VendorReview> review = new ArrayList<VendorReview>();
     @SerializedName("category")
