@@ -43,6 +43,11 @@ public interface RetrofitApiClient {
     Call<VendorDetailModal> vendorDetail(@Field("vendor_id") String vendor_id);
 
     @FormUrlEncoded
+    @POST(Constant.VENDOR_LIST)
+    Call<VendorDetailModal> vendorList(@Field("latitude") String latitude, @Field("longitude") String longitude,
+                                       @Field("radius") String radius);
+
+    @FormUrlEncoded
     @POST(Constant.FOROGOT_PASSWORD)
     Call<ResponseBody> getUserList(@Field("user") String user,
                                    @Field("age") String age,
