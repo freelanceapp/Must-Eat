@@ -13,6 +13,7 @@ public class Constant {
     public static final String VENDOR_DETAIL = "api/vendor-details.php";
     public static final String VENDOR_LIST = "api/vendor-list.php";
     public static final String FOROGOT_PASSWORD = "jain/api/forgot.php";
+    public static final String NOTIFICATION_LIST = "api/select-notification.php";
 
     // Fragment constant
     public static final String Login_Fragment = "Login_Fragment";

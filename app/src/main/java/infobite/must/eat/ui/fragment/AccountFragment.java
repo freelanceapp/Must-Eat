@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -34,12 +35,14 @@ import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.User;
 import infobite.must.eat.modal.api_modal.login_response.LoginModal;
+import infobite.must.eat.modal.api_modal.login_response.UserData;
 import infobite.must.eat.retrofit_provider.RetrofitService;
 import infobite.must.eat.retrofit_provider.WebResponse;
 import infobite.must.eat.ui.activities.FindLocationActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.AppPreference;
 import infobite.must.eat.utils.BaseFragment;
+import infobite.must.eat.utils.ConnectionDetector;
 import infobite.must.eat.utils.EmailChecker;
 import retrofit2.Response;
 
@@ -51,7 +54,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     private int GALLERY = 1, CAMERA = 2;
     private String userChoosenTask;
     private static final String IMAGE_DIRECTORY = "/musteat";
-
+    private EditText user_name,user_email,user_contact,user_address;
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -65,8 +68,15 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void initViews() {
+        mContext=getActivity();
+        cd = new ConnectionDetector(mContext);
+        retrofitApiClient = RetrofitService.getRetrofit();
         profile_image = view.findViewById(R.id.profile_image);
         profile_image.setOnClickListener(this);
+        user_name = (EditText)view.findViewById(R.id.user_name);
+        user_contact = (EditText)view.findViewById(R.id.user_contact);
+        user_email = (EditText)view.findViewById(R.id.user_email);
+        user_address = (EditText)view.findViewById(R.id.user_address);
         getProfile();
     }
 
@@ -185,6 +195,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
      * */
     private void getProfile() {
         String strUserId = AppPreference.getStringPreference(mContext, Constant.User_Id);
+        Log.e("user id","..."+strUserId);
         if (cd.isNetworkAvailable()) {
             RetrofitService.getUserData(new Dialog(mContext), retrofitApiClient.userProfile(strUserId), new WebResponse() {
                 @Override
@@ -202,8 +213,14 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         AppPreference.setStringPreference(mContext, Constant.User_Data, data);
                         User.setUser(loginModal);
 
-                        Intent intent = new Intent(mContext, FindLocationActivity.class);
-                        startActivity(intent);
+                        user_name.setText(User.getUser().getUser().getUserFullname());
+                        user_email.setText(User.getUser().getUser().getEmail());
+                        user_contact.setText(User.getUser().getUser().getPhone());
+                        Glide.with(mContext).load(Constant.BASE_URL+User.getUser().getUser().getUserProfilePic())
+                                .into(profile_image);
+
+                        /*Intent intent = new Intent(mContext, FindLocationActivity.class);
+                        startActivity(intent);*/
                     } else {
                         Alerts.show(mContext, loginModal.getMessage());
                         if (loginModal.getMessage().equals("User is Not Verified")) {
