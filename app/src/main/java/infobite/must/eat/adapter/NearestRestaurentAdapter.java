@@ -1,9 +1,7 @@
 package infobite.must.eat.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +12,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,13 +24,13 @@ import infobite.must.eat.modal.api_modal.vendor_list.VendorList;
 import infobite.must.eat.modal.api_modal.vendor_list.VendorOpeningClosingTime;
 
 
-public class RestaurentShowAdapter extends RecyclerView.Adapter<RestaurentShowAdapter.MyViewHolder> {
+public class NearestRestaurentAdapter extends RecyclerView.Adapter<NearestRestaurentAdapter.MyViewHolder> {
 
     private List<VendorList> vendorLists;
     private Context mContext;
     private View.OnClickListener onClickListener;
 
-    public RestaurentShowAdapter(List<VendorList> vendorLists, Context mContext, View.OnClickListener onClickListener) {
+    public NearestRestaurentAdapter(List<VendorList> vendorLists, Context mContext, View.OnClickListener onClickListener) {
         this.vendorLists = vendorLists;
         this.mContext = mContext;
         this.onClickListener = onClickListener;

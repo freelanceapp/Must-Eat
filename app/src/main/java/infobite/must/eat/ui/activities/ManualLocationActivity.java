@@ -55,10 +55,8 @@ public class ManualLocationActivity extends AppCompatActivity implements  Google
     private static final String LOG_TAG = "MainActivity";
     private SupportMapFragment mapFragment;
     private Location mLocation;
-
     private String strLat = "", strLng = "";
     private LocationManager locationManager;
-
     String[] fruits = {"Plasia", "TI", "LIG", "Vijay Nagar", "Bhawarkua", "Vishnupuri", "MR 9", "TIT Group", "Pardesipura", "Palnipura"};
     ListView area_list;
     private GoogleApiClient mGoogleApiClient;

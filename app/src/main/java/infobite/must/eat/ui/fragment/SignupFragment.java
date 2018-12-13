@@ -45,6 +45,7 @@ import infobite.must.eat.ui.activities.MainActivity;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.AppPreference;
 import infobite.must.eat.utils.BaseFragment;
+import infobite.must.eat.utils.ConnectionDetector;
 import infobite.must.eat.utils.EmailChecker;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -79,14 +80,18 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
 
     private void init() {
         fragmentManager = getActivity().getSupportFragmentManager();
-        Bundle bundle = getArguments();
-        assert bundle != null;
-        String strName = bundle.getString("name");
-        String strEmail = bundle.getString("email");
+        mContext = getActivity();
+        cd = new ConnectionDetector(mContext);
+        retrofitRxClient = RetrofitService.getRxClient();
+        retrofitApiClient = RetrofitService.getRetrofit();
+       /* Bundle bundle = getArguments();
+        assert bundle != null;*/
+       /* String strName = bundle.getString("name");
+        String strEmail = bundle.getString("email");*/
         MainActivity.ivClose.setVisibility(View.VISIBLE);
 
-        ((EditText) rootView.findViewById(R.id.et_name)).setText(strName);
-        ((EditText) rootView.findViewById(R.id.et_email)).setText(strEmail);
+        /*((EditText) rootView.findViewById(R.id.et_name)).setText(strName);
+        ((EditText) rootView.findViewById(R.id.et_email)).setText(strEmail);*/
         profile_image = rootView.findViewById(R.id.profile_image);
         profile_image.setOnClickListener(this);
         etName = rootView.findViewById(R.id.et_name);
@@ -98,7 +103,7 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
         rootView.findViewById(R.id.iv_back).setOnClickListener(this);
         rootView.findViewById(R.id.bt_register).setOnClickListener(this);
 
-        int width, height;
+        /*int width, height;
         Bitmap bMap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY + "MustEatProfile.jpg");
         width = bMap.getWidth();
         height = bMap.getHeight();
@@ -106,7 +111,7 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
 
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                 + File.separator + "MustEatProfile.jpg");
-        profile_image.setImageBitmap(bMap2);
+        profile_image.setImageBitmap(bMap2);*/
     }
 
     @Override
@@ -115,7 +120,7 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
             case R.id.bt_login:
 
                 break;
-            case R.id.tv_signup:
+            case R.id.bt_register:
                 signUpApi();
                 break;
             case R.id.profile_image:
@@ -297,8 +302,12 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
                             AppPreference.setStringPreference(mContext, Constant.User_Data, data);
                             User.setUser(loginModal);
 
-                            Intent intent = new Intent(mContext, FindLocationActivity.class);
-                            startActivity(intent);
+                            if (loginModal.getMessage().equals("User is Not Verified")) {
+                                startFragment(Constant.Verification_Fragment, new VerificationFragment(), loginModal.getUser().getPhone());
+                            }else {
+                                Intent intent = new Intent(mContext, FindLocationActivity.class);
+                                startActivity(intent);
+                            }
                         } else {
                             Alerts.show(mContext, loginModal.getMessage());
                             if (loginModal.getMessage().equals("User is Not Verified")) {

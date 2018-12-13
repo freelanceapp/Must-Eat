@@ -4,8 +4,12 @@ import android.app.Dialog;
 
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.api_modal.login_response.LoginModal;
+import infobite.must.eat.modal.api_modal.notification_response.Notification;
+import infobite.must.eat.modal.api_modal.notification_response.NotificationMainModel;
+import infobite.must.eat.modal.api_modal.offer_response.OfferMainModal;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
 import infobite.must.eat.modal.api_modal.vendor_list.VendorListMainModal;
+import infobite.must.eat.modal.api_modal.version_response.VersionModel;
 import infobite.must.eat.utils.AppProgressDialog;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -129,4 +133,70 @@ public class RetrofitService {
         });
     }
 
+    /* Offers List data */
+    public static void getOfferList(final Dialog dialog, final Call<OfferMainModal> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.show(dialog);
+
+        method.enqueue(new Callback<OfferMainModal>() {
+            @Override
+            public void onResponse(Call<OfferMainModal> call, Response<OfferMainModal> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<OfferMainModal> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+
+    /* Notification List data */
+    public static void getNotificationList(final Dialog dialog, final Call<NotificationMainModel> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.show(dialog);
+
+        method.enqueue(new Callback<NotificationMainModel>() {
+            @Override
+            public void onResponse(Call<NotificationMainModel> call, Response<NotificationMainModel> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<NotificationMainModel> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+
+
+    /* App Version data */
+    public static void getVersion(final Dialog dialog, final Call<VersionModel> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.show(dialog);
+
+        method.enqueue(new Callback<VersionModel>() {
+            @Override
+            public void onResponse(Call<VersionModel> call, Response<VersionModel> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<VersionModel> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
 }

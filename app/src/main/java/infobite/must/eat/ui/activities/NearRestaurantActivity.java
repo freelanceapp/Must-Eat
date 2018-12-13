@@ -3,12 +3,10 @@ package infobite.must.eat.ui.activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -17,25 +15,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import infobite.must.eat.R;
-import infobite.must.eat.adapter.RestaurentShowAdapter;
+import infobite.must.eat.adapter.NearestRestaurentAdapter;
+import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.api_modal.vendor_list.VendorList;
 import infobite.must.eat.modal.api_modal.vendor_list.VendorListMainModal;
-import infobite.must.eat.modal.default_modal.RestaurentModel;
 import infobite.must.eat.retrofit_provider.RetrofitService;
 import infobite.must.eat.retrofit_provider.WebResponse;
 import infobite.must.eat.utils.Alerts;
+import infobite.must.eat.utils.AppPreference;
 import infobite.must.eat.utils.BaseActivity;
 import infobite.must.eat.utils.ConnectionDetector;
 import retrofit2.Response;
 
 public class NearRestaurantActivity extends BaseActivity implements View.OnClickListener {
 
-    private double latitude = 0, longitude = 0;
+    private float latitude = 0.0f, longitude = 0.0f;
     private FloatingActionMenu fam;
     private FloatingActionButton fabuser, fabcart, faboffer, fabhome;
     private RecyclerView recyclerViewVendorList;
     private List<VendorList> vendorLists = new ArrayList<>();
-    private RestaurentShowAdapter adapter;
+    private NearestRestaurentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +49,17 @@ public class NearRestaurantActivity extends BaseActivity implements View.OnClick
         retrofitRxClient = RetrofitService.getRxClient();
         retrofitApiClient = RetrofitService.getRetrofit();
 
-        if (getIntent() == null)
-            return;
-        latitude = getIntent().getDoubleExtra("latitude", 0);
-        longitude = getIntent().getDoubleExtra("longitude", 0);
+        if (getIntent() == null) {
+            latitude = AppPreference.getFloatPreference(mContext, Constant.Latitude);
+            longitude = AppPreference.getFloatPreference(mContext, Constant.Longitude);
+        } else {
+            latitude = getIntent().getFloatExtra("latitude", 0);
+            longitude = getIntent().getFloatExtra("longitude", 0);
+            if (latitude == 0 || longitude == 0) {
+                latitude = AppPreference.getFloatPreference(mContext, Constant.Latitude);
+                longitude = AppPreference.getFloatPreference(mContext, Constant.Longitude);
+            }
+        }
 
         fabhome = findViewById(R.id.home_btn);
         faboffer = findViewById(R.id.offer_btn);
@@ -85,7 +91,7 @@ public class NearRestaurantActivity extends BaseActivity implements View.OnClick
         fabhome.setOnClickListener(this);
         fam.setOnClickListener(this);
 
-        adapter = new RestaurentShowAdapter(vendorLists, mContext, this);
+        adapter = new NearestRestaurentAdapter(vendorLists, mContext, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(NearRestaurantActivity.this);
         //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
         recyclerViewVendorList.setLayoutManager(mLayoutManager);

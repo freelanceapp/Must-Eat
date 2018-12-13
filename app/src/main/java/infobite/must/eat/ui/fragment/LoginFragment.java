@@ -114,6 +114,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
         rootView.findViewById(R.id.bt_fb).setOnClickListener(this);
         rootView.findViewById(R.id.bt_gmail).setOnClickListener(this);
         rootView.findViewById(R.id.tv_forgot_pass).setOnClickListener(this);
+        rootView.findViewById(R.id.tv_signup).setOnClickListener(this);
+
+
     }
 
     @Override
@@ -123,7 +126,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 loginApi();
                 break;
             case R.id.tv_signup:
-
+                startFragment(Constant.SignUp_Fragment, new SignupFragment(), "");
                 break;
             case R.id.tv_forgot_pass:
                 startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment(), "");
@@ -187,6 +190,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                             Alerts.show(mContext, loginModal.getMessage());
                             if (loginModal.getMessage().equals("User is Not Verified")) {
                                 startFragment(Constant.Verification_Fragment, new VerificationFragment(), loginModal.getUser().getPhone());
+                                //activity.finish();
                             }
                         }
                     }
@@ -328,7 +332,6 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                     out.close();
                 }
             }
-
 
 
             return true;

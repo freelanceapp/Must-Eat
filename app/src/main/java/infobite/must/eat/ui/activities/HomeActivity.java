@@ -46,6 +46,7 @@ import infobite.must.eat.menu.SimpleItem;
 
 
 public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
+
     private FloatingActionMenu fam;
     private FloatingActionButton fabuser, fabcart, faboffer, fabhome;
     private static FragmentManager fragmentManager;
@@ -58,12 +59,12 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int NAV6 = 5;
     private static final int NAV7 = 6;
     private static final int EXIT = 7;
-    TextView filter1, filter2, filter3, filter4;
+    private TextView filter1, filter2, filter3, filter4;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     public static TextView tooltext;
-    ArrayList<String> navigation_filter;
-    ArrayList<String> navigation_filter1;
+    private ArrayList<String> navigation_filter;
+    private ArrayList<String> navigation_filter1;
     private DrawerListAdapter drawerListAdapter;
     private ListView lv_drawer1, lv_drawer2;
     public static int[] drawer_icons = {R.drawable.homeicon6, R.drawable.homeicon6, R.drawable.homeicon6, R.drawable.homeicon6,
@@ -73,19 +74,19 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        tooltext = (TextView) findViewById(R.id.tooltext);
+        tooltext = findViewById(R.id.tooltext);
         fragmentManager = getSupportFragmentManager();
-        fabhome = (FloatingActionButton) findViewById(R.id.home_btn1);
-        faboffer = (FloatingActionButton) findViewById(R.id.offer_btn1);
-        fabcart = (FloatingActionButton) findViewById(R.id.cart_btn1);
-        fabuser = (FloatingActionButton) findViewById(R.id.account_btn1);
-        fam = (FloatingActionMenu) findViewById(R.id.fab_menu1);
-        filter1 = (TextView) findViewById(R.id.filter1);
-        filter2 = (TextView) findViewById(R.id.filter2);
-        filter3 = (TextView) findViewById(R.id.filter3);
-        filter4 = (TextView) findViewById(R.id.filter4);
+        fabhome = findViewById(R.id.home_btn1);
+        faboffer = findViewById(R.id.offer_btn1);
+        fabcart = findViewById(R.id.cart_btn1);
+        fabuser = findViewById(R.id.account_btn1);
+        fam = findViewById(R.id.fab_menu1);
+        filter1 = findViewById(R.id.filter1);
+        filter2 = findViewById(R.id.filter2);
+        filter3 = findViewById(R.id.filter3);
+        filter4 = findViewById(R.id.filter4);
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
                 .withMenuOpened(false)
@@ -178,8 +179,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                             Constant.Home_Fragment).commit();
         }
 
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ImageView menuRight = (ImageView) findViewById(R.id.menuRight1);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ImageView menuRight = findViewById(R.id.menuRight1);
         menuRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -348,13 +349,13 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         navigation_filter1.add("Baguetter");
         navigation_filter1.add("Dessert");
         navigation_filter1.add("Hamburger");
-        lv_drawer1 = (ListView) findViewById(R.id.lv_drawer1);
-        lv_drawer2 = (ListView) findViewById(R.id.lv_drawer2);
+        lv_drawer1 = findViewById(R.id.lv_drawer1);
+        lv_drawer2 = findViewById(R.id.lv_drawer2);
     }
 
     private void SetDrawer1() {
 
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
        /* ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);

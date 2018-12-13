@@ -39,7 +39,7 @@ public class AppPreference {
         SharedPreferences preferences = context.getSharedPreferences(APP_PREFENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static int getIntegerPreference(Context context, String key) {
@@ -47,11 +47,23 @@ public class AppPreference {
         return preferences.getInt(key, 0);
     }
 
+    public static void setFloatPreference(Context context, String key, float value) {
+        SharedPreferences preferences = context.getSharedPreferences(APP_PREFENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putFloat(key, value);
+        editor.apply();
+    }
+
+    public static float getFloatPreference(Context context, String key) {
+        SharedPreferences preferences = context.getSharedPreferences(APP_PREFENCE, Context.MODE_PRIVATE);
+        return preferences.getFloat(key, 0);
+    }
+
     public static void setBooleanPreference(Context context, String key, boolean value) {
         SharedPreferences preferences = context.getSharedPreferences(APP_PREFENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static boolean getBooleanPreference(Context context, String key) {
@@ -63,7 +75,7 @@ public class AppPreference {
         SharedPreferences preferences = context.getSharedPreferences(APP_PREFENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
-        editor.commit();
+        editor.apply();
     }
 
 }

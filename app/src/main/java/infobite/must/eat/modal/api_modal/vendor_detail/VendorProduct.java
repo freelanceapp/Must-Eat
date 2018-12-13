@@ -6,8 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VendorProduct implements Parcelable
-{
+public class VendorProduct implements Parcelable {
 
     @SerializedName("product_id")
     @Expose
@@ -83,8 +82,7 @@ public class VendorProduct implements Parcelable
             return (new VendorProduct[size]);
         }
 
-    }
-            ;
+    };
 
     protected VendorProduct(Parcel in) {
         this.productId = ((String) in.readValue((String.class.getClassLoader())));

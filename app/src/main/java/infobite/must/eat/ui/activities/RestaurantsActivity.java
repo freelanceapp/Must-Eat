@@ -9,20 +9,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import infobite.must.eat.R;
-import infobite.must.eat.adapter.DataAdapter;
+import infobite.must.eat.adapter.ListGridAdapter;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorList;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorListMainModal;
 import infobite.must.eat.modal.default_modal.ProductDetails;
+import infobite.must.eat.utils.BaseActivity;
 
 /**
  * Created by Dell on 12/1/2018.
  */
 
-public class RestaurantsActivity extends AppCompatActivity implements View.OnClickListener {
+public class RestaurantsActivity extends BaseActivity implements View.OnClickListener {
 
-    private List<ProductDetails> product = new ArrayList<>();
+    private List<VendorList> product = new ArrayList<>();
     private RecyclerView recylerestaurant;
 
     @Override
@@ -30,6 +36,7 @@ public class RestaurantsActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
 
+        mContext = this;
         init();
     }
 
@@ -39,11 +46,15 @@ public class RestaurantsActivity extends AppCompatActivity implements View.OnCli
 
         recylerestaurant = (RecyclerView) findViewById(R.id.recylerestaurant);
 
-        for (int i = 0; i < 10; i++) {
-            product.add(new ProductDetails(R.drawable.bg_food, "The Noodle", "Additional Item", "Menu", R.drawable.forward));
-            product.add(new ProductDetails(R.drawable.bg_food, "The Noodle", "Additional Item", "Menu", R.drawable.forward));
-            product.add(new ProductDetails(R.drawable.bg_food, "The Noodle", "Additional Item", "Menu", R.drawable.forward));
-        }
+        if (getIntent() == null)
+            return;
+        String strVendorListJson;
+        strVendorListJson = getIntent().getStringExtra("all_vendor");
+        Gson gson = new Gson();
+        VendorListMainModal mainModal = gson.fromJson(strVendorListJson, VendorListMainModal.class);
+
+        product.addAll(mainModal.getVendor());
+
         setItemAdapter((new LinearLayoutManager(RestaurantsActivity.this, LinearLayoutManager.VERTICAL, false)),
                 "list");
     }
@@ -63,7 +74,7 @@ public class RestaurantsActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void setItemAdapter(RecyclerView.LayoutManager layout, String strView) {
-        DataAdapter adapter = new DataAdapter(RestaurantsActivity.this, product, strView);
+        ListGridAdapter adapter = new ListGridAdapter(mContext, product, strView);
         recylerestaurant.setLayoutManager(layout);
         recylerestaurant.setItemAnimator(new DefaultItemAnimator());
         recylerestaurant.setAdapter(adapter);

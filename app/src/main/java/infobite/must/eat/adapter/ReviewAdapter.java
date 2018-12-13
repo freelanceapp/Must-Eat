@@ -33,8 +33,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tv_review_name.setText("Demo");
-        holder.tv_review_comment.setText("Abc");
+        holder.tv_review_name.setText(reviewModelList.get(position).getReviewUser());
+        holder.tv_review_comment.setText("");
         holder.tv_review_date.setText(reviewModelList.get(position).getReviewDate());
 
         String strRate = reviewModelList.get(position).getReviewRate();

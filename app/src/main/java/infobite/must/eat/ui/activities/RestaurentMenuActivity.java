@@ -1,5 +1,6 @@
 package infobite.must.eat.ui.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,9 +13,16 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
+import infobite.must.eat.modal.api_modal.vendor_detail.VendorOpenCloseTime;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorOpeningClosingTime;
 import infobite.must.eat.retrofit_provider.RetrofitService;
 import infobite.must.eat.retrofit_provider.WebResponse;
 import infobite.must.eat.ui.fragment.RestaurentAboutFragment;
@@ -78,7 +86,6 @@ public class RestaurentMenuActivity extends BaseActivity implements View.OnClick
                 manu_line.setVisibility(View.VISIBLE);
                 about_line.setVisibility(View.GONE);
                 review_line.setVisibility(View.GONE);
-
                 break;
             case R.id.about_btn:
                 RestaurentAboutFragment aboutFragment = new RestaurentAboutFragment();
@@ -129,6 +136,14 @@ public class RestaurentMenuActivity extends BaseActivity implements View.OnClick
                                     String strCategory = gson.toJson(mainModal);
                                     bundle.putString("vendor_detail", strCategory);
                                     restaurentMenuFragment.setArguments(bundle);
+
+                                    String strAddress = mainModal.getVendor().getVendorHouseNumber() + " , " +
+                                            mainModal.getVendor().getVendorStreet() + " , " + mainModal.getVendor().getVendorTown() +
+                                            " , " + mainModal.getVendor().getVendorCounty();
+                                    ((TextView) findViewById(R.id.tv_restaurant_name)).setText(mainModal.getVendor().getVendorName());
+                                    ((TextView) findViewById(R.id.tv_restaurant_address)).setText(strAddress);
+
+                                    openCloseFunction(mainModal.getVendor().getVendorOpeningClosingTime());
                                     changeFragment(restaurentMenuFragment, Constant.RestaurentMenuFragment);
                                 } else {
                                     Alerts.show(mContext, mainModal.getMessage());
@@ -144,5 +159,47 @@ public class RestaurentMenuActivity extends BaseActivity implements View.OnClick
                 cd.show(mContext);
             }
         }
+    }
+
+    /*
+     * Open close functions
+     * */
+    private void openCloseFunction(List<VendorOpenCloseTime> times) {
+        String strDay = getCurrentDay();
+        int hour = getHour(getTime());
+        for (int i = 0; i < times.size(); i++) {
+            if (strDay.equalsIgnoreCase(times.get(i).getWeek())) {
+                int startHourB = getHour(times.get(i).getStart());
+                int endHourB = getHour(times.get(i).getEnd());
+
+                if (hour >= startHourB && hour <= endHourB) {
+                    ((TextView) findViewById(R.id.tvOpenClose)).setText("OPEN");
+                    ((TextView) findViewById(R.id.tvOpenClose)).setBackgroundColor(mContext.getResources().getColor(R.color.colorGreen));
+                } else {
+                    ((TextView) findViewById(R.id.tvOpenClose)).setText("CLOSE");
+                    ((TextView) findViewById(R.id.tvOpenClose)).setBackgroundColor(mContext.getResources().getColor(R.color.colorRed));
+                }
+            }
+        }
+    }
+
+    private int getHour(String strTime) {
+        String[] strH = strTime.split(":");
+        if (strH[0].isEmpty()) {
+            strH[0] = "0";
+        }
+        return Integer.parseInt(strH[0]);
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private String getCurrentDay() {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+        return sdf.format(d);
+    }
+
+    private String getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(new Date());
     }
 }

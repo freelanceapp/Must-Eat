@@ -214,7 +214,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="6dp"
-                    android:visibility="gone"
                     android:background="@drawable/layout_ripple"
                     android:clickable="true"
                     android:padding="6dp"

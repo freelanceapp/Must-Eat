@@ -1,7 +1,6 @@
 package infobite.must.eat.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,23 +10,26 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import infobite.must.eat.R;
+import infobite.must.eat.constant.Constant;
+import infobite.must.eat.modal.api_modal.vendor_list.VendorList;
 import infobite.must.eat.modal.default_modal.ProductDetails;
-import infobite.must.eat.ui.activities.RestaurentMenuActivity;
 
 /**
  * Created by Dell on 12/1/2018.
  */
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHolder> {
+public class ListGridAdapter extends RecyclerView.Adapter<ListGridAdapter.ProductViewHolder> {
 
     private Context ctx;
-    private List<ProductDetails> product;
+    private List<VendorList> product;
     private String strViewType;
 
-    public DataAdapter(Context ctx, List<ProductDetails> product, String strViewType) {
+    public ListGridAdapter(Context ctx, List<VendorList> product, String strViewType) {
         this.ctx = ctx;
         this.product = product;
         this.strViewType = strViewType;
@@ -49,14 +51,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
 
-        ProductDetails getData = product.get(position);
+        VendorList getData = product.get(position);
 
-        holder.image.setImageDrawable(ctx.getResources().getDrawable(Integer.parseInt(String.valueOf(getData.getImage()))));
-        holder.title.setText(getData.getTitle());
-        holder.subtitle.setText(getData.getSubtitle());
-        //holder.more.setText(getData.getMore());
-        //holder.imagetwo.setImageDrawable(ctx.getResources().getDrawable(Integer.parseInt(String.valueOf(getData.getImagetwo()))));
+        holder.title.setText(getData.getVendorName());
+        holder.subtitle.setText(getData.getVendorStreet());
 
+        String sImg = Constant.BASE_URL + getData.getVendorLogo();
+        Glide.with(ctx).load(sImg)
+                .into(holder.image);
     }
 
     @Override
@@ -87,8 +89,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ProductViewHol
 
         @Override
         public void onClick(View view) {
-            Intent i = new Intent(ctx, RestaurentMenuActivity.class);
-            ctx.startActivity(i);
+            /*Intent i = new Intent(ctx, RestaurentMenuActivity.class);
+            ctx.startActivity(i);*/
         }
     }
 }
