@@ -179,6 +179,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         popularVendorLists = new ArrayList<>();
         recommendVendorLists = new ArrayList<>();
         for (int i = 0; i < allVendorLists.size(); i++) {
+            if (allVendorLists.get(i).getVendorMostPopular()!=null)
+                return;
             if (allVendorLists.get(i).getVendorMostPopular().equalsIgnoreCase("Yes")) {
                 VendorList vendorList = allVendorLists.get(i);
                 popularVendorLists.add(vendorList);

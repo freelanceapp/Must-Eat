@@ -2,8 +2,11 @@ package infobite.must.eat.retrofit_provider;
 
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.api_modal.login_response.LoginModal;
+import infobite.must.eat.modal.api_modal.notification_response.NotificationMainModel;
+import infobite.must.eat.modal.api_modal.offer_response.OfferMainModal;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
 import infobite.must.eat.modal.api_modal.vendor_list.VendorListMainModal;
+import infobite.must.eat.modal.api_modal.version_response.VersionModel;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -55,8 +58,16 @@ public interface RetrofitApiClient {
                                    @Field("state") String state,
                                    @Field("city") String city);
 
-    @GET(Constant.FOROGOT_PASSWORD)
-    Call<ResponseBody> getStateCity();
+    @GET(Constant.OFFER_LIST)
+    Call<OfferMainModal> getOfferList();
+
+    @GET(Constant.NOTIFICATION_LIST)
+    Call<NotificationMainModel> getNotificationList();
+
+    @GET(Constant.APP_VERSION)
+    Call<VersionModel> getVersion();
+
+
 
     @FormUrlEncoded
     @POST(Constant.FOROGOT_PASSWORD)

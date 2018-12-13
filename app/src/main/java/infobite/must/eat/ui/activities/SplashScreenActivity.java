@@ -1,6 +1,7 @@
 package infobite.must.eat.ui.activities;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,7 +11,6 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +21,14 @@ import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
 import infobite.must.eat.modal.User;
 import infobite.must.eat.modal.api_modal.login_response.LoginModal;
+import infobite.must.eat.modal.api_modal.version_response.VersionModel;
+import infobite.must.eat.retrofit_provider.RetrofitService;
+import infobite.must.eat.retrofit_provider.WebResponse;
+import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.AppPreference;
 import infobite.must.eat.utils.BaseActivity;
+import infobite.must.eat.utils.ConnectionDetector;
+import retrofit2.Response;
 
 public class SplashScreenActivity extends BaseActivity {
 
@@ -39,10 +45,15 @@ public class SplashScreenActivity extends BaseActivity {
 
         logoimage = (ImageView) findViewById(R.id.logoimage);
         title = (TextView) findViewById(R.id.title);
-
+        mContext = SplashScreenActivity.this;
+        cd = new ConnectionDetector(mContext);
+        retrofitRxClient = RetrofitService.getRxClient();
+        retrofitApiClient = RetrofitService.getRetrofit();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermission();
         }
+
+        versionApi();
     }
 
     protected void checkPermission() {
@@ -165,5 +176,36 @@ public class SplashScreenActivity extends BaseActivity {
         }
     }
 
+
+    private void versionApi() {
+        if (cd.isNetworkAvailable()) {
+
+            RetrofitService.getVersion(new Dialog(mContext), retrofitApiClient.getVersion(), new WebResponse() {
+                @Override
+                public void onResponseSuccess(Response<?> result) {
+                    VersionModel versionModel = (VersionModel) result.body();
+                    assert versionModel != null;
+                    if (versionModel.getVersion().equals("1")) {
+                        Alerts.show(mContext, versionModel.getVersion());
+
+                    } else {
+                        Alerts.show(mContext, versionModel.getVersion());
+                            /*if (offerMainModal.getMessage().equals("User is Not Verified")) {
+                               // startFragment(Constant.Verification_Fragment, new VerificationFragment(), loginModal.getUser().getPhone());
+                                //activity.finish();
+                            }*/
+                    }
+                }
+
+                @Override
+                public void onResponseFailed(String error) {
+                    Alerts.show(mContext, error);
+                }
+            });
+
+        } else {
+            cd.show(mContext);
+        }
+    }
 
 }
