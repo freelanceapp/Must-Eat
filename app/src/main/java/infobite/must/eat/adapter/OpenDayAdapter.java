@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import infobite.must.eat.R;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorOpenCloseTime;
@@ -32,10 +34,21 @@ public class OpenDayAdapter extends RecyclerView.Adapter<OpenDayAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tv_day.setText(dayModelList.get(position).getWeek());
+
+        String strDays = capitalize(dayModelList.get(position).getWeek());
+        holder.tv_day.setText(strDays);
         String strStart = dayModelList.get(position).getStart();
         String strEnd = dayModelList.get(position).getEnd();
         holder.tv_time.setText(strStart + " - " + strEnd);
+    }
+
+    private String capitalize(String capString) {
+        StringBuffer capBuffer = new StringBuffer();
+        Matcher capMatcher = Pattern.compile("([a-z])([a-z]*)", Pattern.CASE_INSENSITIVE).matcher(capString);
+        while (capMatcher.find()) {
+            capMatcher.appendReplacement(capBuffer, capMatcher.group(1).toUpperCase() + capMatcher.group(2).toLowerCase());
+        }
+        return capMatcher.appendTail(capBuffer).toString();
     }
 
     @Override

@@ -24,10 +24,13 @@ import java.util.List;
 import java.util.Locale;
 
 import infobite.must.eat.R;
+import infobite.must.eat.constant.Constant;
+import infobite.must.eat.utils.AppPreference;
+import infobite.must.eat.utils.BaseActivity;
 import infobite.must.eat.utils.LocationTrack;
 
 
-public class FindLocationActivity extends AppCompatActivity implements View.OnClickListener, LocationListener {
+public class FindLocationActivity extends BaseActivity implements View.OnClickListener, LocationListener {
 
     private String strLat = "", strLng = "";
     private Location mLocation;
@@ -35,13 +38,14 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
     private static final int MY_PERMISSIONS_REQUEST_CODE = 123;
     private String provider;
     private LocationTrack locationTrack;
-    private Double lat = 0.0, longi = 0.0;
+    private float lat = 0.0f, longi = 0.0f;
     private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_location);
+        mContext = this;
 
         //get the permissions we have asked for before but are not granted..
         //we will store this in a global list to access later.
@@ -155,8 +159,8 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             mLocation = location;
-            lat = (location.getLatitude());
-            longi = (location.getLongitude());
+            lat = (float) location.getLatitude();
+            longi = (float) location.getLongitude();
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             restaurantActivity(lat, longi);
         } catch (Exception e) {
@@ -179,7 +183,10 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    private void restaurantActivity(double latitude, double longitude) {
+    private void restaurantActivity(float latitude, float longitude) {
+        AppPreference.setFloatPreference(mContext, Constant.Latitude, latitude);
+        AppPreference.setFloatPreference(mContext, Constant.Longitude, longitude);
+
         Intent intent = new Intent(FindLocationActivity.this, NearRestaurantActivity.class);
         intent.putExtra("latitude", latitude);
         intent.putExtra("longitude", longitude);

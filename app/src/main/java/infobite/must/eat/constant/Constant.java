@@ -36,4 +36,6 @@ public class Constant {
     public static final String User_Data = "User_Data";
     public static final String RestaurantDetail = "RestaurantDetail";
     public static final String IMAGE = "https://27jts3o00yy49vo2y30wem91-wpengine.netdna-ssl.com/wp-content/uploads/2018/05/ASSET-USER-ADMIN-300x300.png";
+    public static final String Latitude = "latitude";
+    public static final String Longitude = "longitude";
 }

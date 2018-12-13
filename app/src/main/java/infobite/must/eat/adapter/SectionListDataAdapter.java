@@ -26,7 +26,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
     @Override
     public SingleItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_home_restaurent, null);
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_restaurent_list_a, null);
             SingleItemRowHolder mh = new SingleItemRowHolder(v);
 
         return mh;

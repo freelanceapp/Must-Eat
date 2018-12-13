@@ -16,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import infobite.must.eat.R;
+import infobite.must.eat.constant.Constant;
+import infobite.must.eat.utils.AppPreference;
+import infobite.must.eat.utils.BaseActivity;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends BaseActivity {
 
     public static String MY_PREFS_NAME = "SRIL_APP";
     private static final int MY_PERMISSIONS_REQUEST_CODE = 123;
@@ -28,43 +31,35 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        mContext = this;
 
         logoimage = (ImageView) findViewById(R.id.logoimage);
         title = (TextView) findViewById(R.id.title);
 
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermission();
         }
-      /*  new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 2000);*/
     }
 
-    protected void checkPermission(){
-        if(ContextCompat.checkSelfPermission(SplashScreenActivity.this,Manifest.permission.CAMERA)
+    protected void checkPermission() {
+        if (ContextCompat.checkSelfPermission(SplashScreenActivity.this, Manifest.permission.CAMERA)
                 + ContextCompat.checkSelfPermission
-                (SplashScreenActivity.this,Manifest.permission.READ_CONTACTS)
+                (SplashScreenActivity.this, Manifest.permission.READ_CONTACTS)
                 + ContextCompat.checkSelfPermission
-                (SplashScreenActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                (SplashScreenActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 + ContextCompat.checkSelfPermission
-                (SplashScreenActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED){
+                (SplashScreenActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
 
             // Do something, when permissions not granted
-            if(ActivityCompat.shouldShowRequestPermissionRationale(
-                    SplashScreenActivity.this,Manifest.permission.CAMERA)
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    SplashScreenActivity.this, Manifest.permission.CAMERA)
                     || ActivityCompat.shouldShowRequestPermissionRationale(
-                    SplashScreenActivity.this,Manifest.permission.READ_CONTACTS)
+                    SplashScreenActivity.this, Manifest.permission.READ_CONTACTS)
                     || ActivityCompat.shouldShowRequestPermissionRationale(
-                    SplashScreenActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    SplashScreenActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     || ActivityCompat.shouldShowRequestPermissionRationale(
-                    SplashScreenActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION)){
+                    SplashScreenActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
                 // If we should give explanation of requested permissions
                 // Show an alert dialog here with request explanation
                 AlertDialog.Builder builder = new AlertDialog.Builder(SplashScreenActivity.this);
@@ -91,7 +86,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-            }else{
+            } else {
                 // Directly request for required permissions, without explanation
                 ActivityCompat.requestPermissions(
                         SplashScreenActivity.this,
@@ -104,52 +99,56 @@ public class SplashScreenActivity extends AppCompatActivity {
                         MY_PERMISSIONS_REQUEST_CODE
                 );
             }
-        }else {
+        } else {
             // Do something, when permissions are already granted
-            Toast.makeText(SplashScreenActivity.this,"Permissions already granted",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SplashScreenActivity.this, "Permissions already granted", Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // This method will be executed once the timer is over
-                    // Start your app main activity
-                    Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    startActivity(i);
-                    // close this activity
-                    finish();
+
+                    if (AppPreference.getBooleanPreference(mContext, Constant.Is_Login)) {
+                        Intent i = new Intent(SplashScreenActivity.this, NearRestaurantActivity.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
                 }
             }, 3000);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
-        switch (requestCode){
-            case MY_PERMISSIONS_REQUEST_CODE:{
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CODE: {
                 // When request is cancelled, the results array are empty
-                if(
-                        (grantResults.length >0) &&
+                if (
+                        (grantResults.length > 0) &&
                                 (grantResults[0]
                                         + grantResults[1]
                                         + grantResults[2]
                                         + grantResults[3]
                                         == PackageManager.PERMISSION_GRANTED
                                 )
-                        ){
+                        ) {
                     // Permissions are granted
-                    Toast.makeText(SplashScreenActivity.this,"Permissions granted.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SplashScreenActivity.this, "Permissions granted.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                     startActivity(i);
                     // close this activity
                     finish();
-                }else {
+                } else {
                     // Permissions are denied
-                    Toast.makeText(SplashScreenActivity.this,"Permissions denied.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SplashScreenActivity.this, "Permissions denied.", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 return;
             }
         }
     }
-    
-    
+
+
 }

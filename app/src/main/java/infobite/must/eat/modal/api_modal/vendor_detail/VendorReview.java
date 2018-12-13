@@ -6,8 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VendorReview implements Parcelable
-{
+public class VendorReview implements Parcelable {
 
     @SerializedName("review_id")
     @Expose
@@ -15,6 +14,9 @@ public class VendorReview implements Parcelable
     @SerializedName("review_rate")
     @Expose
     private String reviewRate;
+    @SerializedName("review_user")
+    @Expose
+    private String reviewUser;
     @SerializedName("review_date")
     @Expose
     private String reviewDate;
@@ -32,12 +34,12 @@ public class VendorReview implements Parcelable
             return (new VendorReview[size]);
         }
 
-    }
-            ;
+    };
 
     protected VendorReview(Parcel in) {
         this.reviewId = ((String) in.readValue((String.class.getClassLoader())));
         this.reviewRate = ((String) in.readValue((String.class.getClassLoader())));
+        this.reviewUser = ((String) in.readValue((String.class.getClassLoader())));
         this.reviewDate = ((String) in.readValue((String.class.getClassLoader())));
     }
 
@@ -68,9 +70,18 @@ public class VendorReview implements Parcelable
         this.reviewDate = reviewDate;
     }
 
+    public String getReviewUser() {
+        return reviewUser;
+    }
+
+    public void setReviewUser(String reviewUser) {
+        this.reviewUser = reviewUser;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(reviewId);
         dest.writeValue(reviewRate);
+        dest.writeValue(reviewUser);
         dest.writeValue(reviewDate);
     }
 

@@ -183,10 +183,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
 
                             Intent intent = new Intent(mContext, FindLocationActivity.class);
                             startActivity(intent);
+                            activity.finish();
                         } else {
                             Alerts.show(mContext, loginModal.getMessage());
                             if (loginModal.getMessage().equals("User is Not Verified")) {
                                 startFragment(Constant.Verification_Fragment, new VerificationFragment(), loginModal.getUser().getPhone());
+                                //activity.finish();
                             }
                         }
                     }
@@ -328,7 +330,6 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                     out.close();
                 }
             }
-
 
 
             return true;
