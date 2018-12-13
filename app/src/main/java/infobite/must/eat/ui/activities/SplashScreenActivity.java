@@ -15,8 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import infobite.must.eat.R;
 import infobite.must.eat.constant.Constant;
+import infobite.must.eat.modal.User;
+import infobite.must.eat.modal.api_modal.login_response.LoginModal;
 import infobite.must.eat.utils.AppPreference;
 import infobite.must.eat.utils.BaseActivity;
 
@@ -107,9 +111,20 @@ public class SplashScreenActivity extends BaseActivity {
                 public void run() {
 
                     if (AppPreference.getBooleanPreference(mContext, Constant.Is_Login)) {
-                        Intent i = new Intent(SplashScreenActivity.this, NearRestaurantActivity.class);
-                        startActivity(i);
-                        finish();
+                        Gson gson = new Gson();
+                        String userData = AppPreference.getStringPreference(mContext, Constant.User_Data);
+                        LoginModal loginModal = gson.fromJson(userData, LoginModal.class);
+                        User.setUser(loginModal);
+
+                        if (AppPreference.getFloatPreference(mContext, Constant.Latitude) > 0) {
+                            Intent i = new Intent(SplashScreenActivity.this, NearRestaurantActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Intent i = new Intent(SplashScreenActivity.this, FindLocationActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
                     } else {
                         Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                         startActivity(i);

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -150,6 +151,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                                 assert listMainModal != null;
                                 if (!listMainModal.getError()) {
                                     allVendorLists.addAll(listMainModal.getVendor());
+                                    if (allVendorLists.size() > 0) {
+                                        view.findViewById(R.id.llAllVendor).setVisibility(View.VISIBLE);
+                                        view.findViewById(R.id.tvEmpty).setVisibility(View.GONE);
+                                    } else {
+                                        view.findViewById(R.id.llAllVendor).setVisibility(View.GONE);
+                                        view.findViewById(R.id.tvEmpty).setVisibility(View.VISIBLE);
+                                    }
                                     separateVendor();
                                 } else {
                                     Alerts.show(mContext, listMainModal.getMessage());
@@ -180,6 +188,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 VendorList vendorList = allVendorLists.get(i);
                 recommendVendorLists.add(vendorList);
             }
+        }
+
+        if (recommendVendorLists.size() > 0) {
+            view.findViewById(R.id.llRecommend).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.llRecommend).setVisibility(View.GONE);
+        }
+
+        if (popularVendorLists.size() > 0) {
+            view.findViewById(R.id.llPopular).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.llPopular).setVisibility(View.GONE);
+        }
+
+        if (allVendorLists.size() > 0) {
+            view.findViewById(R.id.llPopular).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.llPopular).setVisibility(View.GONE);
         }
 
         recommendAdapter = new RestaurentListAdapter(recommendVendorLists, mContext, this);

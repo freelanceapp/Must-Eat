@@ -1,5 +1,6 @@
 package infobite.must.eat.ui.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,6 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -16,16 +22,21 @@ import java.util.List;
 
 import infobite.must.eat.R;
 import infobite.must.eat.adapter.ReviewAdapter;
+import infobite.must.eat.modal.User;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorReview;
 import infobite.must.eat.modal.default_modal.ReviewModel;
+import infobite.must.eat.utils.Alerts;
+import infobite.must.eat.utils.BaseFragment;
 
-public class RestaurentReviewFragment extends Fragment {
+public class RestaurentReviewFragment extends BaseFragment implements View.OnClickListener {
 
+    private float userRating = 0;
     private View view;
     private RecyclerView review_list;
     private ReviewAdapter reviewAdapter;
     private List<VendorReview> reviewModelArrayList = new ArrayList<>();
+    private Dialog dialogReview;
 
     public RestaurentReviewFragment() {
         // Required empty public constructor
@@ -34,14 +45,15 @@ public class RestaurentReviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_restaurent_review, container, false);
         init();
         return view;
     }
 
     private void init() {
-        review_list = (RecyclerView) view.findViewById(R.id.review_list);
+        mContext = getActivity();
+        review_list = view.findViewById(R.id.review_list);
+        view.findViewById(R.id.tvAddReview).setOnClickListener(this);
 
         if (getArguments() == null)
             return;
@@ -59,5 +71,42 @@ public class RestaurentReviewFragment extends Fragment {
         reviewAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tvAddReview:
+                reviewDialog();
+                break;
+        }
+    }
 
+    private void reviewDialog() {
+        dialogReview = new Dialog(mContext);
+        dialogReview.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogReview.setContentView(R.layout.dialog_review);
+
+        dialogReview.setCanceledOnTouchOutside(true);
+        dialogReview.setCancelable(true);
+        if (dialogReview.getWindow() != null)
+            dialogReview.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        ((TextView) dialogReview.findViewById(R.id.tvUsername)).setText(User.getUser().getUser().getUserFullname());
+        ((RatingBar) dialogReview.findViewById(R.id.ratingbar)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                userRating = rating;
+            }
+        });
+        dialogReview.findViewById(R.id.btnSubmit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogReview.dismiss();
+                Alerts.show(mContext, String.valueOf(userRating));
+            }
+        });
+
+        Window window = dialogReview.getWindow();
+        window.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        dialogReview.show();
+    }
 }

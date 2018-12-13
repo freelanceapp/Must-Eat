@@ -36,6 +36,7 @@ public class RestaurentMenuFragment extends BaseFragment implements View.OnClick
     private List<VendorProduct> vendorProducts = new ArrayList<>();
     private List<VendorProduct> newProductsList;
     private String strTypeCategory = "";
+    private VendorDetailMainModal mainModal;
 
     public RestaurentMenuFragment() {
         // Required empty public constructor
@@ -58,7 +59,7 @@ public class RestaurentMenuFragment extends BaseFragment implements View.OnClick
         Bundle bundle = getArguments();
         String strVendorDetail = bundle.getString("vendor_detail");
         Gson gson = new Gson();
-        VendorDetailMainModal mainModal = gson.fromJson(strVendorDetail, VendorDetailMainModal.class);
+        mainModal = gson.fromJson(strVendorDetail, VendorDetailMainModal.class);
         itemCategories.addAll(mainModal.getCategory());
         vendorProducts.addAll(mainModal.getProduct());
 
@@ -104,6 +105,7 @@ public class RestaurentMenuFragment extends BaseFragment implements View.OnClick
                 Intent intent = new Intent(mContext, MenuQuntityActivity.class);
                 intent.putExtra("product_detail", (Parcelable) product);
                 intent.putExtra("strQuantity", strQuantity);
+                intent.putExtra("restaurent_id", mainModal.getVendor().getVendorId());
                 mContext.startActivity(intent);
                 break;
         }

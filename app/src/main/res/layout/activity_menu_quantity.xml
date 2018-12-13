@@ -240,13 +240,13 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvTotalPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPurpal"
                         android:paddingTop="8dp"
                         android:paddingRight="16dp"
                         android:paddingBottom="8dp"
-                        android:text="1234"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_size_12"
                         android:textStyle="bold" />

@@ -13,6 +13,7 @@ import infobite.must.eat.utils.BaseActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    public static MainActivity mainActivity;
     private static FragmentManager fragmentManager;
     public static ImageView ivClose;
 
@@ -20,7 +21,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mainActivity = this;
         ivClose = (ImageView) findViewById(R.id.iv_close);
         ivClose.setOnClickListener(this);
 

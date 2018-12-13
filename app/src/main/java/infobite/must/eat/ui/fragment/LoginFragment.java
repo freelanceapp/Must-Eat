@@ -129,7 +129,6 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 startFragment(Constant.ForgotPassword_Fragment, new ForgotPassFragment(), "");
                 break;
             case R.id.bt_gmail:
-                //startActivity(new Intent(mContext, PlaceOrderActivity.class));
                 googleSignIn();
                 break;
         }
@@ -183,7 +182,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
 
                             Intent intent = new Intent(mContext, FindLocationActivity.class);
                             startActivity(intent);
-                            activity.finish();
+                            MainActivity.mainActivity.finish();
+
                         } else {
                             Alerts.show(mContext, loginModal.getMessage());
                             if (loginModal.getMessage().equals("User is Not Verified")) {

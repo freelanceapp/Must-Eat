@@ -65,6 +65,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
             imgAdd.setOnClickListener(this);
             imgSubtract.setOnClickListener(this);
+
+            strQuantity = tvQuantity.getText().toString();
         }
 
         @Override

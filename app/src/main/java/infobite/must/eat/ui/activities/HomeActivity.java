@@ -43,9 +43,11 @@ import infobite.must.eat.adapter.DrawerListAdapter;
 import infobite.must.eat.menu.DrawerAdapter;
 import infobite.must.eat.menu.DrawerItem;
 import infobite.must.eat.menu.SimpleItem;
+import infobite.must.eat.utils.Alerts;
+import infobite.must.eat.utils.BaseActivity;
 
 
-public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
+public class HomeActivity extends BaseActivity implements DrawerAdapter.OnItemSelectedListener {
 
     private FloatingActionMenu fam;
     private FloatingActionButton fabuser, fabcart, faboffer, fabhome;
@@ -74,6 +76,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        mContext = this;
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         tooltext = findViewById(R.id.tooltext);
@@ -124,13 +128,13 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             @Override
             public void onMenuToggle(boolean opened) {
                 if (opened) {
-                    showToast("Menu is opened");
+                    Alerts.show(mContext,"Menu is opened");
                     fabhome.setVisibility(View.VISIBLE);
                     faboffer.setVisibility(View.VISIBLE);
                     fabcart.setVisibility(View.VISIBLE);
                     fabuser.setVisibility(View.VISIBLE);
                 } else {
-                    showToast("Menu is closed");
+                    Alerts.show(mContext,"Menu is closed");
                     fabhome.setVisibility(View.GONE);
                     faboffer.setVisibility(View.GONE);
                     fabcart.setVisibility(View.GONE);
@@ -199,8 +203,6 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @Override
     public void onItemSelected(int position) {
 
-        Fragment fragment = null;
-
         if (position == EXIT) {
             finish();
         }
@@ -211,7 +213,6 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     .beginTransaction()
                     .replace(R.id.home_frame, new HomeFragment(),
                             Constant.Home_Fragment).commit();
-            // Toast.makeText(getApplicationContext(),"NAV1 is Selected",Toast.LENGTH_SHORT).show();
         }
         if (position == NAV2) {
             tooltext.setText("Order History");
@@ -219,8 +220,6 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     .beginTransaction()
                     .replace(R.id.home_frame, new HistoryFragment(),
                             Constant.HistoryFragment).commit();
-
-            //Toast.makeText(getApplicationContext(),"NAV2 is Selected",Toast.LENGTH_SHORT).show();
         }
 
         if (position == NAV3) {
@@ -229,14 +228,10 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     .replace(R.id.home_frame, new NotificationFragment(),
                             Constant.NotificationFragment).commit();
             tooltext.setText("Notificatons ");
-            //Toast.makeText(getApplicationContext(),"NAV3 is Selected",Toast.LENGTH_SHORT).show();
         }
 
         if (position == NAV4) {
-            // fragment = new KidsFragment();
             tooltext.setText("Offers");
-            //Toast.makeText(getApplicationContext(),"NAV4 is Selected",Toast.LENGTH_SHORT).show();
-
         }
         if (position == NAV5) {
             fragmentManager
@@ -244,8 +239,6 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     .replace(R.id.home_frame, new FeedbackFragment(),
                             Constant.FeedbackFragment).commit();
             tooltext.setText("Feedback");
-            //Toast.makeText(getApplicationContext(),"NAV5 is Selected",Toast.LENGTH_SHORT).show();
-
         }
         if (position == NAV6) {
             fragmentManager
@@ -253,22 +246,11 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     .replace(R.id.home_frame, new AboutFragment(),
                             Constant.FeedbackFragment).commit();
             tooltext.setText("About");
-            //Toast.makeText(getApplicationContext(),"NAV5 is Selected",Toast.LENGTH_SHORT).show();
         }
         if (position == NAV7) {
-            //fragment = new MyProfileFragment();
             tooltext.setText("My Account");
-            //Toast.makeText(getApplicationContext(),"NAV5 is Selected",Toast.LENGTH_SHORT).show();
-
         }
-
-
-        //Toast.makeText(this, "You have chosen " + text, Toast.LENGTH_LONG).show();
         slidingRootNav.closeMenu();
-
-        //slidingRootNav.closeMenu();
-        // Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
-        // showFragment(selectedScreen);
     }
 
 
@@ -316,15 +298,9 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @Override
     public void onBackPressed() {
 
-        // Find the tag of signup and forgot password fragment
         Fragment HistoryFragment = fragmentManager.findFragmentByTag(Constant.HistoryFragment);
         Fragment NotificationFragment = fragmentManager.findFragmentByTag(Constant.NotificationFragment);
         Fragment AccountFragment = fragmentManager.findFragmentByTag(Constant.AccountFragment);
-
-
-        // Check if both are null or not
-        // If both are not null then replace login fragment else do backpressed
-        // task
 
         if (HistoryFragment != null)
             replaceLoginFragment();
@@ -356,33 +332,19 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private void SetDrawer1() {
 
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-       /* ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();*/
-
         drawerListAdapter = new DrawerListAdapter(HomeActivity.this, navigation_filter, drawer_icons);
         lv_drawer1.setAdapter(drawerListAdapter);
-
         lv_drawer1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (navigation_filter.get(position).equalsIgnoreCase("Any")) {
-
-                    //tv_selected_navigation.setText("Selected Call");
 
                 } else if (navigation_filter.get(position).equalsIgnoreCase("Rs 10,000 to 20,000")) {
 
-                    //tv_selected_navigation.setText("Selected Favorite");
-
                 } else if (navigation_filter.get(position).equalsIgnoreCase("Rs 20,000 to 30,000")) {
-
-                    //tv_selected_navigation.setText("Selected Search");
 
                 }
                 drawer.closeDrawer(GravityCompat.START);
-
             }
         });
 
@@ -392,46 +354,33 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         lv_drawer2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (navigation_filter1.get(position).equalsIgnoreCase("Any")) {
-
-                    //tv_selected_navigation.setText("Selected Call");
 
                 } else if (navigation_filter1.get(position).equalsIgnoreCase("2 Nights")) {
 
-                    //tv_selected_navigation.setText("Selected Favorite");
-
                 } else if (navigation_filter1.get(position).equalsIgnoreCase("3 Nights")) {
-
-                    //tv_selected_navigation.setText("Selected Search");
 
                 }
                 drawer.closeDrawer(GravityCompat.START);
-
             }
         });
-
-
     }
-
 
     private View.OnClickListener onButtonClick() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (view == fabhome) {
-                    showToast("Button home clicked");
-                   /* Intent intent = new Intent(NearRestaurantActivity.this,HomeActivity.class);
-                    startActivity(intent);*/
+                    Alerts.show(mContext,"Button home clicked");
                 } else if (view == fabcart) {
-                    showToast("Button Cart clicked");
+                    Alerts.show(mContext,"Button Cart clicked");
                     Intent intent = new Intent(HomeActivity.this, AddtoCartActivity.class);
                     startActivity(intent);
                 } else if (view == faboffer) {
                     Intent intent = new Intent(HomeActivity.this, OffersActivity.class);
                     startActivity(intent);
                 } else {
-                    showToast("Button Account clicked");
+                    Alerts.show(mContext,"Button Account clicked");
                     fragmentManager
                             .beginTransaction()
                             .replace(R.id.home_frame, new AccountFragment(),
@@ -441,9 +390,4 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             }
         };
     }
-
-    private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
 }

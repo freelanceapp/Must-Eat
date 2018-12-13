@@ -1,5 +1,6 @@
 package infobite.must.eat.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -30,6 +31,7 @@ public class RestaurantsActivity extends BaseActivity implements View.OnClickLis
 
     private List<VendorList> product = new ArrayList<>();
     private RecyclerView recylerestaurant;
+    private String strListType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,10 @@ public class RestaurantsActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void init() {
-        ((ImageView) findViewById(R.id.list_btn)).setOnClickListener(this);
-        ((ImageView) findViewById(R.id.grid_btn)).setOnClickListener(this);
+        findViewById(R.id.list_btn).setOnClickListener(this);
+        findViewById(R.id.grid_btn).setOnClickListener(this);
 
-        recylerestaurant = (RecyclerView) findViewById(R.id.recylerestaurant);
+        recylerestaurant = findViewById(R.id.recylerestaurant);
 
         if (getIntent() == null)
             return;
@@ -57,6 +59,7 @@ public class RestaurantsActivity extends BaseActivity implements View.OnClickLis
 
         setItemAdapter((new LinearLayoutManager(RestaurantsActivity.this, LinearLayoutManager.VERTICAL, false)),
                 "list");
+        strListType = "list";
     }
 
     @Override
@@ -65,16 +68,35 @@ public class RestaurantsActivity extends BaseActivity implements View.OnClickLis
             case R.id.list_btn:
                 setItemAdapter((new LinearLayoutManager(RestaurantsActivity.this, LinearLayoutManager.VERTICAL, false)),
                         "list");
+                strListType = "list";
                 break;
             case R.id.grid_btn:
                 setItemAdapter((new GridLayoutManager(RestaurantsActivity.this, 2)),
                         "grid");
+                strListType = "grid";
+                break;
+            case R.id.ll_more:
+                if (strListType.equalsIgnoreCase("list")) {
+                    int pos = Integer.parseInt(v.getTag().toString());
+                    VendorList vendorList = product.get(pos);
+                    Intent i = new Intent(mContext, RestaurentMenuActivity.class);
+                    i.putExtra("vendor_id", vendorList.getVendorId());
+                    startActivity(i);
+                }
+            case R.id.cardViewItem:
+                if (strListType.equalsIgnoreCase("grid")) {
+                    int posB = Integer.parseInt(v.getTag().toString());
+                    VendorList vendorListB = product.get(posB);
+                    Intent iB = new Intent(mContext, RestaurentMenuActivity.class);
+                    iB.putExtra("vendor_id", vendorListB.getVendorId());
+                    startActivity(iB);
+                }
                 break;
         }
     }
 
     private void setItemAdapter(RecyclerView.LayoutManager layout, String strView) {
-        ListGridAdapter adapter = new ListGridAdapter(mContext, product, strView);
+        ListGridAdapter adapter = new ListGridAdapter(mContext, product, strView, this);
         recylerestaurant.setLayoutManager(layout);
         recylerestaurant.setItemAnimator(new DefaultItemAnimator());
         recylerestaurant.setAdapter(adapter);

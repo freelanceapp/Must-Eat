@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,11 +29,13 @@ public class ListGridAdapter extends RecyclerView.Adapter<ListGridAdapter.Produc
     private Context ctx;
     private List<VendorList> product;
     private String strViewType;
+    private View.OnClickListener onClickListener;
 
-    public ListGridAdapter(Context ctx, List<VendorList> product, String strViewType) {
+    public ListGridAdapter(Context ctx, List<VendorList> product, String strViewType, View.OnClickListener onClickListener) {
         this.ctx = ctx;
         this.product = product;
         this.strViewType = strViewType;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -55,6 +58,12 @@ public class ListGridAdapter extends RecyclerView.Adapter<ListGridAdapter.Produc
 
         holder.title.setText(getData.getVendorName());
         holder.subtitle.setText(getData.getVendorStreet());
+        holder.ratingbar.setRating(getData.getReviewRate());
+
+        holder.cardViewItem.setTag(position);
+        holder.cardViewItem.setOnClickListener(onClickListener);
+        holder.ll_more.setTag(position);
+        holder.ll_more.setOnClickListener(onClickListener);
 
         String sImg = Constant.BASE_URL + getData.getVendorLogo();
         Glide.with(ctx).load(sImg)
@@ -69,9 +78,10 @@ public class ListGridAdapter extends RecyclerView.Adapter<ListGridAdapter.Produc
     public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private CardView cardViewItem;
-        ImageView image, imagetwo;
-        LinearLayout ll_more;
-        TextView title, subtitle;
+        private ImageView image;
+        private LinearLayout ll_more;
+        private TextView title, subtitle;
+        private RatingBar ratingbar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -81,10 +91,7 @@ public class ListGridAdapter extends RecyclerView.Adapter<ListGridAdapter.Produc
             title = itemView.findViewById(R.id.title);
             subtitle = itemView.findViewById(R.id.subtitle);
             ll_more = itemView.findViewById(R.id.ll_more);
-            imagetwo = itemView.findViewById(R.id.imagetwo);
-
-            ll_more.setOnClickListener(this);
-            cardViewItem.setOnClickListener(this);
+            ratingbar = itemView.findViewById(R.id.ratingbar);
         }
 
         @Override

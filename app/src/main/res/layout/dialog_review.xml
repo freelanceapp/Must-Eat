@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/layout_bg1"
+    android:layout_gravity="center_horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="User Name"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_size_18"
+        android:textStyle="normal" />
+
+    <RatingBar
+        android:id="@+id/ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:numStars="5"
+        android:progressTint="@color/yellow"
+        android:stepSize="1.0" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_ripple_a"
+        android:paddingLeft="46dp"
+        android:paddingRight="46dp"
+        android:text="Submit"
+        android:textColor="@color/colorWhite" />
+
+</LinearLayout>

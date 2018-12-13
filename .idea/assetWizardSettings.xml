@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio3/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_circle_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio3/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_grid_on_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_plus" />
-                            <entry key="sourceFile" value="D:\Rupesh project\icons\sent-mail.svg" />
+                            <entry key="outputName" value="ic_grid" />
+                            <entry key="sourceFile" value="D:\Rupesh project\icons\menu.svg" />
                           </map>
                         </option>
                       </PersistentState>

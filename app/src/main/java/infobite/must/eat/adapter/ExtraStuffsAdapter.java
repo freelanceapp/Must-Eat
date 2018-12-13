@@ -20,12 +20,15 @@ import infobite.must.eat.modal.default_modal.ExtraStuffItemsModal;
 
 public class ExtraStuffsAdapter extends RecyclerView.Adapter<ExtraStuffsAdapter.MyViewHolder> {
 
+    private String strItemPrice = "0.0";
     private List<ExtraStuffItemsModal> items;
     private Context context;
+    private View.OnClickListener checkedChangeListener;
 
-    public ExtraStuffsAdapter(List<ExtraStuffItemsModal> items, Context context) {
+    public ExtraStuffsAdapter(List<ExtraStuffItemsModal> items, Context context, View.OnClickListener checkedChangeListener) {
         this.items = items;
         this.context = context;
+        this.checkedChangeListener = checkedChangeListener;
     }
 
     @Override
@@ -40,12 +43,22 @@ public class ExtraStuffsAdapter extends RecyclerView.Adapter<ExtraStuffsAdapter.
         ExtraStuffItemsModal stuffItemsModal = items.get(position);
         holder.checkboxItem.setText(stuffItemsModal.getItem());
         holder.tvPrice.setText(stuffItemsModal.getPrice());
+
+        holder.checkboxItem.setTag(position);
+        holder.checkboxItem.setOnClickListener(checkedChangeListener);
+/*
         holder.checkboxItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 stuffItemsModal.setSelected(isChecked);
+                if (isChecked) {
+                    strItemPrice = stuffItemsModal.getPrice();
+                } else {
+                    strItemPrice = "-" + stuffItemsModal.getPrice();
+                }
             }
         });
+*/
     }
 
     @Override
@@ -63,6 +76,10 @@ public class ExtraStuffsAdapter extends RecyclerView.Adapter<ExtraStuffsAdapter.
             checkboxItem = view.findViewById(R.id.checkboxItem);
             tvPrice = view.findViewById(R.id.tvPrice);
         }
+    }
+
+    public String getItemPrice() {
+        return strItemPrice;
     }
 
 }
