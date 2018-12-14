@@ -43,8 +43,8 @@ public class SplashScreenActivity extends BaseActivity {
         setContentView(R.layout.activity_splash_screen);
         mContext = this;
 
-        logoimage = (ImageView) findViewById(R.id.logoimage);
-        title = (TextView) findViewById(R.id.title);
+        logoimage = findViewById(R.id.logoimage);
+        title = findViewById(R.id.title);
         mContext = SplashScreenActivity.this;
         cd = new ConnectionDetector(mContext);
         retrofitRxClient = RetrofitService.getRxClient();

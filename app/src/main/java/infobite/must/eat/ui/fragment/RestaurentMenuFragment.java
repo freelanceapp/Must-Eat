@@ -106,6 +106,7 @@ public class RestaurentMenuFragment extends BaseFragment implements View.OnClick
                 intent.putExtra("product_detail", (Parcelable) product);
                 intent.putExtra("strQuantity", strQuantity);
                 intent.putExtra("restaurent_id", mainModal.getVendor().getVendorId());
+                intent.putExtra("restaurent_name", mainModal.getVendor().getVendorName());
                 mContext.startActivity(intent);
                 break;
         }

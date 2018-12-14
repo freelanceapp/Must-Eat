@@ -2,7 +2,6 @@ package infobite.must.eat.ui.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +23,6 @@ import infobite.must.eat.adapter.ReviewAdapter;
 import infobite.must.eat.modal.User;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorDetailMainModal;
 import infobite.must.eat.modal.api_modal.vendor_detail.VendorReview;
-import infobite.must.eat.modal.default_modal.ReviewModel;
 import infobite.must.eat.utils.Alerts;
 import infobite.must.eat.utils.BaseFragment;
 
@@ -91,18 +88,12 @@ public class RestaurentReviewFragment extends BaseFragment implements View.OnCli
             dialogReview.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         ((TextView) dialogReview.findViewById(R.id.tvUsername)).setText(User.getUser().getUser().getUserFullname());
-        ((RatingBar) dialogReview.findViewById(R.id.ratingbar)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                userRating = rating;
-            }
-        });
-        dialogReview.findViewById(R.id.btnSubmit).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogReview.dismiss();
-                Alerts.show(mContext, String.valueOf(userRating));
-            }
+        ((RatingBar) dialogReview.findViewById(R.id.ratingbar)).
+                setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> userRating = rating);
+
+        dialogReview.findViewById(R.id.btnSubmit).setOnClickListener(v -> {
+            dialogReview.dismiss();
+            Alerts.show(mContext, String.valueOf(userRating));
         });
 
         Window window = dialogReview.getWindow();

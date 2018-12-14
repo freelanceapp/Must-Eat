@@ -29,6 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_STUFFS_PRICE = "stuffs_price";
     private static final String KEY_TOTAL_PRICE = "total_price";
     private static final String KEY_VENDOR_ID = "vendor_id";
+    private static final String KEY_QUANTITY = "quantity";
     private static final String KEY_IMAGE = "image";
 
     public DatabaseHandler(Context context) {
@@ -39,7 +40,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_URL_TABLE = "CREATE TABLE " + TABLE_URL + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_PRODUCT_ID + " TEXT," + KEY_STUFFS + " TEXT,"
-                + KEY_STUFFS_PRICE + " TEXT," + KEY_TOTAL_PRICE + " TEXT," + KEY_VENDOR_ID + " TEXT,"
+                + KEY_STUFFS_PRICE + " TEXT," + KEY_TOTAL_PRICE + " TEXT," + KEY_VENDOR_ID + " TEXT," + KEY_QUANTITY + " TEXT,"
                 + KEY_IMAGE + " TEXT" + ")";
         db.execSQL(CREATE_URL_TABLE);
         Log.e("Table", CREATE_URL_TABLE);
@@ -61,6 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_STUFFS_PRICE, urlModal.getExtraStuffsPrice());
         values.put(KEY_TOTAL_PRICE, urlModal.getTotalPrice());
         values.put(KEY_VENDOR_ID, urlModal.getVendorId());
+        values.put(KEY_QUANTITY, urlModal.getProductQuantity());
         values.put(KEY_IMAGE, urlModal.getProductImage());
 
         // Inserting InstructionsRow
@@ -72,19 +74,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public CartItemDetailModal getSingleItem(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_URL, new String[]{KEY_ID, KEY_NAME, KEY_PRODUCT_ID, KEY_STUFFS, KEY_STUFFS_PRICE
-                        , KEY_TOTAL_PRICE, KEY_VENDOR_ID, KEY_IMAGE}, KEY_ID + "=?",
+                        , KEY_TOTAL_PRICE, KEY_VENDOR_ID, KEY_QUANTITY, KEY_IMAGE}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         return new CartItemDetailModal(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
                 cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
-                cursor.getString(6), cursor.getString(7));
+                cursor.getString(6), cursor.getString(7), cursor.getString(8));
     }
 
     //Getting all Url list
     public List<CartItemDetailModal> getAllUrlList() {
-        List<CartItemDetailModal> urlModalList = new ArrayList<CartItemDetailModal>();
+        List<CartItemDetailModal> urlModalList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_URL;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -100,7 +102,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 urlModal.setExtraStuffsPrice(cursor.getString(4));
                 urlModal.setTotalPrice(cursor.getString(5));
                 urlModal.setVendorId(cursor.getString(6));
-                urlModal.setProductImage(cursor.getString(7));
+                urlModal.setProductQuantity(cursor.getString(7));
+                urlModal.setProductImage(cursor.getString(8));
                 urlModalList.add(urlModal);
             } while (cursor.moveToNext());
         }
@@ -120,13 +123,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_STUFFS_PRICE, urlModal.getExtraStuffsPrice());
         values.put(KEY_TOTAL_PRICE, urlModal.getTotalPrice());
         values.put(KEY_VENDOR_ID, urlModal.getVendorId());
+        values.put(KEY_QUANTITY, urlModal.getProductQuantity());
         values.put(KEY_IMAGE, urlModal.getProductImage());
 
         int updateValue = db.update(TABLE_URL, values, KEY_ID + " = ?", new String[]{String.valueOf(urlModal.get_id())});
         db.close();
         return updateValue;
-
-        /*int updateValue = db.update(TABLE_URL, values, KEY_ID + " = ?", new String[]{String.valueOf(urlModal.get_id())});*/
     }
 
     // Deleting single url

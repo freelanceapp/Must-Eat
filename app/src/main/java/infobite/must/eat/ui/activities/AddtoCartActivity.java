@@ -1,5 +1,6 @@
 package infobite.must.eat.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -20,7 +21,7 @@ import infobite.must.eat.database.DatabaseHandler;
 import infobite.must.eat.modal.CartItemDetailModal;
 import infobite.must.eat.utils.BaseActivity;
 
-public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
+public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener, View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
@@ -29,7 +30,7 @@ public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouch
     private DatabaseHandler db;
     private List<CartItemDetailModal> cartItemList = new ArrayList<>();
     private float addTotal = 0.0f;
-    private String strTotal = "0.0";
+    private String strTotal = "0.0", strVendorName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,9 @@ public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouch
         db = new DatabaseHandler(mContext);
         if (db.getContactsCount()) {
             cartItemList = db.getAllUrlList();
-            //Alerts.show(mContext, "" + cartItemList.size());
         }
+
+        strVendorName = getIntent().getStringExtra("restaurant_name");
 
         if (cartItemList.size() > 0) {
             addTotal = addPrice();
@@ -53,11 +55,13 @@ public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouch
             ((TextView) findViewById(R.id.tvTotalPrice)).setText(strTotal);
             ((TextView) findViewById(R.id.tvTotalCartItem)).setText(strSize);
             findViewById(R.id.tvEmpty).setVisibility(View.GONE);
-            findViewById(R.id.rlCheckout).setVisibility(View.VISIBLE);
+            findViewById(R.id.llCheckout).setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.tvEmpty).setVisibility(View.VISIBLE);
-            findViewById(R.id.rlCheckout).setVisibility(View.GONE);
+            findViewById(R.id.llCheckout).setVisibility(View.GONE);
         }
+
+        ((LinearLayout) findViewById(R.id.llCheckout)).setOnClickListener(this);
 
         recyclerView = findViewById(R.id.recycler_view);
         cll_back = findViewById(R.id.cll_back);
@@ -72,12 +76,7 @@ public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouch
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
-        cll_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        cll_back.setOnClickListener(view -> finish());
     }
 
     @Override
@@ -95,10 +94,10 @@ public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouch
             ((TextView) findViewById(R.id.tvTotalPrice)).setText(strTotal);
             ((TextView) findViewById(R.id.tvTotalCartItem)).setText(strSize);
             findViewById(R.id.tvEmpty).setVisibility(View.GONE);
-            findViewById(R.id.rlCheckout).setVisibility(View.VISIBLE);
+            findViewById(R.id.llCheckout).setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.tvEmpty).setVisibility(View.VISIBLE);
-            findViewById(R.id.rlCheckout).setVisibility(View.GONE);
+            findViewById(R.id.llCheckout).setVisibility(View.GONE);
         }
     }
 
@@ -110,5 +109,16 @@ public class AddtoCartActivity extends BaseActivity implements RecyclerItemTouch
             }
         }
         return addPriceTotal;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.llCheckout:
+                Intent intent = new Intent(mContext, CheckoutActivity.class);
+                intent.putExtra("restaurant_name", strVendorName);
+                startActivity(intent);
+                break;
+        }
     }
 }

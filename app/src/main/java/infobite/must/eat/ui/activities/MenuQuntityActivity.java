@@ -32,7 +32,8 @@ public class MenuQuntityActivity extends BaseActivity implements View.OnClickLis
 
     private CheckBox checkBox;
     private VendorProduct productDetail;
-    private String strTotalPrice = "0.0", strQuantity = "", strAllStuffs = "", strAllStuffsPrice = "", strVendorId = "";
+    private String strTotalPrice = "0.0", strQuantity = "", strAllStuffs = "", strAllStuffsPrice = "",
+            strVendorId = "", strVendorName = "";
     private Button bt_cart;
     private ImageView close_btn;
     private List<ExtraStuffItemsModal> stuffItemList;
@@ -65,6 +66,7 @@ public class MenuQuntityActivity extends BaseActivity implements View.OnClickLis
         productDetail = getIntent().getParcelableExtra("product_detail");
         strQuantity = getIntent().getStringExtra("strQuantity");
         strVendorId = getIntent().getStringExtra("restaurent_id");
+        strVendorName = getIntent().getStringExtra("restaurent_name");
 
         String strPerItemPrice = productDetail.getProductFullRate();
         if (strPerItemPrice.isEmpty()) {
@@ -158,17 +160,18 @@ public class MenuQuntityActivity extends BaseActivity implements View.OnClickLis
             for (int i = 0; i < 1; i++) {
                 if (strVendorId.equalsIgnoreCase(cartItemList.get(i).getVendorId())) {
                     db.addItemCart(new CartItemDetailModal(strStuff, strStuffPrice, TotalPrice,
-                            productDetail.getProductName(), productDetail.getProductId(), strVendorId, productDetail.getProductImage()));
+                            productDetail.getProductName(), productDetail.getProductId(), strVendorId, productDetail.getProductImage(), strQuantity));
                 } else {
                     Alerts.show(mContext, "You can add only same restaurant items to cart !!!");
                 }
             }
         } else {
             db.addItemCart(new CartItemDetailModal(strStuff, strStuffPrice, TotalPrice,
-                    productDetail.getProductName(), productDetail.getProductId(), strVendorId, productDetail.getProductImage()));
+                    productDetail.getProductName(), productDetail.getProductId(), strVendorId, productDetail.getProductImage(), strQuantity));
         }
 
         Intent intent = new Intent(MenuQuntityActivity.this, AddtoCartActivity.class);
+        intent.putExtra("restaurant_name", strVendorName);
         startActivity(intent);
     }
 

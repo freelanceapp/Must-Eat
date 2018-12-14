@@ -13,13 +13,14 @@ public class CartItemDetailModal implements Parcelable {
     private String productId;
     private String vendorId;
     private String productImage;
+    private String productQuantity;
 
     public CartItemDetailModal() {
-        
+
     }
 
     public CartItemDetailModal(String extraStuffs, String extraStuffsPrice, String totalPrice,
-                               String productName, String productId, String vendorId, String productImage) {
+                               String productName, String productId, String vendorId, String productImage, String productQuantity) {
         this.extraStuffs = extraStuffs;
         this.extraStuffsPrice = extraStuffsPrice;
         this.totalPrice = totalPrice;
@@ -27,10 +28,11 @@ public class CartItemDetailModal implements Parcelable {
         this.productId = productId;
         this.vendorId = vendorId;
         this.productImage = productImage;
+        this.productQuantity = productQuantity;
     }
 
     public CartItemDetailModal(int _id, String extraStuffs, String extraStuffsPrice, String totalPrice,
-                               String productName, String productId, String vendorId, String productImage) {
+                               String productName, String productId, String vendorId, String productImage, String productQuantity) {
         this._id = _id;
         this.extraStuffs = extraStuffs;
         this.extraStuffsPrice = extraStuffsPrice;
@@ -39,6 +41,7 @@ public class CartItemDetailModal implements Parcelable {
         this.productId = productId;
         this.vendorId = vendorId;
         this.productImage = productImage;
+        this.productQuantity = productQuantity;
     }
 
     public int get_id() {
@@ -57,6 +60,7 @@ public class CartItemDetailModal implements Parcelable {
         productId = in.readString();
         vendorId = in.readString();
         productImage = in.readString();
+        productQuantity = in.readString();
     }
 
     public static final Creator<CartItemDetailModal> CREATOR = new Creator<CartItemDetailModal>() {
@@ -140,5 +144,14 @@ public class CartItemDetailModal implements Parcelable {
         dest.writeString(productName);
         dest.writeString(productId);
         dest.writeString(vendorId);
+        dest.writeString(productQuantity);
+    }
+
+    public String getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(String productQuantity) {
+        this.productQuantity = productQuantity;
     }
 }
